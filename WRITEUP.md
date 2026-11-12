@@ -9,7 +9,7 @@ Propun construirea unei aplicatii care sparge query ul in multe subunitati care 
 
 - Confirmarea problemei: Dupa o analiza pe baza de date folosind Gemini, am observat ca datele intr-adevar sunt salvate intr un mod non-general, astfel trebuie implementata o asa zisa: "metoda de normalizare" ca baza de date si query ul sa vorbeasca aceeasi limba
 
-### PROBLEMA 2 - Campurile scrie "la liber"
+### PROBLEMA 2 - Campurile scrise "la liber"
 
 - Datele din baza de date au campuri care trebuie doar **CITITE**. O companie poate fi obiectiv in Brasov, iar daca query ul zice Balcani, Europa, Romania, tot in Brasov ramane sau daca e companie publica sau nu, e ceva fix. Exista totusi campuri care sunt scrise de un om si trebuie **INTELESE**, o descriere, un scop, care e subiectiv, difera foarte tare de cine scrie si trebuie inteleasa acea descriere in mod constient.
 
@@ -30,7 +30,7 @@ viteza, cost si acuratete. Problema se pune: cand trebuie sa se modifice overhea
 
 ## Idei de implementare
 
-### 1y division:
+### Query division:
  "Spargem" query ul in informatii separate si vedem ce putem alege din ele.
 
  - Cum? : Spargem query ul in conditii (secvente **CONTEXTUALE**) ca sa putem dobandi informatii pe care sa le comparam cu baza de date printr sistem de: local ai si api call.
@@ -41,7 +41,25 @@ viteza, cost si acuratete. Problema se pune: cand trebuie sa se modifice overhea
 
  ### Start lucru:
  Incepem lucrul prin a construi initial codul folosind principii ale programarii orientate pe obiecte ca sa generam o baza de lucru al query ului
+ Am facut un package care sa contina viitoarele trieri(cea locala si cea cu api call)
  
  Structura: Vreau ca proiectul sa aiba mai multe etape de colectare a conditiilor pt a usura la final trierea finala, astfel voi incepe sa implementez rand pe rand aceste etape.
 
- Incep cu API call-ul pentru ca e cel mai simplu de testat
+ Incep cu API call-ul pentru ca e cel mai simplu de testat.
+
+ ## Probleme rezolvate in cadrul implementarii
+ ### Separation of Concerns si SSOT
+ - Am facut un package care o sa imi tina loc de "main lobby ul" aplicatiei. Acesta are 2 fisiere si 1 tine loc de dictionar global (config) iar celalalt face primele verificari : cea locala(inca nu e implementata) si cea cu apel. Dupa api call, fiecare camp care e returnat de LLM va fi de tip Condition, eliminand riscul complet de aberare al acestuia
+  - Am eliminat orice date "hardcodate" (magic strings). Tot ce ține de mediu (API keys, versiuni de modele) este gestionat exclusiv dintr-un fișier .env și validat global printr-o clasă unică Config
+
+### Benefit of the doubt
+ - Dacă un query nu menționează explicit un câmp obiectiv (ex: nu se specifică anul fondării sau numărul de angajați), sistemul marchează automat acel câmp ca fiind "fantomă". Astfel, la faza de filtrare a companiilor, motorul va ști să nu penalizeze firmele care au employee_count: null, pentru că acel câmp nici măcar nu a fost o cerință a utilizatorului.
+
+ ### Brute-Mode si Fault Tolerance
+ - Un API call eșuat nu va opri aplicația. Eroarea este prinsă (try/except), se aplică condițiile fantomă pe tot query-ul, iar execuția merge mai departe.
+
+ - Brute-Mode: Am construit sistemul astfel încât să poată rula chiar și fără o cheie API configurată în .env. Dacă un evaluator clonează repo-ul și nu introduce o cheie, se detectează lipsa ei, se notifică utilizatorul printr-un avertisment clar în consolă și continuă procesarea strict pe baza faza 1 (Local), implementand astfel un Graceful Degradation al sistemului, în loc de un crash.
+
+ ### EXPANSIUNEA SEMANTICA
+ - Pentru a evita răspunsurile inconsistente și lente, faza 2 folosește API-ul Gemini forțat printr-o schemă Pydantic strictă. LLM-ul nu mai trebuie să ghicească firme; el doar primește bucata de query neînțeleasă local (query.remainder) și o sparge în array-uri semantice.
+De exemplu, pentru "packaging materials", modelul a fost instruit să facă expansiune semantică (adaugă automat: ['bottles', 'jars', 'tubes']), crescând enorm șansele de match pe textul liber din descrierile companiilor.
