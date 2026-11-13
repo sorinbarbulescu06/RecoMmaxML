@@ -39,7 +39,7 @@ viteza, cost si acuratete. Problema se pune: cand trebuie sa se modifice overhea
  ### Prima Triere:
  Dupa apelarea celor 2 modele vom primi niste date concludente (SI OBIECTIVE) pe care sa le folosim ca sa micsoram numarul de potentiale companii. Campurile intrepretabile cum ar fi website-ul sau descrierea vor ramane momentan pe pauza.
 
- ### Start lucru:
+ # Start lucru:
  Incepem lucrul prin a construi initial codul folosind principii ale programarii orientate pe obiecte ca sa generam o baza de lucru al query ului
  Am facut un package care sa contina viitoarele trieri(cea locala si cea cu api call)
  
@@ -48,18 +48,38 @@ viteza, cost si acuratete. Problema se pune: cand trebuie sa se modifice overhea
  Incep cu API call-ul pentru ca e cel mai simplu de testat.
 
  ## Probleme rezolvate in cadrul implementarii
- ### Separation of Concerns si SSOT
+ #### Separation of Concerns si SSOT
  - Am facut un package care o sa imi tina loc de "main lobby ul" aplicatiei. Acesta are 2 fisiere si 1 tine loc de dictionar global (config) iar celalalt face primele verificari : cea locala(inca nu e implementata) si cea cu apel. Dupa api call, fiecare camp care e returnat de LLM va fi de tip Condition, eliminand riscul complet de aberare al acestuia
   - Am eliminat orice date "hardcodate" (magic strings). Tot ce ține de mediu (API keys, versiuni de modele) este gestionat exclusiv dintr-un fișier .env și validat global printr-o clasă unică Config
 
-### Benefit of the doubt
+#### Benefit of the doubt
  - Dacă un query nu menționează explicit un câmp obiectiv (ex: nu se specifică anul fondării sau numărul de angajați), sistemul marchează automat acel câmp ca fiind "fantomă". Astfel, la faza de filtrare a companiilor, motorul va ști să nu penalizeze firmele care au employee_count: null, pentru că acel câmp nici măcar nu a fost o cerință a utilizatorului.
 
- ### Brute-Mode si Fault Tolerance
+ #### Brute-Mode si Fault Tolerance
  - Un API call eșuat nu va opri aplicația. Eroarea este prinsă (try/except), se aplică condițiile fantomă pe tot query-ul, iar execuția merge mai departe.
 
  - Brute-Mode: Am construit sistemul astfel încât să poată rula chiar și fără o cheie API configurată în .env. Dacă un evaluator clonează repo-ul și nu introduce o cheie, se detectează lipsa ei, se notifică utilizatorul printr-un avertisment clar în consolă și continuă procesarea strict pe baza faza 1 (Local), implementand astfel un Graceful Degradation al sistemului, în loc de un crash.
 
- ### EXPANSIUNEA SEMANTICA
+ #### Expansiunea Semantica
  - Pentru a evita răspunsurile inconsistente și lente, faza 2 folosește API-ul Gemini forțat printr-o schemă Pydantic strictă. LLM-ul nu mai trebuie să ghicească firme; el doar primește bucata de query neînțeleasă local (query.remainder) și o sparge în array-uri semantice.
 De exemplu, pentru "packaging materials", modelul a fost instruit să facă expansiune semantică (adaugă automat: ['bottles', 'jars', 'tubes']), crescând enorm șansele de match pe textul liber din descrierile companiilor.
+
+----
+Acum ca API call-ul a fost implementat si e functional trebuie sa incepem constructia modelului local, care va avea 3 functii foarte importante:
+ 
+ - Cautare de flaguri boolene: cauta daca firma e publica sau nu, sau ramane neconcludent daca nu gaseste
+
+ - Cautare anul fondarii: Se va uita dupa cuvinte cheie care sa mentioneze anul fondarii, si dupa dupa acest an ca sa formeze un regex
+
+ - Cautare metrici cantitative(venit si angajati) : va forma tot un regex despre aceste date 
+
+#### BONUS: Metoda-Brute-Force
+In cazul in care API key ul nu exista in fisier, modul de rulare va functiona intr o norma 100% locala pe keywords hardcodate.
+
+## Rezultate teste 
+Am rulat 3 teste folosind cele 12 query uri oferite ca exemplu(rezultatele se afla in `assets/`):
+1. NoLocalJustApi - se foloseste doar apelul extern, iar intern nu se ia nicio decizie
+2. LocalAndApi - se foloseste si apelul local si cel extern
+3. LocalNoAPI - se foloseste exclusiv apelul local pe modul Brute-Force pentru a da grep la cat mai multa informatie
+
+Rezultatele sunt unele decente dar se pot observa cateva erori si capacitati de imbunatatire

@@ -79,9 +79,7 @@ class APIConditionExtractor:
         ]
 
         user_prompt = (
-            f"Full User Query: \"{query.text}\"\n"
-            f"Unexplained Remainder to focus on: \"{query.remainder}\"\n"
-            f"Already Extracted Conditions: {already_extracted}\n\n"
+            f"Query to analyze: \"{query.remainder}\"\n\n"
             "Extract all relevant conditions from the query."
         )
         #todel
