@@ -7,3 +7,5 @@ assets/
 .env
 
 __pycache__
+
+dataset/temp/
