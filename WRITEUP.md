@@ -152,4 +152,7 @@ Se deschide baza de date a firmelor si se trece prin fiecare in parte. Cand ajun
 - "-" viteza si costul acestui sistem este foarte variat si tine clar de cat de mult reuseste query ul sa trieze HARD baza de date pentru ca poate face o reducere mare (de la milioane de firme la zeci de mii) cu suficient de multe informatii hard, dar si 
 
 ---
-Tinand cont ca momentan proiectul este in stagiul de dezvoltare e nevoie neaparat de un environment de debugging asa ca alegerea este clara in `Implementarea Batching`. Daca increderea in sistemul acesta 
+Tinand cont ca momentan proiectul este in stagiul de dezvoltare e nevoie neaparat de un environment de debugging asa ca alegerea este clara in `Implementarea Batching`.
+
+#### Rezultate dupa implementare 
+Trierea HARD functioneaza perfect, fiecare element isi gaseste macar un corespondent, iar cazurile care nu au nicio data perfect obiectiva nu primesc nicio triere.
