@@ -39,7 +39,7 @@ viteza, cost si acuratete. Problema se pune: cand trebuie sa se modifice overhea
  ### Prima Triere:
  Dupa apelarea celor 2 modele vom primi niste date concludente (SI OBIECTIVE) pe care sa le folosim ca sa micsoram numarul de potentiale companii. Campurile intrepretabile cum ar fi website-ul sau descrierea vor ramane momentan pe pauza.
 
- # Start lucru:
+ # Etapa 1 : Query Divizion
  Incepem lucrul prin a construi initial codul folosind principii ale programarii orientate pe obiecte ca sa generam o baza de lucru al query ului
  Am facut un package care sa contina viitoarele trieri(cea locala si cea cu api call)
  
@@ -120,4 +120,36 @@ Urmatoarea etapa: testarea totala, local + API si validarea datelor expuse.
 ### Rezultate finale etapa de Query divizion:
 - Model **PERFECT FUNCTIONAL** indiferent daca are cheie API sau nu.
 - Model **RAPID** pentru agentul local (2 - 3 milisecunde), iar cu API call ~ 1 - 2 secunde
-- Capteaza cat mai multa informatie, o fragmenteaza si o tipizeaza ca sa poata fi folosita dupa la compararea cu firmele din baza de date a firmelor.   
+- Capteaza cat mai multa informatie, o fragmenteaza si o tipizeaza ca sa poata fi folosita dupa la compararea cu firmele din baza de date a firmelor.  
+
+# Etapa 2 : Trierea
+
+### Planificarea:
+- Trierea se va face pe baza datelor total **OBIECTIVE** pe care le am descoperit in etapa anterioara (cum ar fi un regex despre venit sau un numar de angajati minim)
+ - Vom aplica aici principiul 100% **BENEFIT OF THE DOUBT**, deci daca un astfel de camp obiectiv lipseste din compania din baza de date atunci ii oferim beneficiul de a se incadra la "candidat cu potential"
+- Campul de adresa necesita niste mici abordari pentru ca este un criteriu de triere extraordinar de bun, dar necesita niste imbunatatiri pentru a deveni optim pe nivel Local.  
+- Dupa asta vom aplica pe cele care au potential de companii posibile un criteriu de notare si le vom compara pe fiecare in parte.
+- Informatiile de aici sunt comparate **SUBIECTIV** deci fiecare companie va primi o nota anume care va fi compusa din alte note prin relatare camp-camp
+- Si aici vom impune benefit of the doubt si vom incerca sa "sapam" dupa informatii in alte campuri pentru a reusi sa deslusim informatiile lipsa carora le vom acorda la fel nota de confidence
+
+
+## Trierea Hard : <br> Idei de implementare(cu + si -)
+### Implementarea on the fly(greedy)
+
+Se deschide baza de date a firmelor si se trece prin fiecare in parte. Cand ajungem la firma i vom compara criteriile obiective, daca se potriveste atunci ii vom oferi o nota in functie de restul criteriilor si daca are cea mai mare nota o memoram. La final vom face un top 20 de firme care se potrivesc deci vom trece iar prin baza de date pentru a verifica candidatii si a-i sorta.
+
+- "+" este foarte rapida si practic ajunge sa gaseasca cea mai buna firma (care se potriveste dupa ce au gasit agentii locali si LLM, evident)
+- "+" nu ocupa foarte multa memorie ram pentru ca maximul care este incarcat este de 20 de firme la final dupa sortare
+- "-" nu putem face troubleshooting peste firmele din baza de date si strica putin ideea de a verifica cum gandeste sistemul de acreditare
+- "-" daca baza de date detine milioane de firme atunci sa faci un top 20 atunci ar trebui sa se treaca de 2 ori prin milioanele de firme ceea ce ar ingreuna foarte tare un sistem de calcul.
+
+### Implementarea Batching:
+
+Se deschide baza de date a firmelor si se trece prin fiecare in parte. Cand ajungem la firma i vom compara criteriile obiective, daca se potricveste atunci o vom scrie intr un fisier temporar care memoreaza firmele care completeaza regex-urile. apoi parcurgem lista aceea nou formata si le dam note firmelor. Le sortam si apoi alegem top 20
+- "+" putem vedea in timp real cum decide AI ul sa aleaga firmele si ce criterii a gasit el corecte sau gresite
+- "+" avem un log al firmelor care totusi au trecut de trierea HARD care totusi e considerata obiectiva, deci putem relua cautarile in cazul in care rezultatele sunt incorecte
+- "-" rescrierea in batch ocupa spatiu pe disk, asta nu e o problema cand e vorba de 10.000 de firme dar daca ajungem la ordinul milioanelor atunci poate deveni o problema pentru viteza si pentru spatiul de stocare(scenariu putin ireal pentru ca in viata reala nu s ar intampla ceva de genul, si chiar daca s ar intampla niciun sistem de cautare al firmelor nu ar fi prea rapid :)))))
+- "-" viteza si costul acestui sistem este foarte variat si tine clar de cat de mult reuseste query ul sa trieze HARD baza de date pentru ca poate face o reducere mare (de la milioane de firme la zeci de mii) cu suficient de multe informatii hard, dar si 
+
+---
+Tinand cont ca momentan proiectul este in stagiul de dezvoltare e nevoie neaparat de un environment de debugging asa ca alegerea este clara in `Implementarea Batching`. Daca increderea in sistemul acesta 
