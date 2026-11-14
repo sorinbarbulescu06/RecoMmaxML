@@ -47,7 +47,7 @@ viteza, cost si acuratete. Problema se pune: cand trebuie sa se modifice overhea
 
  Incep cu API call-ul pentru ca e cel mai simplu de testat.
 
- ## Probleme rezolvate in cadrul implementarii
+ ## Rezolvari ale problemelor in cadrul implementarii
  #### Separation of Concerns si SSOT
  - Am facut un package care o sa imi tina loc de "main lobby ul" aplicatiei. Acesta are 2 fisiere si 1 tine loc de dictionar global (config) iar celalalt face primele verificari : cea locala(inca nu e implementata) si cea cu apel. Dupa api call, fiecare camp care e returnat de LLM va fi de tip Condition, eliminand riscul complet de aberare al acestuia
   - Am eliminat orice date "hardcodate" (magic strings). Tot ce ține de mediu (API keys, versiuni de modele) este gestionat exclusiv dintr-un fișier .env și validat global printr-o clasă unică Config
@@ -83,3 +83,41 @@ Am rulat 3 teste folosind cele 12 query uri oferite ca exemplu(rezultatele se af
 3. LocalNoAPI - se foloseste exclusiv apelul local pe modul Brute-Force pentru a da grep la cat mai multa informatie
 
 Rezultatele sunt unele decente dar se pot observa cateva erori si capacitati de imbunatatire
+
+## Probleme si solutii la implementarea actuala:
+
+#### Eroare la apelarea API-ului
+ - Daca cumva API - ul intoarce eroarea 503, adica nu a putut fi accesat modelul, asta inseamna ca metoda brute-force nu a fost apelata deloc in stagiul incipient
+ - `Rezolvare`: Folosim catch exception si daca este o eroare de genul, se apeleaza de urgenta modul brute-force pentru a nu pierde timpul si informatie pretioasa.
+
+ #### Dublarea conditiilor
+
+ - LLM ul poate sa genereze informatie din context si astfel poate genera informatie ptr campuri deja adresate de modelul local.(exemplu poate sa considere ca "startup" ofera informatia year_founded => 2019 si acolo se afla o contradictie).
+- Se pune problema pe care dintre ele sa le ascultam? Conteaza foarte mult de toleranta dar in contextul unei codari astfel de stricte, daca modelul capteaza informatii local de cele mai multe ori sunt sigure deci putem sa ne bazam pe o toleranta marita, conf = 0.7
+- `Rezolvare`: ne folosim de aceasta variabila conf care daca este  == 1 atunci API ul nu mai are rost sa incerce sa il suprascrie in vreun fel, altfel api ul va incerca sa adauge informatia captata
+
+#### Geografia functioneaza mai optim in local decat in API ptr tari specifice
+- Pentru tari concrete si zone concrete si scrise tipizat solutia locala merge perfect pentru ca ofera un layer de complexitate in plus (transforma Romania -> "BRASOV, BUCHAREST, IASI...") pe cand API ul lasa doar Romania
+- `Rezolvare` : Apelam mereu expansiunea geografica(locala) la inceputul fazelor chiar daca cheia API este prezenta in.env iar la description in brute-force filtram cuvitnele care au facut deja match la geografie.
+
+#### Confuzia de roluri in Brute-Force
+- Modelul nu face diferenta intre ce trebuie sa **fie** firma si ce **livreaza** firma dintr-un query
+- `Rezolvare` : In Brute-Force cautam mereu cuvinte precum "for" ca sa mapam corect in traget_markets(ce livreaza firma) nu in business_model(ce este firma)
+
+
+## Erori in implementarea solutiilor
+ - Am incercat sa scad limita de timeout din program la sub 8 secunde, dar minimul google e de 10 secunde 
+- AI ul local face foarte multe gafe cand vine vorba de intelegerea unor anumite cuvinte (ex :IT, 3D, AI) pentru ca baza de date a keywords urilor este destul de restransa
+
+##  Solutia automatizata:
+ - Pentru a completa toata lista si a ne asigura ca avem cat mai multe keywords de selectie am cerut de la un LLM sa imi genereze 200 (in 2 etape) de query uri diferite care sa testeze diferite aspecte si formulari (unele mai vagi altele mai clare si mai usor de dedus)
+ - Dupa asta am rulat greping-ul LOCAL (fara vreun fel de API call) si am trimis rezultatele unui LLM care sa extraga exact cuvintele care nu au aparut in keywords-uri pentru a largi orizonturile agentului local (supervised training)
+
+Dupa cateva teste si incercari sa a ajuns la un model extrem de rapid si complex care reuseste sa imparta text in informatii punctuale despre firme
+
+Urmatoarea etapa: testarea totala, local + API si validarea datelor expuse.
+
+### Rezultate finale etapa de Query divizion:
+- Model **PERFECT FUNCTIONAL** indiferent daca are cheie API sau nu.
+- Model **RAPID** pentru agentul local (2 - 3 milisecunde), iar cu API call ~ 1 - 2 secunde
+- Capteaza cat mai multa informatie, o fragmenteaza si o tipizeaza ca sa poata fi folosita dupa la compararea cu firmele din baza de date a firmelor.   
