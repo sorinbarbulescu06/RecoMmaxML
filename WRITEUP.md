@@ -88,30 +88,32 @@ Rezultatele sunt unele decente dar se pot observa cateva erori si capacitati de 
 
 #### Eroare la apelarea API-ului
  - Daca cumva API - ul intoarce eroarea 503, adica nu a putut fi accesat modelul, asta inseamna ca metoda brute-force nu a fost apelata deloc in stagiul incipient. De exemplu, la „Clean energy startups...“ API-ul a dat 503, nu s-a extras nimic și au trecut toate cele 477 de firme. Acum trec 0.
- - `Rezolvare`: Folosim catch exception si daca este o eroare de genul, se apeleaza de urgenta modul brute-force pentru a nu pierde timpul si informatie pretioasa.
+   + `Rezolvare`: Folosim catch exception si daca este o eroare de genul, se apeleaza de urgenta modul brute-force pentru a nu pierde timpul si informatie pretioasa.
+
+ - Am corectat regula care decide dacă mai e nevoie de API (ignor punctuația și cuvintele de legătură). Pe cele 207 de query-uri, rata de apeluri a rămas 100%, pentru că fiecare query conține o parte semantică (industrie) pe care agentul local nu o poate extrage. Concluzie: API-ul nu e un „plan B“, ci o parte necesară a sistemului, iar economia reală de cost ar veni dintr-un cache sau dintr-un model local pentru industrii, nu din reguli mai bune.
 
  #### Nivelul de intelegere al unui query
  - La rulare a aparut problema in care api ul si nici agentul local nu au reusit sa capteze nicio informatie, iar din cauza asta nu s a facut nicio triere asupra bazei de date.(programul considera ca toate firmele au sansa sa fie compatibile, cu toate ca nu au nicio informatie de comparatie)
- - `Rezolvare` : fiecare query primeste un status (`understood`, `partial`, `failed`) in functie de ce conditii active reuseste sa inteleaga.
+   - `Rezolvare` : fiecare query primeste un status (`understood`, `partial`, `failed`) in functie de ce conditii active reuseste sa inteleaga.
 
-   + `understood` : se primeste atunci cand query ul reuseste sa determine macar o conditie, iar API ul nu a dat fail(sau pur cheia de la api nu este prezenta si modelul ruleaza 100% local), se face trierea mai departe...
-   + `partial` : se primeste atunci cand query ul reuseste sa determine macar o conditie, iar API ul returneaza o eroare(pe scurt, localul a gasit ceva, iar ce a rams ptr API a ramas neadresat de catre API, iar modelul brute-force a incercat sa echivaleze, dar nu e nicio garantie ca tot textul a fost inteles), se face trierea mai departe...
-   + `failed` : nu s-a determinat nicio condiție (nici obiectivă, nici interpretabilă), așa că nu returnăm nicio firmă, pentru că nu avem pe ce să ne bazăm.
+     + `understood` : se primeste atunci cand query ul reuseste sa determine macar o conditie, iar API ul nu a dat fail(sau pur cheia de la api nu este prezenta si modelul ruleaza 100% local), se face trierea mai departe...
+     + `partial` : se primeste atunci cand query ul reuseste sa determine macar o conditie, iar API ul returneaza o eroare(pe scurt, localul a gasit ceva, iar ce a rams ptr API a ramas neadresat de catre API, iar modelul brute-force a incercat sa echivaleze, dar nu e nicio garantie ca tot textul a fost inteles), se face trierea mai departe...
+     + `failed` : nu s-a determinat nicio condiție (nici obiectivă, nici interpretabilă), așa că nu returnăm nicio firmă, pentru că nu avem pe ce să ne bazăm.
 
 
  #### Dublarea conditiilor
 
  - LLM ul poate sa genereze informatie din context si astfel poate genera informatie ptr campuri deja adresate de modelul local.(exemplu poate sa considere ca "startup" ofera informatia year_founded => 2019 si acolo se afla o contradictie).
 - Se pune problema pe care dintre ele sa le ascultam? Conteaza foarte mult de toleranta dar in contextul unei codari astfel de stricte, daca modelul capteaza informatii local de cele mai multe ori sunt sigure deci putem sa ne bazam pe o toleranta marita
-- `Rezolvare`: dacă modelul local a completat deja un câmp obiectiv (an, angajați, venit, public), API-ul nu îl mai suprascrie. Pentru restul, API-ul adaugă informația captată.
+  - `Rezolvare`: dacă modelul local a completat deja un câmp obiectiv (an, angajați, venit, public), API-ul nu îl mai suprascrie. Pentru restul, API-ul adaugă informația captată.
 
 #### Geografia functioneaza mai optim in local decat in API ptr tari specifice
 - Soluția locală merge bine pentru țări și regiuni scrise clar, pentru că adaugă și orașele (România → Brașov, București, Iași...), pe când API-ul lasă doar țara.
-- `Rezolvare` : Apelam mereu expansiunea geografica(locala) la inceputul fazelor chiar daca cheia API este prezenta in.env iar la description in brute-force filtram cuvitnele care au facut deja match la geografie.
+  - `Rezolvare` : Apelam mereu expansiunea geografica(locala) la inceputul fazelor chiar daca cheia API este prezenta in.env iar la description in brute-force filtram cuvitnele care au facut deja match la geografie.
 
 #### Confuzia de roluri in Brute-Force
 - Modelul nu face diferenta intre ce trebuie sa **fie** firma si ce **livreaza** firma dintr-un query
-- `Rezolvare` : In Brute-Force cautam mereu cuvinte precum "for" ca sa mapam corect in traget_markets(ce livreaza firma) nu in business_model(ce este firma)
+  - `Rezolvare` : In Brute-Force cautam mereu cuvinte precum "for" ca sa mapam corect in traget_markets(ce livreaza firma) nu in business_model(ce este firma)
 
 
 ## Erori in implementarea solutiilor

@@ -1,3 +1,4 @@
+import re
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Optional
@@ -16,6 +17,14 @@ class Field(str, Enum):
     TARGET_MARKETS = "target_markets"
     CORE_OFFERINGS = "core_offerings"
     IS_PUBLIC = "is_public"
+
+# Words that mean nothing as a filter on their own. The list is short on purpose:
+# ignoring too much would skip the API call when it is actually needed.
+IGNORED_WORDS = frozenset({
+    "a", "an", "the", "of", "in", "on", "at", "for", "with", "by", "to", "from",
+    "and", "or", "than", "that", "which", "who", "is", "are",
+    "company", "companies", "firm", "firms",
+})
 
 OBJECTIVE_FIELDS = (
     Field.YEAR_FOUNDED,
@@ -128,7 +137,11 @@ class Query:
 
     @property
     def is_fully_explained(self) -> bool:
-        return not self.remainder
+        """True if nothing meaningful is left in the remainder (punctuation and
+        IGNORED_WORDS don't count). The remainder text itself stays untouched,
+        because the API needs words like 'for' for context."""
+        words = re.findall(r"\w+", self.remainder.lower())
+        return all(w in IGNORED_WORDS for w in words)
 
     @property
     def status(self) -> str:

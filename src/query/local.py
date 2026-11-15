@@ -5,6 +5,19 @@ from src.query.query import Condition, Field, Operator, Query
 from src.base.config import Config
 
 
+# All European countries, so "Europe" gives the same list on every run
+# (before: 12 countries here, and a different list from the API at each call).
+_EUROPE = [
+    "Albania", "Andorra", "Austria", "Belarus", "Belgium", "Bosnia and Herzegovina", "Bulgaria",
+    "Croatia", "Cyprus", "Czechia", "Czech Republic", "Denmark", "Estonia", "Finland", "France",
+    "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Liechtenstein",
+    "Lithuania", "Luxembourg", "Malta", "Moldova", "Monaco", "Montenegro", "Netherlands",
+    "North Macedonia", "Norway", "Poland", "Portugal", "Romania", "Serbia", "Slovakia",
+    "Slovenia", "Spain", "Sweden", "Switzerland", "Ukraine", "United Kingdom", "UK",
+    "Russia",  # transcontinental: kept in, as the API did before, so no company is lost
+]
+
+
 class LocalConditionExtractor:
     """
     Phase 1: Fast, zero-cost local rule/regex extractor for obvious hard facts.
@@ -44,8 +57,8 @@ class LocalConditionExtractor:
         "western europe": ["Germany", "France", "United Kingdom", "UK", "Netherlands", "Belgium", "Switzerland", "Austria"],
         "iberian peninsula": ["Spain", "Portugal", "Madrid", "Barcelona", "Lisbon"],
         "iberia": ["Spain", "Portugal", "Madrid", "Barcelona", "Lisbon"],
-        "europe": ["Germany", "France", "United Kingdom", "Romania", "Poland", "Spain", "Italy", "Netherlands", "Sweden", "Switzerland", "Austria", "Belgium"],
-        "european": ["Germany", "France", "United Kingdom", "Romania", "Poland", "Spain", "Italy", "Netherlands", "Sweden", "Switzerland"],
+        "europe": _EUROPE,
+        "european": _EUROPE,
         "emea": ["United Kingdom", "Germany", "France", "UAE", "Saudi Arabia", "South Africa", "Netherlands", "Spain", "Italy"],
         "mena region": ["UAE", "United Arab Emirates", "Dubai", "Saudi Arabia", "Egypt", "Qatar", "Israel", "Morocco"],
         "mena": ["UAE", "United Arab Emirates", "Dubai", "Saudi Arabia", "Egypt", "Qatar", "Israel"],
@@ -469,6 +482,9 @@ class LocalConditionExtractor:
         self._extract_revenue(query, text, occupied_spans)
         self._extract_year_founded(query, text, occupied_spans)
 
+        # 1b. GEOGRAFIE (tot deterministica, deci ruleaza MEREU: o lista fixa, nu depinde de API)
+        self._extract_geography(query, text, occupied_spans)
+
         # 2. BRUTE-MODE OVERDRIVE (Ruleaza cand nu avem API Key sau ca fallback la 503)
         if self.brute_mode:
             self._extract_brute_mode_semantics(query, text, occupied_spans)
@@ -653,34 +669,35 @@ class LocalConditionExtractor:
     # BRUTE-MODE FALLBACK (CAND LIPSESTE CHEIA API SAU PICA CU 503)
     # =========================================================================
 
+    def _extract_geography(
+        self, query: Query, text: str, occupied: list[tuple[int, int]]
+    ) -> None:
+        """Countries, regions and cities from _GEO_EXPANSIONS. Deterministic, so it always runs.
+        One condition per match, each with its own span: that way the matched words leave the
+        remainder, and words between two places ("Germany software companies in Spain") stay."""
+        def add(expanded: list[str], span: tuple[int, int]) -> None:
+            occupied.append(span)
+            query.add_condition(
+                Condition(Field.ADDRESS, Operator.IN, list(expanded), "local", 0.85, span)
+            )
+
+        for geo_key in sorted(self._GEO_EXPANSIONS.keys(), key=len, reverse=True):
+            pattern = re.compile(
+                rf"(?:\b(?:in|from|based\s+in|located\s+in)\s+)?(?:\bthe\s+)?\b{re.escape(geo_key)}\b",
+                re.IGNORECASE,
+            )
+            for match in pattern.finditer(text):
+                if not self._is_overlapping(match.span(), occupied):
+                    add(self._GEO_EXPANSIONS[geo_key], match.span())
+
+        # "US" in capitals (e.g. "US medtech"), so the pronoun "us" is not taken for a country
+        for match in re.finditer(r"\bUS\b", text):
+            if not self._is_overlapping(match.span(), occupied):
+                add(self._GEO_EXPANSIONS["usa"], match.span())
+
     def _extract_brute_mode_semantics(
         self, query: Query, text: str, occupied: list[tuple[int, int]]
     ) -> None:
-        # 1. Geografie / Regiuni
-        address_values: list[str] = []
-        for geo_key in sorted(self._GEO_EXPANSIONS.keys(), key=len, reverse=True):
-            expanded_locations = self._GEO_EXPANSIONS[geo_key]
-            pattern = re.compile(rf"(?:\b(?:in|from|based\s+in|located\s+in)\s+)?(?:\bthe\s+)?\b{re.escape(geo_key)}\b", re.IGNORECASE)
-            for match in pattern.finditer(text):
-                if not self._is_overlapping(match.span(), occupied):
-                    occupied.append(match.span())
-                    for loc in expanded_locations:
-                        if loc not in address_values:
-                            address_values.append(loc)
-
-        # Verificam si "US" cu majuscule (ex: "US medtech...") fara sa confundam cu pronumele "us"
-        for match in re.finditer(r"\bUS\b", text):
-            if not self._is_overlapping(match.span(), occupied):
-                occupied.append(match.span())
-                for loc in self._GEO_EXPANSIONS["usa"]:
-                    if loc not in address_values:
-                        address_values.append(loc)
-
-        if address_values:
-            query.add_condition(
-                Condition(Field.ADDRESS, Operator.IN, address_values, "local", 0.85)
-            )
-
         for_split = re.search(r"\b(?:for|serving|to|working\s+with|competing\s+with)\b", text, re.IGNORECASE)
 
         # 2. Core Offerings (Industrii specifice primele, iar termenii generici la final)

@@ -88,7 +88,7 @@ class APIConditionExtractor:
         local_objective_fields = {
             c.field for c in query.active_conditions
             if c.source == "local" and c.field in {
-                Field.YEAR_FOUNDED, Field.EMPLOYEE_COUNT, Field.REVENUE, Field.IS_PUBLIC
+                Field.YEAR_FOUNDED, Field.EMPLOYEE_COUNT, Field.REVENUE, Field.IS_PUBLIC, Field.ADDRESS
             }
         }
 
