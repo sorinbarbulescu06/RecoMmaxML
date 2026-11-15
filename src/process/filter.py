@@ -151,16 +151,16 @@ class HardFilterProcessor:
         if not country_code and not flat_text:
             return True
 
-        # 1. Verificam intai daca se potriveste un oras/regiune/tara explicita in textul adresei (ex: 'Bucharest')
+        # 1. Daca firma are country_code si query-ul specifica tari (ISO codes),
+        # decizia se ia strict pe baza codului de tara (nicio strada/oras omonim din alta tara nu poate trece).
+        if country_code and self._allowed_iso_codes:
+            return country_code in self._allowed_iso_codes
+
+        # 2. Fallback: daca firma NU are country_code (sau query-ul contine doar un oras necunoscut),
+        # cautam in textul curatat (oras / regiune).
         if flat_text:
             for pattern in self._address_patterns:
                 if pattern.search(flat_text):
                     return True
-
-        # 2. Daca nu am cautat un oras specific (sau orasul e None), verificam codul ISO al tarii (ex: 'ro' in {'ro'})
-        if country_code and country_code in self._allowed_iso_codes:
-            # Atentie: daca query-ul a cerut strict orase (ex: "Bucharest and Cluj") si firma are town != None care NU a dat match mai sus,
-            # totusi in _GEO_EXPANSIONS noi adaugam si tara 'Romania', deci country_code == 'ro' este valid.
-            return True
 
         return False

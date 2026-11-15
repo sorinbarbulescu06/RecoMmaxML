@@ -151,9 +151,10 @@ class AddressNormalizer:
                 country_code = cls.strip_accents(str(cc_val)).lower().strip()
 
             for k, v in parsed_obj.items():
-                if v is None or k in {"latitude", "longitude", "country_code"}:
-                    continue
-                if isinstance(v, (int, float)):
+                if v is None or k in {
+                    "latitude", "longitude", "country_code",
+                    "street", "house_number", "postcode", "raw_text"
+                }:
                     continue
                 val_str = str(v).strip()
                 if val_str and val_str.lower() != "none":
