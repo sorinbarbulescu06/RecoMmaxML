@@ -70,6 +70,12 @@ class Query:
     text: str
     conditions: list[Condition] = field(default_factory=list)
 
+    # Notes filled in while the query goes through the pipeline
+    api_called: bool = False
+    api_error: Optional[str] = None   # "429", "503", "504", "other", or None if no error
+    local_ms: float = 0.0
+    api_ms: float = 0.0               # includes the local fallback when the API fails
+
     def __post_init__(self):
         if not self.text or not self.text.strip():
             raise ValueError("query text must not be empty")
@@ -123,3 +129,29 @@ class Query:
     @property
     def is_fully_explained(self) -> bool:
         return not self.remainder
+
+    @property
+    def status(self) -> str:
+        """failed: no active condition. partial: the API failed, only the local part is left.
+        understood: everything else."""
+        if not self.active_conditions:
+            return "failed"
+        if self.api_error:
+            return "partial"
+        return "understood"
+
+    def to_record(self) -> dict:
+        """One flat dict per query, to be written as a line in a .jsonl run log."""
+        return {
+            "query": self.text,
+            "status": self.status,
+            "api_called": self.api_called,
+            "api_error": self.api_error,
+            "local_ms": round(self.local_ms, 2),
+            "api_ms": round(self.api_ms, 2),
+            "conditions": [
+                {"field": c.field.value, "operator": c.operator.value, "value": c.value,
+                 "source": c.source, "confidence": c.confidence}
+                for c in self.active_conditions
+            ],
+        }

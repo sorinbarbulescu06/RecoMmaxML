@@ -1,5 +1,7 @@
 import json
 import os
+import time
+from datetime import datetime
 from pathlib import Path
 
 from src.query.query import Query
@@ -38,10 +40,14 @@ class QueryQualificationPipeline:
         query = Query(text=raw_query)
 
         # Phase 1: Local deterministic extraction
+        t0 = time.perf_counter()
         query = self.phase1.process(query)
+        query.local_ms = (time.perf_counter() - t0) * 1000
 
         # Phase 2: API intelligent extraction + Phantom conditions for unmentioned fields
+        t0 = time.perf_counter()
         query = self.phase2.process(query)
+        query.api_ms = (time.perf_counter() - t0) * 1000
 
         return query
 
@@ -96,10 +102,17 @@ if __name__ == "__main__":
         "Companies that manufacture or supply critical components for electric vehicle battery production",
     ]
 
+    run_dir = Path("assets/runs")
+    run_dir.mkdir(parents=True, exist_ok=True)
+    run_log = run_dir / f"run_{datetime.now():%Y%m%d_%H%M%S}.jsonl"
+
     for idx, q_text in enumerate(test_queries, start=1):
         print("=" * 70)
         result_query = pipeline.run(q_text)
-        print(f"QUERY #{idx}: {result_query.text}\n")
+        print(f"QUERY #{idx}: {result_query.text}")
+        print(f"STATUS: {result_query.status} | API called: {result_query.api_called} | "
+              f"API error: {result_query.api_error} | local: {result_query.local_ms:.1f} ms | "
+              f"api: {result_query.api_ms:.0f} ms\n")
 
         print("-> CONDITII ACTIVE (Ce cautam in baza de date):")
         for c in result_query.active_conditions:
@@ -114,3 +127,10 @@ if __name__ == "__main__":
         print(f"\n-> REZULTAT TRIERE HARD (Etapa 2A):")
         print(f"   Total firme in DB: {seen} | Calificate: {passed} | Excluse: {dropped}")
         print(f"   Fisier candidati:  {temp_path}")
+
+        record = result_query.to_record()
+        record.update(seen=seen, passed=passed, dropped=dropped)
+        with open(run_log, "a", encoding="utf-8") as f:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+    print(f"\nRun log: {run_log}")

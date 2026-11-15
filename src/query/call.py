@@ -1,3 +1,4 @@
+import re
 from typing import Optional
 from pydantic import BaseModel, Field as PydanticField
 from google import genai
@@ -33,6 +34,15 @@ class APIQueryDecompositionResponse(BaseModel):
     conditions: list[APIConditionItem] = PydanticField(
         description="List of extracted conditions from the query."
     )
+
+
+def _error_code(error: Exception) -> str:
+    """HTTP-style code of an API error (429, 503, 504...), or 'other'."""
+    code = getattr(error, "code", None)
+    if isinstance(code, int):
+        return str(code)
+    match = re.match(r"\s*(\d{3})\b", str(error))
+    return match.group(1) if match else "other"
 
 
 SYSTEM_PROMPT = """You are an expert B2B Search Query Decomposition Agent.
@@ -83,6 +93,7 @@ class APIConditionExtractor:
         }
 
         try:
+            query.api_called = True
             print(f"[DEBUG] -> Trimit request catre API (Model: {self.model_name}). Text analizat: '{query.remainder}'")
             response = self.client.models.generate_content(
                 model=self.model_name,
@@ -128,6 +139,7 @@ class APIConditionExtractor:
                     query.add_condition(cond)
 
         except Exception as e:
+            query.api_error = _error_code(e)
             print(f"[WARN] Eroare API ({e}). Activam Brute-Mode Fallback pentru restul query-ului!")
             fallback_extractor = LocalConditionExtractor(brute_mode=True)
             occupied = [c.span for c in query.active_conditions if c.span is not None]

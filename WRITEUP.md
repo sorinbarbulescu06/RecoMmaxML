@@ -49,7 +49,7 @@ viteza, cost si acuratete. Problema se pune: cand trebuie sa se modifice overhea
 
  ## Rezolvari ale problemelor in cadrul implementarii
  #### Separation of Concerns si SSOT
- - Am facut un package care o sa imi tina loc de "main lobby ul" aplicatiei. Acesta are 2 fisiere si 1 tine loc de dictionar global (config) iar celalalt face primele verificari : cea locala(inca nu e implementata) si cea cu apel. Dupa api call, fiecare camp care e returnat de LLM va fi de tip Condition, eliminand riscul complet de aberare al acestuia
+ - Am facut un package care o sa imi tina loc de "main lobby ul" aplicatiei. Acesta are 2 fisiere si 1 tine loc de dictionar global (config) iar celalalt face primele verificari : cea locala(inca nu e implementata) si cea cu apel. Dupa api call, fiecare camp care e returnat de LLM va fi de tip Condition, deci primim mereu un format valid (continutul local poate fi gresit)
   - Am eliminat orice date "hardcodate" (magic strings). Tot ce ține de mediu (API keys, versiuni de modele) este gestionat exclusiv dintr-un fișier .env și validat global printr-o clasă unică Config
 
 #### Benefit of the doubt
@@ -93,11 +93,11 @@ Rezultatele sunt unele decente dar se pot observa cateva erori si capacitati de 
  #### Dublarea conditiilor
 
  - LLM ul poate sa genereze informatie din context si astfel poate genera informatie ptr campuri deja adresate de modelul local.(exemplu poate sa considere ca "startup" ofera informatia year_founded => 2019 si acolo se afla o contradictie).
-- Se pune problema pe care dintre ele sa le ascultam? Conteaza foarte mult de toleranta dar in contextul unei codari astfel de stricte, daca modelul capteaza informatii local de cele mai multe ori sunt sigure deci putem sa ne bazam pe o toleranta marita, conf = 0.7
-- `Rezolvare`: ne folosim de aceasta variabila conf care daca este  == 1 atunci API ul nu mai are rost sa incerce sa il suprascrie in vreun fel, altfel api ul va incerca sa adauge informatia captata
+- Se pune problema pe care dintre ele sa le ascultam? Conteaza foarte mult de toleranta dar in contextul unei codari astfel de stricte, daca modelul capteaza informatii local de cele mai multe ori sunt sigure deci putem sa ne bazam pe o toleranta marita
+- `Rezolvare`: dacă modelul local a completat deja un câmp obiectiv (an, angajați, venit, public), API-ul nu îl mai suprascrie. Pentru restul, API-ul adaugă informația captată.
 
 #### Geografia functioneaza mai optim in local decat in API ptr tari specifice
-- Pentru tari concrete si zone concrete si scrise tipizat solutia locala merge perfect pentru ca ofera un layer de complexitate in plus (transforma Romania -> "BRASOV, BUCHAREST, IASI...") pe cand API ul lasa doar Romania
+- Soluția locală merge bine pentru țări și regiuni scrise clar, pentru că adaugă și orașele (România → Brașov, București, Iași...), pe când API-ul lasă doar țara.
 - `Rezolvare` : Apelam mereu expansiunea geografica(locala) la inceputul fazelor chiar daca cheia API este prezenta in.env iar la description in brute-force filtram cuvitnele care au facut deja match la geografie.
 
 #### Confuzia de roluri in Brute-Force
@@ -111,14 +111,14 @@ Rezultatele sunt unele decente dar se pot observa cateva erori si capacitati de 
 
 ##  Solutia automatizata:
  - Pentru a completa toata lista si a ne asigura ca avem cat mai multe keywords de selectie am cerut de la un LLM sa imi genereze 200 (in 2 etape) de query uri diferite care sa testeze diferite aspecte si formulari (unele mai vagi altele mai clare si mai usor de dedus)
- - Dupa asta am rulat greping-ul LOCAL (fara vreun fel de API call) si am trimis rezultatele unui LLM care sa extraga exact cuvintele care nu au aparut in keywords-uri pentru a largi orizonturile agentului local (supervised training)
+ - Dupa asta am rulat greping-ul LOCAL (fara vreun fel de API call) si am trimis rezultatele unui LLM care sa extraga exact cuvintele care nu au aparut in keywords-uri pentru a largi orizonturile agentului local.
 
-Dupa cateva teste si incercari sa a ajuns la un model extrem de rapid si complex care reuseste sa imparta text in informatii punctuale despre firme
+Dupa cateva teste si incercari sa a ajuns la un model rapid si complex care reuseste sa imparta text in informatii punctuale despre firme
 
 Urmatoarea etapa: testarea totala, local + API si validarea datelor expuse.
 
 ### Rezultate finale etapa de Query divizion:
-- Model **PERFECT FUNCTIONAL** indiferent daca are cheie API sau nu.
+- Modelul rulează și fără cheie API (brute-mode) și a produs condiții pentru toate cele 12 query-uri. Cu API-ul, când apelul eșuează (503, 429, 504), sistemul trece automat pe varianta locală: în rularea cu 207 de query-uri, au fost 148 de astfel de cazuri, toate prinse.(cifre luate din `assets/stage1_v0/STATS.md`)
 - Model **RAPID** pentru agentul local (2 - 3 milisecunde), iar cu API call ~ 1 - 2 secunde
 - Capteaza cat mai multa informatie, o fragmenteaza si o tipizeaza ca sa poata fi folosita dupa la compararea cu firmele din baza de date a firmelor.  
 
@@ -131,6 +131,20 @@ Urmatoarea etapa: testarea totala, local + API si validarea datelor expuse.
 - Dupa asta vom aplica pe cele care au potential de companii posibile un criteriu de notare si le vom compara pe fiecare in parte.
 - Informatiile de aici sunt comparate **SUBIECTIV** deci fiecare companie va primi o nota anume care va fi compusa din alte note prin relatare camp-camp
 - Si aici vom impune benefit of the doubt si vom incerca sa "sapam" dupa informatii in alte campuri pentru a reusi sa deslusim informatiile lipsa carora le vom acorda la fel nota de confidence
+
+### De ce eliminam(taiem) si nu le penalizam(bad scoring)
+#### Avantaje :
+- **Pentru a salva timp** : costul de a compara descrierile subiective ale firmelor sunt foarte costisitoare astfel noi incercam sa triem din start ce nu se potriveste din punct de vedere matematic sau logic. Cifrele si taraa sunt informatii exacte(obiective), nu pareri(subiective).
+- **Scalabilitatea** : pentru o baza de date de 400 de firme costul nu e o problema asa de mare, timpul de rulare e aproape minimal, dar in cazul **SCALARII**, cand baza de date se mareste substantial, vom avea probleme mari de complexitate si orice triere logica si instanta ne va avantaja.
+- **Benefit of the doubt** : firmele care au un camp obiectv lipsa vor fi adaugate in lista automat
+#### Dezavantaje :
+- **Greseli de intelegere a querry-ului** : Lista tarilor poate fi incompleta sau sa nu recunoasca un anumit oras sau regiune scrisa in querry.
+- **Pierderea** : Dupa ce o firma este exclusa, nu mai poate fi readusa in baza de selectie.
+- **Greseli de baza de date** : Detaliile din baza de date sunt noisy asa ca filtrul hard trebuie sa aiba o relativa toleranta la noise. Momentan toleranta la noise este 0, dar e o imbunatatire pe viitor.
+
+Am ales aceasta decizie pentru ca am acceptat riscul de a pierde firme pe baza adreselor (nu are ce cauta clar o firma din India in Romania) iar scoring ul cred ca nu e sufucient de deterministic pentru aceste campuri care sunt indisputabil **obiective**(precum numarul de angajati sau venitul mediu), cu toate ca se pot pierde firme aproximativ potrivite pentru acel query.
+
+
 
 
 ## Trierea Hard : <br> Idei de implementare(cu + si -)
@@ -148,11 +162,11 @@ Se deschide baza de date a firmelor si se trece prin fiecare in parte. Cand ajun
 Se deschide baza de date a firmelor si se trece prin fiecare in parte. Cand ajungem la firma i vom compara criteriile obiective, daca se potricveste atunci o vom scrie intr un fisier temporar care memoreaza firmele care completeaza regex-urile. apoi parcurgem lista aceea nou formata si le dam note firmelor. Le sortam si apoi alegem top 20
 - "+" putem vedea in timp real cum decide AI ul sa aleaga firmele si ce criterii a gasit el corecte sau gresite
 - "+" avem un log al firmelor care totusi au trecut de trierea HARD care totusi e considerata obiectiva, deci putem relua cautarile in cazul in care rezultatele sunt incorecte
-- "-" rescrierea in batch ocupa spatiu pe disk, asta nu e o problema cand e vorba de 10.000 de firme dar daca ajungem la ordinul milioanelor atunci poate deveni o problema pentru viteza si pentru spatiul de stocare(scenariu putin ireal pentru ca in viata reala nu s ar intampla ceva de genul, si chiar daca s ar intampla niciun sistem de cautare al firmelor nu ar fi prea rapid :)))))
-- "-" viteza si costul acestui sistem este foarte variat si tine clar de cat de mult reuseste query ul sa trieze HARD baza de date pentru ca poate face o reducere mare (de la milioane de firme la zeci de mii) cu suficient de multe informatii hard, dar si 
+- "-" rescrierea in batch ocupa spatiu pe disk, asta nu e o problema cand e vorba de 10.000 de firme dar daca ajungem la ordinul milioanelor atunci poate deveni o problema pentru viteza si pentru spatiul de stocare(scenariu putin ireal pentru ca in viata reala nu s ar intampla ceva de genul, si chiar daca s ar intampla niciun sistem de cautare al firmelor nu ar fi prea rapid)
+- "-" viteza si costul acestui sistem este foarte variat si tine clar de cat de mult reuseste query ul sa trieze HARD baza de date pentru ca poate face o reducere mare (de la milioane de firme la zeci de mii) cu suficient de multe informatii hard
 
 ---
 Tinand cont ca momentan proiectul este in stagiul de dezvoltare e nevoie neaparat de un environment de debugging asa ca alegerea este clara in `Implementarea Batching`.
 
 #### Rezultate dupa implementare 
-Trierea HARD functioneaza perfect, fiecare element isi gaseste macar un corespondent, iar cazurile care nu au nicio data perfect obiectiva nu primesc nicio triere.
+Trierea HARD rulează pe cele 12 query-uri și produce câte un fișier de candidați pentru fiecare. Fiecare query a păstrat cel puțin o firmă.(in medie fiecare are cam 30 - 40 posibili candidati, verificati)(date luate din `assets/Hard_knockout.png`)
