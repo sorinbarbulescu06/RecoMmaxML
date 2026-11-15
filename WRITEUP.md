@@ -87,8 +87,17 @@ Rezultatele sunt unele decente dar se pot observa cateva erori si capacitati de 
 ## Probleme si solutii la implementarea actuala:
 
 #### Eroare la apelarea API-ului
- - Daca cumva API - ul intoarce eroarea 503, adica nu a putut fi accesat modelul, asta inseamna ca metoda brute-force nu a fost apelata deloc in stagiul incipient
+ - Daca cumva API - ul intoarce eroarea 503, adica nu a putut fi accesat modelul, asta inseamna ca metoda brute-force nu a fost apelata deloc in stagiul incipient. De exemplu, la „Clean energy startups...“ API-ul a dat 503, nu s-a extras nimic și au trecut toate cele 477 de firme. Acum trec 0.
  - `Rezolvare`: Folosim catch exception si daca este o eroare de genul, se apeleaza de urgenta modul brute-force pentru a nu pierde timpul si informatie pretioasa.
+
+ #### Nivelul de intelegere al unui query
+ - La rulare a aparut problema in care api ul si nici agentul local nu au reusit sa capteze nicio informatie, iar din cauza asta nu s a facut nicio triere asupra bazei de date.(programul considera ca toate firmele au sansa sa fie compatibile, cu toate ca nu au nicio informatie de comparatie)
+ - `Rezolvare` : fiecare query primeste un status (`understood`, `partial`, `failed`) in functie de ce conditii active reuseste sa inteleaga.
+
+   + `understood` : se primeste atunci cand query ul reuseste sa determine macar o conditie, iar API ul nu a dat fail(sau pur cheia de la api nu este prezenta si modelul ruleaza 100% local), se face trierea mai departe...
+   + `partial` : se primeste atunci cand query ul reuseste sa determine macar o conditie, iar API ul returneaza o eroare(pe scurt, localul a gasit ceva, iar ce a rams ptr API a ramas neadresat de catre API, iar modelul brute-force a incercat sa echivaleze, dar nu e nicio garantie ca tot textul a fost inteles), se face trierea mai departe...
+   + `failed` : nu s-a determinat nicio condiție (nici obiectivă, nici interpretabilă), așa că nu returnăm nicio firmă, pentru că nu avem pe ce să ne bazăm.
+
 
  #### Dublarea conditiilor
 

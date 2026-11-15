@@ -113,6 +113,8 @@ if __name__ == "__main__":
         print(f"STATUS: {result_query.status} | API called: {result_query.api_called} | "
               f"API error: {result_query.api_error} | local: {result_query.local_ms:.1f} ms | "
               f"api: {result_query.api_ms:.0f} ms\n")
+        if result_query.status == "failed":
+            print("[WARN] Query not understood (no active conditions): no company is returned.\n")
 
         print("-> CONDITII ACTIVE (Ce cautam in baza de date):")
         for c in result_query.active_conditions:
