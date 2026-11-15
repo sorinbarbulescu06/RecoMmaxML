@@ -1,0 +1,201 @@
+======================================================================
+[DEBUG] -> Trimit request catre API (Model: gemini-3.1-flash-lite). Asteptam raspuns...
+[DEBUG] -> Raspuns primit de la API cu succes!
+[DEBUG] -> API-ul a extras 2 conditii.
+[DEBUG] -> Adaugam conditiile fantoma si iesim...
+QUERY: Logistic companies in Romania
+
+-> CONDITII ACTIVE (Ce cautam in baza de date):
+   [API] address in ['Romania'] (conf=1.00)
+   [API] description in ['logistics', 'transportation', 'freight forwarding', 'supply chain management'] (conf=0.90)
+
+-> CONDITII FANTOMA (Campuri marcate ca neimportante):
+   [PHANTOM] year_founded -> ignore
+   [PHANTOM] employee_count -> ignore
+   [PHANTOM] revenue -> ignore
+   [PHANTOM] is_public -> ignore
+======================================================================
+[DEBUG] -> Trimit request catre API (Model: gemini-3.1-flash-lite). Asteptam raspuns...
+Eroare la apelul API Gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+[DEBUG] -> Adaugam conditiile fantoma si iesim...
+QUERY: Public software companies with more than 1,000 employees
+
+-> CONDITII ACTIVE (Ce cautam in baza de date):
+   [LOCAL] is_public == True (conf=1.00)
+   [LOCAL] employee_count > 1000 (conf=1.00)
+
+-> CONDITII FANTOMA (Campuri marcate ca neimportante):
+   [PHANTOM] year_founded -> ignore
+   [PHANTOM] address -> ignore
+   [PHANTOM] revenue -> ignore
+======================================================================
+[DEBUG] -> Trimit request catre API (Model: gemini-3.1-flash-lite). Asteptam raspuns...
+[DEBUG] -> Raspuns primit de la API cu succes!
+[DEBUG] -> API-ul a extras 3 conditii.
+[DEBUG] -> Adaugam conditiile fantoma si iesim...
+QUERY: Food and beverage manufacturers in France
+
+-> CONDITII ACTIVE (Ce cautam in baza de date):
+   [API] address in ['France'] (conf=1.00)
+   [API] core_offerings in ['food', 'beverage'] (conf=1.00)
+   [API] description in ['manufacturer', 'manufacturing', 'production'] (conf=0.90)
+
+-> CONDITII FANTOMA (Campuri marcate ca neimportante):
+   [PHANTOM] year_founded -> ignore
+   [PHANTOM] employee_count -> ignore
+   [PHANTOM] revenue -> ignore
+   [PHANTOM] is_public -> ignore
+======================================================================
+[DEBUG] -> Trimit request catre API (Model: gemini-3.1-flash-lite). Asteptam raspuns...
+[DEBUG] -> Raspuns primit de la API cu succes!
+[DEBUG] -> API-ul a extras 3 conditii.
+[DEBUG] -> Adaugam conditiile fantoma si iesim...
+QUERY: Companies that could supply packaging materials for a direct-to-consumer cosmetics brand
+
+-> CONDITII ACTIVE (Ce cautam in baza de date):
+   [API] core_offerings in ['packaging materials', 'cosmetic containers', 'bottles', 'jars', 'tubes', 'labels'] (conf=1.00)
+   [API] target_markets in ['cosmetics', 'beauty', 'direct-to-consumer'] (conf=1.00)
+   [API] business_model == B2B (conf=0.90)
+
+-> CONDITII FANTOMA (Campuri marcate ca neimportante):
+   [PHANTOM] year_founded -> ignore
+   [PHANTOM] address -> ignore
+   [PHANTOM] employee_count -> ignore
+   [PHANTOM] revenue -> ignore
+   [PHANTOM] is_public -> ignore
+======================================================================
+[DEBUG] -> Trimit request catre API (Model: gemini-3.1-flash-lite). Asteptam raspuns...
+[DEBUG] -> Raspuns primit de la API cu succes!
+[DEBUG] -> API-ul a extras 2 conditii.
+[DEBUG] -> Adaugam conditiile fantoma si iesim...
+QUERY: Construction companies in the United States with revenue over $50 million
+
+-> CONDITII ACTIVE (Ce cautam in baza de date):
+   [LOCAL] revenue > 50000000 (conf=1.00)
+   [API] address in ['United States'] (conf=1.00)
+   [API] description in ['construction', 'general contractor', 'building construction'] (conf=0.90)
+
+-> CONDITII FANTOMA (Campuri marcate ca neimportante):
+   [PHANTOM] year_founded -> ignore
+   [PHANTOM] employee_count -> ignore
+   [PHANTOM] is_public -> ignore
+======================================================================
+[DEBUG] -> Trimit request catre API (Model: gemini-3.1-flash-lite). Asteptam raspuns...
+[DEBUG] -> Raspuns primit de la API cu succes!
+[DEBUG] -> API-ul a extras 2 conditii.
+[DEBUG] -> Adaugam conditiile fantoma si iesim...
+QUERY: Pharmaceutical companies in Switzerland
+
+-> CONDITII ACTIVE (Ce cautam in baza de date):
+   [API] address in ['Switzerland'] (conf=1.00)
+   [API] description in ['pharmaceutical', 'biotech', 'life sciences', 'drug development'] (conf=0.90)
+
+-> CONDITII FANTOMA (Campuri marcate ca neimportante):
+   [PHANTOM] year_founded -> ignore
+   [PHANTOM] employee_count -> ignore
+   [PHANTOM] revenue -> ignore
+   [PHANTOM] is_public -> ignore
+======================================================================
+[DEBUG] -> Trimit request catre API (Model: gemini-3.1-flash-lite). Asteptam raspuns...
+[DEBUG] -> Raspuns primit de la API cu succes!
+[DEBUG] -> API-ul a extras 4 conditii.
+[DEBUG] -> Adaugam conditiile fantoma si iesim...
+QUERY: B2B SaaS companies providing HR solutions in Europe
+
+-> CONDITII ACTIVE (Ce cautam in baza de date):
+   [API] business_model == B2B (conf=1.00)
+   [API] description in ['SaaS', 'software as a service'] (conf=1.00)
+   [API] core_offerings in ['HR software', 'human resources solutions', 'HRIS', 'payroll', 'recruitment software'] (conf=0.90)
+   [API] address in ['United Kingdom', 'Germany', 'France', 'Netherlands', 'Sweden', 'Spain', 'Italy', 'Poland', 'Ireland', 'Denmark', 'Finland', 'Norway', 'Belgium', 'Switzerland', 'Austria'] (conf=0.95)
+
+-> CONDITII FANTOMA (Campuri marcate ca neimportante):
+   [PHANTOM] year_founded -> ignore
+   [PHANTOM] employee_count -> ignore
+   [PHANTOM] revenue -> ignore
+   [PHANTOM] is_public -> ignore
+======================================================================
+[DEBUG] -> Trimit request catre API (Model: gemini-3.1-flash-lite). Asteptam raspuns...
+[DEBUG] -> Raspuns primit de la API cu succes!
+[DEBUG] -> API-ul a extras 2 conditii.
+[DEBUG] -> Adaugam conditiile fantoma si iesim...
+QUERY: Clean energy startups founded after 2018 with fewer than 200 employees
+
+-> CONDITII ACTIVE (Ce cautam in baza de date):
+   [LOCAL] employee_count < 200 (conf=1.00)
+   [LOCAL] year_founded > 2018 (conf=1.00)
+   [API] description in ['clean energy', 'renewable energy', 'sustainability', 'green tech'] (conf=1.00)
+   [API] year_founded >= 2019 (conf=0.70)
+
+-> CONDITII FANTOMA (Campuri marcate ca neimportante):
+   [PHANTOM] address -> ignore
+   [PHANTOM] revenue -> ignore
+   [PHANTOM] is_public -> ignore
+======================================================================
+[DEBUG] -> Trimit request catre API (Model: gemini-3.1-flash-lite). Asteptam raspuns...
+[DEBUG] -> Raspuns primit de la API cu succes!
+[DEBUG] -> API-ul a extras 3 conditii.
+[DEBUG] -> Adaugam conditiile fantoma si iesim...
+QUERY: Fast-growing fintech companies competing with traditional banks in Europe.
+
+-> CONDITII ACTIVE (Ce cautam in baza de date):
+   [API] description in ['fintech', 'financial technology', 'neobank', 'digital banking', 'challenger bank'] (conf=0.95)
+   [API] address in ['United Kingdom', 'Germany', 'France', 'Netherlands', 'Sweden', 'Spain', 'Italy', 'Switzerland', 'Poland'] (conf=0.90)
+   [API] business_model in ['B2C', 'B2B', 'disruptor'] (conf=0.70)
+
+-> CONDITII FANTOMA (Campuri marcate ca neimportante):
+   [PHANTOM] year_founded -> ignore
+   [PHANTOM] employee_count -> ignore
+   [PHANTOM] revenue -> ignore
+   [PHANTOM] is_public -> ignore
+======================================================================
+[DEBUG] -> Trimit request catre API (Model: gemini-3.1-flash-lite). Asteptam raspuns...
+[DEBUG] -> Raspuns primit de la API cu succes!
+[DEBUG] -> API-ul a extras 3 conditii.
+[DEBUG] -> Adaugam conditiile fantoma si iesim...
+QUERY: E-commerce companies using Shopify or similar platforms
+
+-> CONDITII ACTIVE (Ce cautam in baza de date):
+   [API] description in ['e-commerce', 'online retail', 'direct-to-consumer'] (conf=1.00)
+   [API] core_offerings in ['Shopify', 'e-commerce platform', 'online store'] (conf=0.90)
+   [API] business_model == B2C (conf=0.80)
+
+-> CONDITII FANTOMA (Campuri marcate ca neimportante):
+   [PHANTOM] year_founded -> ignore
+   [PHANTOM] address -> ignore
+   [PHANTOM] employee_count -> ignore
+   [PHANTOM] revenue -> ignore
+   [PHANTOM] is_public -> ignore
+======================================================================
+[DEBUG] -> Trimit request catre API (Model: gemini-3.1-flash-lite). Asteptam raspuns...
+[DEBUG] -> Raspuns primit de la API cu succes!
+[DEBUG] -> API-ul a extras 3 conditii.
+[DEBUG] -> Adaugam conditiile fantoma si iesim...
+QUERY: Renewable energy equipment manufacturers in Scandinavia
+
+-> CONDITII ACTIVE (Ce cautam in baza de date):
+   [API] address in ['Sweden', 'Norway', 'Denmark', 'Finland', 'Iceland'] (conf=1.00)
+   [API] core_offerings in ['renewable energy equipment', 'wind turbines', 'solar panels', 'energy storage systems', 'power generation equipment'] (conf=0.90)
+   [API] description in ['manufacturing', 'renewable energy', 'clean tech'] (conf=0.90)
+
+-> CONDITII FANTOMA (Campuri marcate ca neimportante):
+   [PHANTOM] year_founded -> ignore
+   [PHANTOM] employee_count -> ignore
+   [PHANTOM] revenue -> ignore
+   [PHANTOM] is_public -> ignore
+======================================================================
+[DEBUG] -> Trimit request catre API (Model: gemini-3.1-flash-lite). Asteptam raspuns...
+[DEBUG] -> Raspuns primit de la API cu succes!
+[DEBUG] -> API-ul a extras 2 conditii.
+[DEBUG] -> Adaugam conditiile fantoma si iesim...
+QUERY: Companies that manufacture or supply critical components for electric vehicle battery production
+
+-> CONDITII ACTIVE (Ce cautam in baza de date):
+   [API] core_offerings in ['electric vehicle battery components', 'battery manufacturing equipment', 'battery materials', 'cathode materials', 'anode materials', 'electrolyte components', 'battery separators'] (conf=1.00)
+   [API] description in ['electric vehicle supply chain', 'battery production', 'lithium-ion battery manufacturing'] (conf=0.90)
+
+-> CONDITII FANTOMA (Campuri marcate ca neimportante):
+   [PHANTOM] year_founded -> ignore
+   [PHANTOM] address -> ignore
+   [PHANTOM] employee_count -> ignore
+   [PHANTOM] revenue -> ignore
+   [PHANTOM] is_public -> ignore

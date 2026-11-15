@@ -1,9 +1,5 @@
 venv/
 
-tests/
-
-assets/
-
 .env
 
 __pycache__
