@@ -192,7 +192,7 @@ Pentru inceput a trebuit sa fac o analiza asupra firmelor care au trecut de filt
 
 ## Problema : Query predominant semantic
 
-- Cele mai multe querry uri functioneaza fara a oferi suficient de multe informatii in legatura cu veniturile firmelor si cu anul de infiintare samd. Astfel trierea actuala nu face nicio reductie in numarul firmelor, deci scoring-ul ramane la fel de parca nu am facut nicio procesare. ex: "Companies that manufacture or supply critical components for electric vehicle battery production"
+- Cele mai multe querry uri functioneaza fara a oferi suficient de multe informatii in legatura cu veniturile firmelor si cu anul de infiintare samd. Astfel trierea actuala nu face nicio reductie in numarul firmelor, deci scoring-ul ramane la fel de parca nu am facut nicio procesare. ex: "Companies that manufacture or supply critical components for electric vehicle battery production" (`assets/Hard_knockout.png`, candidate_q12.jsonl)
 - `Problema` : Pentru o lista de 500 de firme nu ar trebui sa fie un cost de timp asa de mare scorarea lor, dar daca lista ajunge la un prag de ordinul milioanelor de firme, procesarea aceasta este lunga si de cele mai multe ori destul de overkill, asa ca trebuie cumva sa ne folosim si de nisa de lucru a firmei cu care lucram, pentru a reusi sa pastram o viteza de executie care sa nu limiteze utilizatorii. Precizarea este: un singur query nu ar trebui sa puna probleme, dar mai multe query uri ar ingreuna un server si ar face user experience-ul un cosmar.
   - `Rezolvare` : Trebuie introdus un mod de a compara NAICS-urile, pentru ca ne ofera o baza solida despre modul de operare al unei firme si cum functioneaza ea, iar acest NAICS sa fie un criteriu hard de triere.
 
