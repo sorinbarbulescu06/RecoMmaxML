@@ -208,4 +208,12 @@ Pentru inceput a trebuit sa fac o analiza asupra firmelor care au trecut de filt
     - Daca trece pragul de toleranta si se regasesc astfel de cuvinte in descriere inseamna ca acea companie poate fi un candidat corect
     - Daca nu trece pragul atunci firma este respinsa total.
 
-- Concluzie : Aici se face un trade off in detrimentul acuratetei pentru ca se introduce in joc o noua variabila care poate sa destabilizeze si sa alunge o companie posibil ca si candidat, dar castiga o viteza extrem de importanta la scalare care poate face user experience-ul sa se simta mult mai placut. 
+- Pragul de toleranta va fi unul dinamic si adaptiv, pentru ca din testele pe care le am rulat, atunci cand query ul capteaza suficiente informatii in core_offerings, daca hardcodam pragul e posibil sa fie incorect si injust fata de unele firme si sa devina prea permisim, iar la celalalt capat al balantei, putem astfel sa devenim prea robusti si rigizi si sa respingem degeaba firme care isi pot face prezenta in lista potentiala de firme, astfel am stabilit un prag adaptiv care este limitat in intervalul [0.05, 0.25] si calculul ei se face in functie de cate date contine descrierea si cate date memoreaza core_offerings-urile query ului
+- `Concluzie` : Aici se face un trade off in detrimentul acuratetei pentru ca se introduce in joc o noua variabila care poate sa destabilizeze si sa alunge o companie posibil ca si candidat, dar castiga o viteza extrem de importanta la scalare care poate face user experience-ul sa se simta mult mai placut. 
+
+Prin acest update, am transformat un filtru care lăsa să treacă totul pe bază semantică într-un pre-motor de căutare extrem de fin, capabil să facă diferența între intenția de afacere și modelul operațional. Acum, coșul restrâns și hiper-revelant de candidați poate fi trimis către **Etapa de Scoring**.
+
+## SCORING-UL :
+
+
+

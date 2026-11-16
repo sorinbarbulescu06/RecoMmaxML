@@ -4,6 +4,7 @@ from typing import Optional
 from src.query.query import Condition, Field, Operator, Query
 from src.base.config import Config
 from src.base.geo import load_geo
+from src.base.naics import get_naics_for_text
 
 
 class LocalConditionExtractor:
@@ -560,6 +561,17 @@ class LocalConditionExtractor:
     def _extract_brute_mode_semantics(
         self, query: Query, text: str, occupied: list[tuple[int, int]]
     ) -> None:
+        local_naics = get_naics_for_text(text)
+        if local_naics:
+            query.add_condition(
+                Condition(
+                    field=Field.PRIMARY_NAICS,
+                    operator=Operator.IN,
+                    value=local_naics,
+                    source="local",
+                    confidence=0.85
+                )
+            )
         for_split = re.search(r"\b(?:for|serving|to|working\s+with|competing\s+with)\b", text, re.IGNORECASE)
 
         # 2. Core Offerings (Industrii specifice primele, iar termenii generici la final)
