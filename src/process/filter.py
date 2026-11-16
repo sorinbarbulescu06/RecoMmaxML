@@ -10,14 +10,25 @@ from src.process.normalizer import AddressNormalizer
 class HardFilterProcessor:
     """
     Etapa 2A: Trierea Exclusiva (Hard Filtering).
-    Ia doar conditiile ACTIVE din OBJECTIVE_FIELDS (ignorand automat phantom_conditions)
-    si verifica fiecare firma cu regula 100% Benefit of the Doubt pentru valori null/None.
+    1. Verifica conditiile ACTIVE din OBJECTIVE_FIELDS cu regula 100% Benefit of the Doubt.
+    2. Verifica criteriul hibrid de industrie:
+       - Match pe prefixele NAICS (daca exista in query si in firma)
+       - Fallback pe Token Intersection (core_offerings + business_model din query vs. descrierea firmei)
+         raportat la un prag de toleranta flexibil (industry_threshold).
     """
 
-    def __init__(self, query: Query, temp_file_path: str | Path):
+    DEFAULT_INDUSTRY_THRESHOLD: float = 0.15
+
+    def __init__(
+        self,
+        query: Query,
+        temp_file_path: str | Path,
+        industry_threshold: float = DEFAULT_INDUSTRY_THRESHOLD,
+    ):
         self.query = query
         self.temp_file_path = Path(temp_file_path)
         self.temp_file_path.parent.mkdir(parents=True, exist_ok=True)
+        self.industry_threshold = industry_threshold
 
         self.hard_conditions: list[Condition] = [
             cond for cond in self.query.active_conditions
@@ -27,6 +38,11 @@ class HardFilterProcessor:
         self._allowed_iso_codes: set[str] = set()
         self._address_patterns: list[re.Pattern] = []
         self._compile_address_filters()
+
+        self._query_naics_prefixes: tuple[str, ...] = ()
+        self._query_industry_tokens: set[str] = set()
+        self._has_industry_filter: bool = False
+        self._compile_industry_filters()
 
         self.total_seen: int = 0
         self.total_passed: int = 0
@@ -65,11 +81,34 @@ class HardFilterProcessor:
                 for loc in text_locs
             ]
 
+    def _compile_industry_filters(self) -> None:
+        """
+        Precalculeaza din Query:
+        1. Prefixele NAICS permise (ex: ('3254', '5417'))
+        2. Setul de tokeni specifici din CORE_OFFERINGS pentru Token Intersection
+           (fara business_model, ca 'B2B'/'Service Provider' sa nu califice firme din alte domenii).
+        """
+        naics_prefixes: list[str] = []
+        industry_tokens: set[str] = set()
+
+        for cond in self.query.active_conditions:
+            if cond.field in (Field.PRIMARY_NAICS, Field.SECONDARY_NAICS):
+                vals = cond.value if isinstance(cond.value, list) else [cond.value]
+                for v in vals:
+                    digits = re.findall(r"\d{2,6}", str(v))
+                    for d in digits:
+                        if d not in naics_prefixes:
+                            naics_prefixes.append(d)
+            elif cond.field == Field.CORE_OFFERINGS:
+                industry_tokens.update(AddressNormalizer.tokenize_and_normalize(cond.value))
+
+        self._query_naics_prefixes = tuple(naics_prefixes)
+        self._query_industry_tokens = industry_tokens
+        self._has_industry_filter = bool(self._query_naics_prefixes or self._query_industry_tokens)
+
     def process_company(self, company: dict[str, Any], raw_json_line: Optional[str] = None) -> bool:
         self.total_seen += 1
 
-        # A query we did not understand at all has no conditions to check.
-        # Letting every company pass would look like a result, so nothing passes.
         if self.query.status == "failed":
             self.total_dropped += 1
             return False
@@ -88,6 +127,7 @@ class HardFilterProcessor:
         return False
 
     def _passes_all_hard_filters(self, company: dict[str, Any]) -> bool:
+        # 1. Filtrele obiective clasice (is_public, year_founded, employee_count, revenue, address)
         for cond in self.hard_conditions:
             if cond.field == Field.IS_PUBLIC:
                 if not self._check_boolean(company.get("is_public"), cond):
@@ -98,6 +138,12 @@ class HardFilterProcessor:
             elif cond.field == Field.ADDRESS:
                 if not self._check_address(company.get("address")):
                     return False
+
+        # 2. Filtrul hibrid de industrie (NAICS match -> Fallback Token Intersection pe descriere)
+        if self._has_industry_filter:
+            if not self._check_industry_or_description(company):
+                return False
+
         return True
 
     @staticmethod
@@ -157,16 +203,60 @@ class HardFilterProcessor:
         if not country_code and not flat_text:
             return True
 
-        # 1. Verificam intai daca se potriveste un oras/regiune/tara explicita in textul adresei (ex: 'Bucharest')
+        # 1. Daca firma are country_code si query-ul specifica tari (ISO codes),
+        # decizia se ia strict pe baza codului de tara (nicio strada/oras omonim din alta tara nu poate trece).
+        if country_code and self._allowed_iso_codes:
+            return country_code in self._allowed_iso_codes
+
+        # 2. Fallback: daca firma NU are country_code (sau query-ul contine doar un oras necunoscut),
+        # cautam in textul curatat (oras / regiune).
         if flat_text:
             for pattern in self._address_patterns:
                 if pattern.search(flat_text):
                     return True
 
-        # 2. Daca nu am cautat un oras specific (sau orasul e None), verificam codul ISO al tarii (ex: 'ro' in {'ro'})
-        if country_code and country_code in self._allowed_iso_codes:
-            # Atentie: daca query-ul a cerut strict orase (ex: "Bucharest and Cluj") si firma are town != None care NU a dat match mai sus,
-            # totusi in _GEO_EXPANSIONS noi adaugam si tara 'Romania', deci country_code == 'ro' este valid.
+        return False
+
+    def _check_industry_or_description(self, company: dict[str, Any]) -> bool:
+        """
+        Pasul A: Verifica daca vreun cod NAICS al firmei incepe cu vreun prefix NAICS din query.
+        Pasul B (Fallback): Daca NAICS-ul lipseste sau nu da match, calculeaza Token Intersection
+        intre CORE_OFFERINGS din query si (core_offerings + description + naics label) ale firmei.
+        """
+        company_naics = AddressNormalizer.extract_naics_codes(
+            company.get("primary_naics"),
+            company.get("secondary_naics"),
+        )
+
+        # Pasul A: Match pe NAICS
+        if self._query_naics_prefixes and company_naics:
+            for c_code in company_naics:
+                for q_prefix in self._query_naics_prefixes:
+                    if c_code.startswith(q_prefix) or q_prefix.startswith(c_code):
+                        return True
+
+        if not self._query_industry_tokens:
+            return not bool(company_naics)
+
+        # Pasul B: Fallback pe Token Intersection (fara business_model!)
+        company_text_fields = [
+            company.get("core_offerings"),
+            company.get("description"),
+            company.get("primary_naics"),
+            company.get("secondary_naics"),
+        ]
+        company_tokens = AddressNormalizer.tokenize_and_normalize(company_text_fields)
+
+        # Corner case: Firma complet goala -> Benefit of the Doubt
+        if not company_naics and not company_tokens:
             return True
 
-        return False
+        if not company_tokens:
+            return False
+
+        intersection = self._query_industry_tokens.intersection(company_tokens)
+        if not intersection:
+            return False
+
+        overlap_score = len(intersection) / len(self._query_industry_tokens)
+        return overlap_score >= self.industry_threshold
