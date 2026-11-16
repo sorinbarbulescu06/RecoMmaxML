@@ -2,6 +2,7 @@ import ast
 import re
 import unicodedata
 from typing import Any, Optional
+from src.base.geo import load_geo
 
 
 class AddressNormalizer:
@@ -17,99 +18,7 @@ class AddressNormalizer:
     }
 
     # Mapare Nume Tara (lowercase) -> Coduri ISO de 2 litere
-    _COUNTRY_TO_ISO: dict[str, list[str]] = {
-        "romania": ["ro"],
-        "united states": ["us", "usa"],
-        "usa": ["us"],
-        "us": ["us"],
-        "united kingdom": ["gb", "uk"],
-        "uk": ["gb", "uk"],
-        "england": ["gb", "uk"],
-        "scotland": ["gb", "uk"],
-        "wales": ["gb", "uk"],
-        "northern ireland": ["gb", "uk"],
-        "germany": ["de"],
-        "austria": ["at"],
-        "switzerland": ["ch"],
-        "france": ["fr"],
-        "spain": ["es"],
-        "portugal": ["pt"],
-        "italy": ["it"],
-        "netherlands": ["nl"],
-        "belgium": ["be"],
-        "luxembourg": ["lu"],
-        "poland": ["pl"],
-        "czech republic": ["cz"],
-        "czechia": ["cz"],
-        "hungary": ["hu"],
-        "bulgaria": ["bg"],
-        "slovakia": ["sk"],
-        "slovenia": ["si"],
-        "croatia": ["hr"],
-        "serbia": ["rs"],
-        "bosnia and herzegovina": ["ba"],
-        "montenegro": ["me"],
-        "north macedonia": ["mk"],
-        "greece": ["gr"],
-        "cyprus": ["cy"],
-        "malta": ["mt"],
-        "albania": ["al"],
-        "moldova": ["md"],
-        "ukraine": ["ua"],
-        "belarus": ["by"],
-        "estonia": ["ee"],
-        "latvia": ["lv"],
-        "lithuania": ["lt"],
-        "sweden": ["se"],
-        "norway": ["no"],
-        "denmark": ["dk"],
-        "finland": ["fi"],
-        "iceland": ["is"],
-        "ireland": ["ie"],
-        "andorra": ["ad"],
-        "monaco": ["mc"],
-        "liechtenstein": ["li"],
-        "san marino": ["sm"],
-        "vatican city": ["va"],
-        "russia": ["ru"],
-        "turkey": ["tr"],
-        "israel": ["il"],
-        "united arab emirates": ["ae", "uae"],
-        "uae": ["ae", "uae"],
-        "saudi arabia": ["sa"],
-        "qatar": ["qa"],
-        "kuwait": ["kw"],
-        "bahrain": ["bh"],
-        "oman": ["om"],
-        "egypt": ["eg"],
-        "morocco": ["ma"],
-        "south africa": ["za"],
-        "nigeria": ["ng"],
-        "kenya": ["ke"],
-        "ghana": ["gh"],
-        "india": ["in"],
-        "china": ["cn"],
-        "japan": ["jp"],
-        "south korea": ["kr"],
-        "korea": ["kr"],
-        "taiwan": ["tw"],
-        "singapore": ["sg"],
-        "hong kong": ["hk"],
-        "vietnam": ["vn"],
-        "thailand": ["th"],
-        "indonesia": ["id"],
-        "malaysia": ["my"],
-        "philippines": ["ph"],
-        "australia": ["au"],
-        "new zealand": ["nz"],
-        "canada": ["ca"],
-        "brazil": ["br"],
-        "mexico": ["mx"],
-        "argentina": ["ar"],
-        "chile": ["cl"],
-        "colombia": ["co"],
-        "peru": ["pe"],
-    }
+    _COUNTRY_TO_ISO: dict[str, list[str]] = load_geo()["country_iso"]
 
     @staticmethod
     def strip_accents(text: str) -> str:
@@ -151,10 +60,9 @@ class AddressNormalizer:
                 country_code = cls.strip_accents(str(cc_val)).lower().strip()
 
             for k, v in parsed_obj.items():
-                if v is None or k in {
-                    "latitude", "longitude", "country_code",
-                    "street", "house_number", "postcode", "raw_text"
-                }:
+                if v is None or k in {"latitude", "longitude", "country_code"}:
+                    continue
+                if isinstance(v, (int, float)):
                     continue
                 val_str = str(v).strip()
                 if val_str and val_str.lower() != "none":
