@@ -107,8 +107,9 @@ Rezultatele sunt unele decente dar se pot observa cateva erori si capacitati de 
 - Se pune problema pe care dintre ele sa le ascultam? Conteaza foarte mult de toleranta dar in contextul unei codari astfel de stricte, daca modelul capteaza informatii local de cele mai multe ori sunt sigure deci putem sa ne bazam pe o toleranta marita
   - `Rezolvare`: dacă modelul local a completat deja un câmp obiectiv (an, angajați, venit, public), API-ul nu îl mai suprascrie. Pentru restul, API-ul adaugă informația captată.
 
-#### Geografia functioneaza mai optim in local decat in API ptr tari specifice
+#### Geografia functioneaza mai optim in local
 - Soluția locală merge bine pentru țări și regiuni scrise clar, pentru că adaugă și orașele (România → Brașov, București, Iași...), pe când API-ul lasă doar țara.
+- Expansiunea geografică acum rulează mereu în local. Până acum nu era chiar așa în modul normal, doar API-ul era îmbogățit cu orașe din dicționar
   - `Rezolvare` : Apelam mereu expansiunea geografica(locala) la inceputul fazelor chiar daca cheia API este prezenta in.env iar la description in brute-force filtram cuvitnele care au facut deja match la geografie.
 
 #### Confuzia de roluri in Brute-Force
@@ -142,7 +143,7 @@ Urmatoarea etapa: testarea totala, local + API si validarea datelor expuse.
 - Dupa asta vom aplica pe cele care au potential de companii posibile un criteriu de notare si le vom compara pe fiecare in parte.
 - Informatiile de aici sunt comparate **SUBIECTIV** deci fiecare companie va primi o nota anume care va fi compusa din alte note prin relatare camp-camp
 - Si aici vom impune benefit of the doubt si vom incerca sa "sapam" dupa informatii in alte campuri pentru a reusi sa deslusim informatiile lipsa carora le vom acorda la fel nota de confidence
-
+- Se pune problema: "Oare NAICS-ul firmei este un criteriu"
 ### De ce eliminam(taiem) si nu le penalizam(bad scoring)
 #### Avantaje :
 - **Pentru a salva timp** : costul de a compara descrierile subiective ale firmelor sunt foarte costisitoare astfel noi incercam sa triem din start ce nu se potriveste din punct de vedere matematic sau logic. Cifrele si taraa sunt informatii exacte(obiective), nu pareri(subiective).
@@ -181,3 +182,30 @@ Tinand cont ca momentan proiectul este in stagiul de dezvoltare e nevoie neapara
 
 #### Rezultate dupa implementare 
 Trierea HARD rulează pe cele 12 query-uri și produce câte un fișier de candidați pentru fiecare. Fiecare query a păstrat cel puțin o firmă.(in medie fiecare are cam 30 - 40 posibili candidati, verificati)(date luate din `assets/Hard_knockout.png`)
+
+# Etapa 3 : Scoring-ul
+
+## Idei generale:
+Acum ca pentru fiecare query se genereaza un set de companii posibile a venit momentul sa incerc sa vad cum as putea implementa tehnica de notare si de clasificare a acestor companii.
+
+Pentru inceput a trebuit sa fac o analiza asupra firmelor care au trecut de filtru si am inceput sa imi notez ce detalii am observat, ce trade-off uri ar trebui sa implementez in model si cum sa abordez tehnica.
+
+## Problema : Query predominant semantic
+
+- Cele mai multe querry uri functioneaza fara a oferi suficient de multe informatii in legatura cu veniturile firmelor si cu anul de infiintare samd. Astfel trierea actuala nu face nicio reductie in numarul firmelor, deci scoring-ul ramane la fel de parca nu am facut nicio procesare. ex: "Companies that manufacture or supply critical components for electric vehicle battery production"
+- `Problema` : Pentru o lista de 500 de firme nu ar trebui sa fie un cost de timp asa de mare scorarea lor, dar daca lista ajunge la un prag de ordinul milioanelor de firme, procesarea aceasta este lunga si de cele mai multe ori destul de overkill, asa ca trebuie cumva sa ne folosim si de nisa de lucru a firmei cu care lucram, pentru a reusi sa pastram o viteza de executie care sa nu limiteze utilizatorii. Precizarea este: un singur query nu ar trebui sa puna probleme, dar mai multe query uri ar ingreuna un server si ar face user experience-ul un cosmar.
+  - `Rezolvare` : Trebuie introdus un mod de a compara NAICS-urile, pentru ca ne ofera o baza solida despre modul de operare al unei firme si cum functioneaza ea, iar acest NAICS sa fie un criteriu hard de triere.
+
+## Idee de implementare :
+- La apelul API ului si al agentului local, se va incerca generarea unei liste de posibile(si foarte indulgente pentru ca NAICS-urile) de NAICS-uri (sau prefixe de NAICS-uri) care sa functioneze ca un nou criteriu de preselectie.
+- Alegem ca NAICS-urile sa fie indulgente pentru ca acestea au aceeasi capacitate ca adresele de a se **MOSTENI** (exemplu : "Pharmaceutical companies in Switzerland" nu face parte doar din sectorul de retail, face parte si din sectorul de manufacturing, subsectorul "pharmaceuticals and medical manufacturing", deci o firma care e descrisa de cateva cuvinte poate aparea in mai multe sectoare, respectiv subsectoare ale unui sector) 
+- Dupa aceasta triere, vom incepe sa calificam firmele pe baza a ce date contin(!=null) si cat de relevante sunt cu datele pe care query ul nostru l a retinut.
+- Problema apare atunci cand acest NAICS este gresit in baza de date a firmelor(din cauze birocratice sau de introducere manuala), sau chiar din cauza modului de calculare gresit al API-ului sau agentului local, astfel avem nevoie de un backup care sa nu pedepseasca capital toate firmele care nu se potrivesc cu NAICS-ul.
+### Implementare nou criteriu HARD:
+- Se va verifica daca vreun NAICS din query se potriveste cu NAICS-ul din baza de date.
+  - Daca se potriveste, il adaugam in lista de poisibili candidati
+  - Daca NAICS-ul din baza de date lipseste sau nu se potriveste cu cel din query trecem la urmatoarea etapa si anume verificam daca din campurile `core_offerings` si `business_model` ale query ului se potrives cu ceva din descrierea firmei prin metoda **TOKEN INTERSECTION**(Jaccard Index pe siruri de cuvinte normalizate) care calculeaza un scor intre intre 0 si 1 si il comparam cu un prag de toleranta flexibil.
+    - Daca trece pragul de toleranta si se regasesc astfel de cuvinte in descriere inseamna ca acea companie poate fi un candidat corect
+    - Daca nu trece pragul atunci firma este respinsa total.
+
+- Concluzie : Aici se face un trade off in detrimentul acuratetei pentru ca se introduce in joc o noua variabila care poate sa destabilizeze si sa alunge o companie posibil ca si candidat, dar castiga o viteza extrem de importanta la scalare care poate face user experience-ul sa se simta mult mai placut. 
