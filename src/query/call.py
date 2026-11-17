@@ -1,4 +1,5 @@
 import re
+import time
 from typing import Optional
 from pydantic import BaseModel, Field as PydanticField
 from google import genai
@@ -45,6 +46,13 @@ def _error_code(error: Exception) -> str:
     return match.group(1) if match else "other"
 
 
+RETRY_CODES = {"429", "503"}        # temporary and fast: another try usually works
+AUTH_CODES = {"400", "401", "403"}  # bad key / bad request: trying again will not help
+MAX_RETRIES = 2
+RETRY_DELAYS = (1, 2)               # seconds to wait before the 1st and 2nd retry
+# 504 and read timeouts are not retried: each one already cost ~12 s of waiting.
+
+
 SYSTEM_PROMPT = """You are an expert B2B Search Query Decomposition Agent.
 Your task is to break down a user's natural language search query (or its remaining unexplained parts) into structured conditions that can be matched against a company database.
 
@@ -74,6 +82,40 @@ class APIConditionExtractor:
                 http_options=types.HttpOptions(timeout=12000),
             )
             self.model_name = Config.MODEL_NAME
+            self._sleep = time.sleep
+            self.is_active = self._key_is_valid()
+
+    def _key_is_valid(self) -> bool:
+        """One cheap call that generates no text. Only an authentication error switches the API
+        off. A temporary error (429, 503, no network) says nothing about the key, so the API stays on."""
+        try:
+            next(iter(self.client.models.list()), None)
+            return True
+        except Exception as e:
+            if _error_code(e) in AUTH_CODES:
+                print("[WARN] GEMINI_API_KEY is not valid: running on the local extractor only.")
+                return False
+            return True
+
+    def _generate(self, query: Query, user_prompt: str):
+        """generate_content, repeated after a short pause only on 429 / 503."""
+        for attempt in range(MAX_RETRIES + 1):
+            try:
+                return self.client.models.generate_content(
+                    model=self.model_name,
+                    contents=user_prompt,
+                    config=types.GenerateContentConfig(
+                        system_instruction=SYSTEM_PROMPT,
+                        response_mime_type="application/json",
+                        response_schema=APIQueryDecompositionResponse,
+                        temperature=0.1,
+                    ),
+                )
+            except Exception as e:
+                if attempt == MAX_RETRIES or _error_code(e) not in RETRY_CODES:
+                    raise
+                query.api_retries += 1
+                self._sleep(RETRY_DELAYS[attempt])
 
     def process(self, query: Query) -> Query:
         if not self.is_active or query.is_fully_explained:
@@ -96,16 +138,7 @@ class APIConditionExtractor:
         try:
             query.api_called = True
             print(f"[DEBUG] -> Trimit request catre API (Model: {self.model_name}). Text analizat: '{query.remainder}'")
-            response = self.client.models.generate_content(
-                model=self.model_name,
-                contents=user_prompt,
-                config=types.GenerateContentConfig(
-                    system_instruction=SYSTEM_PROMPT,
-                    response_mime_type="application/json",
-                    response_schema=APIQueryDecompositionResponse,
-                    temperature=0.1,
-                ),
-            )
+            response = self._generate(query, user_prompt)
 
             parsed: APIQueryDecompositionResponse = response.parsed
             print("[DEBUG] -> Raspuns primit de la API cu succes!")

@@ -29,8 +29,8 @@ class QueryQualificationPipeline:
             print("! RUNNING ON BRUTE-MODE (WITHOUT API CALL).")
             print("!" * 70 + "\n")
 
-        self.phase1 = LocalConditionExtractor()
         self.phase2 = APIConditionExtractor()
+        self.phase1 = LocalConditionExtractor(brute_mode=not self.phase2.is_active)
         self.db_path = Path(db_path)
         self.temp_dir = Path(temp_dir)
         self.temp_dir.mkdir(parents=True, exist_ok=True)
@@ -111,7 +111,7 @@ if __name__ == "__main__":
         result_query = pipeline.run(q_text)
         print(f"QUERY #{idx}: {result_query.text}")
         print(f"STATUS: {result_query.status} | API called: {result_query.api_called} | "
-              f"API error: {result_query.api_error} | local: {result_query.local_ms:.1f} ms | "
+              f"API error: {result_query.api_error} (retries: {result_query.api_retries}) | local: {result_query.local_ms:.1f} ms | "
               f"api: {result_query.api_ms:.0f} ms\n")
         if result_query.status == "failed":
             print("[WARN] Query not understood (no active conditions): no company is returned.\n")

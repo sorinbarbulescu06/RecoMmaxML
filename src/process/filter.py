@@ -13,11 +13,11 @@ class HardFilterProcessor:
     1. Verifica conditiile ACTIVE din OBJECTIVE_FIELDS cu regula 100% Benefit of the Doubt.
     2. Verifica criteriul hibrid de industrie folosind un prag de toleranta dinamic (Adaptive Threshold):
        - Pragul se adapteaza in functie de bogatia semantica (numarul de tokeni) din core_offerings ale query-ului,
-         fiind plafonat in intervalul de siguranta [0.05, 0.25].
+         fiind plafonat in intervalul de siguranta [0.05, 0.20].
     """
 
     MIN_THRESHOLD: float = 0.05
-    MAX_THRESHOLD: float = 0.25
+    MAX_THRESHOLD: float = 0.20
 
     def __init__(self, query: Query, temp_file_path: str | Path):
         self.query = query
@@ -106,13 +106,14 @@ class HardFilterProcessor:
         """
         num_tokens = len(self._query_industry_tokens)
         if num_tokens <= 2:
-            return 0.05
+            value = 0.05
         elif num_tokens <= 5:
-            return 0.10
+            value = 0.10
         elif num_tokens <= 9:
-            return 0.15
+            value = 0.15
         else:
-            return 0.20 # Plafon sigur pentru query-uri extrem de bogate
+            value = 0.20
+        return min(max(value, self.MIN_THRESHOLD), self.MAX_THRESHOLD)
 
     def process_company(self, company: dict[str, Any], raw_json_line: Optional[str] = None) -> bool:
         self.total_seen += 1
@@ -231,7 +232,9 @@ class HardFilterProcessor:
                         return True
 
         if not self._query_industry_tokens:
-            return not bool(company_naics)
+            # Only NAICS codes and no words to compare with the description: a NAICS mismatch
+            # alone does not drop the firm (NAICS can be wrong in the data).
+            return True
 
         company_text_fields = [
             company.get("core_offerings"),

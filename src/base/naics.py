@@ -1,4 +1,5 @@
 import json
+import re
 from functools import lru_cache
 from pathlib import Path
 
@@ -22,8 +23,10 @@ def get_naics_for_text(text: str) -> list[str]:
     
     clean_text = text.lower()
     for keyword, prefixes in naics_map.items():
-        # Căutăm cuvântul cheie ca unitate lexicală în text
-        if keyword in clean_text:
+        # Whole word or whole phrase only: "it" must not match inside "with", "gis" inside
+        # "logistics", "ai" inside "chain". Keywords of 4+ letters may also appear as a plural.
+        plural = "(?:e?s)?" if len(keyword) >= 4 else ""
+        if re.search(rf"\b{re.escape(keyword)}{plural}\b", clean_text):
             for p in prefixes:
                 if p not in matched_prefixes:
                     matched_prefixes.append(p)

@@ -211,6 +211,15 @@ Pentru inceput a trebuit sa fac o analiza asupra firmelor care au trecut de filt
 - Pragul de toleranta va fi unul dinamic si adaptiv, pentru ca din testele pe care le am rulat, atunci cand query ul capteaza suficiente informatii in core_offerings, daca hardcodam pragul e posibil sa fie incorect si injust fata de unele firme si sa devina prea permisim, iar la celalalt capat al balantei, putem astfel sa devenim prea robusti si rigizi si sa respingem degeaba firme care isi pot face prezenta in lista potentiala de firme, astfel am stabilit un prag adaptiv care este limitat in intervalul [0.05, 0.25] si calculul ei se face in functie de cate date contine descrierea si cate date memoreaza core_offerings-urile query ului
 - `Concluzie` : Aici se face un trade off in detrimentul acuratetei pentru ca se introduce in joc o noua variabila care poate sa destabilizeze si sa alunge o companie posibil ca si candidat, dar castiga o viteza extrem de importanta la scalare care poate face user experience-ul sa se simta mult mai placut. 
 
+#### Rezultate:
+ - NAICS ca prim criteriu, apoi potrivirea de cuvinte cu prag adaptiv, iar firmele fara date in descriere trec(benefit of the doubt)
+ - In total 2567 → 676 firme (−74%), iar la cele trei query-uri semantice, care înainte lăsau toate cele 477 de firme, acum rămân 58, 66 și 76(sursa : `assets/runs/test_better_naics`)
+ - Ce merge : farma în Elveția, 34 de firme, toate de farma;
+ - Ce **NU** merge : logistica în România, unde intră și Rompetrol și OMV, pe lângă CFR, Portul Constanța și Poșta Română.
+Cauzele reale (le-am verificat): un singur cuvânt generic („process“) lasă să treacă firme de software la „food în Franța“, prefixe NAICS prea largi (3359, „45“) lasă firme fără legătură, iar „e un distribuitor de petrol logistică?“ nu are răspuns clar.
+ - Idei viitoare de imbunatatiri: query ul si compania sa aiba cel puțin 2 cuvinte comune, să se trateze cuvintele generice ca slabe, să se dedubleze (44 din 676 de rânduri se repetă). Decizia finală o ia scoring-ul.
+ - **SOLVED BUG** : potrivirea cuvintelor producea un bug de identificare semantica("it" era gasit in interiorul cuvantului "with"), dupa masurarea listelor gresite am reusit sa identific si sa repar.
+
 Prin acest update, am transformat un filtru care lăsa să treacă totul pe bază semantică într-un pre-motor de căutare extrem de fin, capabil să facă diferența între intenția de afacere și modelul operațional. Acum, coșul restrâns și hiper-revelant de candidați poate fi trimis către **Etapa de Scoring**.
 
 ## SCORING-UL :

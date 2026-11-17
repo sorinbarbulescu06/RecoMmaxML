@@ -82,6 +82,7 @@ class Query:
     # Notes filled in while the query goes through the pipeline
     api_called: bool = False
     api_error: Optional[str] = None   # "429", "503", "504", "other", or None if no error
+    api_retries: int = 0              # how many times the call was repeated after a 429 / 503
     local_ms: float = 0.0
     api_ms: float = 0.0               # includes the local fallback when the API fails
 
@@ -160,6 +161,7 @@ class Query:
             "status": self.status,
             "api_called": self.api_called,
             "api_error": self.api_error,
+            "api_retries": self.api_retries,
             "local_ms": round(self.local_ms, 2),
             "api_ms": round(self.api_ms, 2),
             "conditions": [
