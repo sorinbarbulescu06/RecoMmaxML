@@ -9,6 +9,7 @@ from src.query.local import LocalConditionExtractor
 from src.query.call import APIConditionExtractor
 from src.base.config import Config
 from src.process.filter import HardFilterProcessor
+from src.process.scorer import rank_candidates
 
 
 class QueryQualificationPipeline:
@@ -130,9 +131,32 @@ if __name__ == "__main__":
         print(f"   Total firme in DB: {seen} | Calificate: {passed} | Excluse: {dropped}")
         print(f"   Fisier candidati:  {temp_path}")
 
-        record = result_query.to_record()
-        record.update(seen=seen, passed=passed, dropped=dropped)
+        # === ETAPA 2B: Semantic Scoring & Telemetrie ===
+        K = 20 # Poti seta valoarea dorita pentru K (ex: 5, 10, 20)
+        top_companies = rank_candidates(
+            result_query, 
+            temp_path, 
+            query_index=idx, 
+            top_k=K, 
+            output_dir="top_results",
+            telemetry_dir="assets/captured_data"
+        )
+        print(f"   [SCORING] Salvat top_{K}_query_{idx}.jsonl in 'top_results/'")
+        print(f"   [TELEMETRIE] Salvat statistici detaliate in 'assets/captured_data/'")
+
+        # === LOGICA DE SALVARE IN ASSETS/RUNS (Run Log) ===
+        log_entry = {
+            "query_index": idx,
+            "text": result_query.text,
+            "status": result_query.status,
+            "api_called": result_query.api_called,
+            "api_error": result_query.api_error,
+            "local_ms": round(result_query.local_ms, 2),
+            "api_ms": round(result_query.api_ms, 2),
+            "candidates_found": passed,
+            "top_k": len(top_companies)
+        }
         with open(run_log, "a", encoding="utf-8") as f:
-            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+            f.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
 
     print(f"\nRun log: {run_log}")
