@@ -1,0 +1,15 @@
+{
+  "query_text": "E-commerce companies using Shopify or similar platforms",
+  "query_status": "partial",
+  "api_called": true,
+  "api_error": "504",
+  "total_candidates_above_threshold": 0,
+  "score_statistics": {
+    "max_score": 0.0,
+    "min_score": 0.0,
+    "average_score": 0.0
+  },
+  "top_k_saved": 0,
+  "output_file": "top_results\\top_0_query_10.jsonl",
+  "full_candidates_breakdown": []
+}

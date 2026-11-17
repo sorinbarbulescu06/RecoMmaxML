@@ -1,0 +1,450 @@
+{
+  "query_text": "Clean energy startups founded after 2018 with fewer than 200 employees",
+  "query_status": "partial",
+  "api_called": true,
+  "api_error": "504",
+  "total_candidates_above_threshold": 31,
+  "score_statistics": {
+    "max_score": 61.429,
+    "min_score": 27.353,
+    "average_score": 41.324
+  },
+  "top_k_saved": 20,
+  "output_file": "top_results\\top_20_query_8.jsonl",
+  "full_candidates_breakdown": [
+    {
+      "operational_name": "VASOL TECH",
+      "website": "vasol.se",
+      "total_score": 61.429,
+      "breakdown": {
+        "semantic_core_offerings": 22.59,
+        "semantic_description": 6.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 68.929
+      }
+    },
+    {
+      "operational_name": "Alotta",
+      "website": "alotta.no",
+      "total_score": 57.835,
+      "breakdown": {
+        "semantic_core_offerings": 15.16,
+        "semantic_description": 4.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 57.835
+      }
+    },
+    {
+      "operational_name": "Mitra Chem",
+      "website": "mitrachem.com",
+      "total_score": 57.659,
+      "breakdown": {
+        "semantic_core_offerings": 15.01,
+        "semantic_description": 4.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 57.659
+      }
+    },
+    {
+      "operational_name": "Sowin Power",
+      "website": "sowinpower.no",
+      "total_score": 51.541,
+      "breakdown": {
+        "semantic_core_offerings": 22.56,
+        "semantic_description": 4.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 15.0,
+        "normalized_base_score": 66.541
+      }
+    },
+    {
+      "operational_name": "BRF Vivstavarvsvägen",
+      "website": "vivstavarvsvagen.se",
+      "total_score": 50.171,
+      "breakdown": {
+        "semantic_core_offerings": 15.02,
+        "semantic_description": 4.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 57.671
+      }
+    },
+    {
+      "operational_name": "Zakuro",
+      "website": "zakurobattery.com",
+      "total_score": 50.159,
+      "breakdown": {
+        "semantic_core_offerings": 15.01,
+        "semantic_description": 4.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 57.659
+      }
+    },
+    {
+      "operational_name": "Rusaccum",
+      "website": "rusaccum.ru",
+      "total_score": 47.806,
+      "breakdown": {
+        "semantic_core_offerings": 15.01,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 55.306
+      }
+    },
+    {
+      "operational_name": "Nuvvon",
+      "website": "nuvvon.com",
+      "total_score": 46.482,
+      "breakdown": {
+        "semantic_core_offerings": 7.51,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 46.482
+      }
+    },
+    {
+      "operational_name": "WBS Mobility",
+      "website": "e-way24.pl",
+      "total_score": 46.471,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 46.471
+      }
+    },
+    {
+      "operational_name": "SolidEdge Solution",
+      "website": "solidedgesolution.com",
+      "total_score": 46.471,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 46.471
+      }
+    },
+    {
+      "operational_name": "RJETech",
+      "website": "rjetech.com",
+      "total_score": 46.471,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 46.471
+      }
+    },
+    {
+      "operational_name": "Kraftkar Energi",
+      "website": "kraftkarenergi.no",
+      "total_score": 42.694,
+      "breakdown": {
+        "semantic_core_offerings": 15.04,
+        "semantic_description": 4.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 15.0,
+        "normalized_base_score": 57.694
+      }
+    },
+    {
+      "operational_name": "Carita och Torbjörn",
+      "website": "cktl.se",
+      "total_score": 42.647,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 4.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 15.0,
+        "normalized_base_score": 57.647
+      }
+    },
+    {
+      "operational_name": "Carita och Torbjörn",
+      "website": "cktl.se",
+      "total_score": 42.647,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 4.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 15.0,
+        "normalized_base_score": 57.647
+      }
+    },
+    {
+      "operational_name": "Sunnytek",
+      "website": "sunnytek.se",
+      "total_score": 40.365,
+      "breakdown": {
+        "semantic_core_offerings": 15.06,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 15.0,
+        "normalized_base_score": 55.365
+      }
+    },
+    {
+      "operational_name": "Ecopwr",
+      "website": "ecopwr.se",
+      "total_score": 40.306,
+      "breakdown": {
+        "semantic_core_offerings": 15.01,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 15.0,
+        "normalized_base_score": 55.306
+      }
+    },
+    {
+      "operational_name": "Wanbang New Energy",
+      "website": "scusne.com",
+      "total_score": 39.006,
+      "breakdown": {
+        "semantic_core_offerings": 7.53,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 46.506
+      }
+    },
+    {
+      "operational_name": "Xinliyuan",
+      "website": "jsxlytech.com",
+      "total_score": 38.971,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 46.471
+      }
+    },
+    {
+      "operational_name": "Taibang New Energy",
+      "website": "ctlne.com",
+      "total_score": 38.971,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 46.471
+      }
+    },
+    {
+      "operational_name": "Sepion Technologies",
+      "website": "sepiontechnologies.com",
+      "total_score": 38.971,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 46.471
+      }
+    },
+    {
+      "operational_name": "RJETech",
+      "website": null,
+      "total_score": 38.971,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 46.471
+      }
+    },
+    {
+      "operational_name": "Indonesia BTR New Energy Material",
+      "website": null,
+      "total_score": 38.971,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 46.471
+      }
+    },
+    {
+      "operational_name": "Galileo Empower Finland",
+      "website": "galileoempower.fi",
+      "total_score": 37.941,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 15.0,
+        "normalized_base_score": 52.941
+      }
+    },
+    {
+      "operational_name": "Nascent Materials",
+      "website": "nascentmaterials.com",
+      "total_score": 36.618,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 44.118
+      }
+    },
+    {
+      "operational_name": "Sili Energy",
+      "website": "silienergy.kr",
+      "total_score": 31.471,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 15.0,
+        "normalized_base_score": 46.471
+      }
+    },
+    {
+      "operational_name": "Blue New Energy Technology",
+      "website": "lionteam.com.cn",
+      "total_score": 30.147,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 37.647
+      }
+    },
+    {
+      "operational_name": "IML4E",
+      "website": "iml4e.org",
+      "total_score": 29.118,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 15.0,
+        "normalized_base_score": 44.118
+      }
+    },
+    {
+      "operational_name": "feder8.ai",
+      "website": null,
+      "total_score": 27.794,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "Stanford DAWN",
+      "website": "dawn.cs.stanford.edu",
+      "total_score": 27.794,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "GuTai Battery Technology",
+      "website": "goodtimebattery.com",
+      "total_score": 27.794,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 7.5,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "CIDEcell",
+      "website": "cidecell.com",
+      "total_score": 27.353,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 6.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 15.0,
+        "normalized_base_score": 42.353
+      }
+    }
+  ]
+}

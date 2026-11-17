@@ -1,0 +1,590 @@
+{
+  "query_text": "B2B SaaS companies providing HR solutions in Europe",
+  "query_status": "partial",
+  "api_called": true,
+  "api_error": "504",
+  "total_candidates_above_threshold": 41,
+  "score_statistics": {
+    "max_score": 75.099,
+    "min_score": 32.333,
+    "average_score": 42.163
+  },
+  "top_k_saved": 20,
+  "output_file": "top_results\\top_20_query_7.jsonl",
+  "full_candidates_breakdown": [
+    {
+      "operational_name": "HRWare Consulting",
+      "website": "hrware.de",
+      "total_score": 75.099,
+      "breakdown": {
+        "semantic_core_offerings": 25.834,
+        "semantic_description": 8.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 75.099
+      }
+    },
+    {
+      "operational_name": "Novative",
+      "website": "novative.com",
+      "total_score": 75.076,
+      "breakdown": {
+        "semantic_core_offerings": 25.794,
+        "semantic_description": 8.02,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 75.076
+      }
+    },
+    {
+      "operational_name": "ASCIA",
+      "website": "ascia.pt",
+      "total_score": 75.064,
+      "breakdown": {
+        "semantic_core_offerings": 25.804,
+        "semantic_description": 8.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 75.064
+      }
+    },
+    {
+      "operational_name": "HR Campus",
+      "website": "hr-campus.ch",
+      "total_score": 75.04,
+      "breakdown": {
+        "semantic_core_offerings": 25.764,
+        "semantic_description": 8.02,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 75.04
+      }
+    },
+    {
+      "operational_name": "Platfohrm",
+      "website": "platfohrm.com",
+      "total_score": 67.454,
+      "breakdown": {
+        "semantic_core_offerings": 19.316,
+        "semantic_description": 8.02,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 67.454
+      }
+    },
+    {
+      "operational_name": "Globant",
+      "website": "globant.com",
+      "total_score": 45.269,
+      "breakdown": {
+        "semantic_core_offerings": 6.479,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 45.269
+      }
+    },
+    {
+      "operational_name": "Ecoviso",
+      "website": "ecoviso.fr",
+      "total_score": 45.222,
+      "breakdown": {
+        "semantic_core_offerings": 6.439,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 45.222
+      }
+    },
+    {
+      "operational_name": "visusta",
+      "website": "visusta.ch",
+      "total_score": 45.21,
+      "breakdown": {
+        "semantic_core_offerings": 6.429,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 45.21
+      }
+    },
+    {
+      "operational_name": "Volta Capital",
+      "website": "voltacapital.it",
+      "total_score": 45.21,
+      "breakdown": {
+        "semantic_core_offerings": 6.429,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 45.21
+      }
+    },
+    {
+      "operational_name": "London Climate Ready Partnership",
+      "website": "climatelondon.org",
+      "total_score": 45.21,
+      "breakdown": {
+        "semantic_core_offerings": 6.429,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 45.21
+      }
+    },
+    {
+      "operational_name": "EcoExpert Green Consulting",
+      "website": "ecoexpert.green",
+      "total_score": 45.21,
+      "breakdown": {
+        "semantic_core_offerings": 6.429,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 45.21
+      }
+    },
+    {
+      "operational_name": "EasyKassa",
+      "website": "easykassa.at",
+      "total_score": 45.21,
+      "breakdown": {
+        "semantic_core_offerings": 6.429,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 45.21
+      }
+    },
+    {
+      "operational_name": "Telefónica Venture Builder",
+      "website": "telefonica.com",
+      "total_score": 42.857,
+      "breakdown": {
+        "semantic_core_offerings": 6.429,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 42.857
+      }
+    },
+    {
+      "operational_name": "ARMAI",
+      "website": "armai.org",
+      "total_score": 42.857,
+      "breakdown": {
+        "semantic_core_offerings": 6.429,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 42.857
+      }
+    },
+    {
+      "operational_name": "Sesame HR",
+      "website": "sesamehr.com",
+      "total_score": 39.966,
+      "breakdown": {
+        "semantic_core_offerings": 38.711,
+        "semantic_description": 8.01,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 0.0,
+        "naics_penalty": 15.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 54.966
+      }
+    },
+    {
+      "operational_name": "Cantoriel",
+      "website": "cantoriel.fr",
+      "total_score": 39.966,
+      "breakdown": {
+        "semantic_core_offerings": 38.711,
+        "semantic_description": 8.01,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 0.0,
+        "naics_penalty": 15.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 54.966
+      }
+    },
+    {
+      "operational_name": "Global HR",
+      "website": "globalhruk.com",
+      "total_score": 39.943,
+      "breakdown": {
+        "semantic_core_offerings": 38.691,
+        "semantic_description": 8.01,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 0.0,
+        "naics_penalty": 15.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 54.943
+      }
+    },
+    {
+      "operational_name": "Tietoevry",
+      "website": "tietoevry.com",
+      "total_score": 37.647,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 37.647
+      }
+    },
+    {
+      "operational_name": "Aircash",
+      "website": "aircash.eu",
+      "total_score": 37.647,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 2.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 37.647
+      }
+    },
+    {
+      "operational_name": "uMan Xpert",
+      "website": "uman.pt",
+      "total_score": 37.566,
+      "breakdown": {
+        "semantic_core_offerings": 38.671,
+        "semantic_description": 6.01,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 0.0,
+        "naics_penalty": 15.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 52.566
+      }
+    },
+    {
+      "operational_name": "YUMANA Lab",
+      "website": "yumanalab.com",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "TerraGreen",
+      "website": "terragreen-solutions.com",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "SkyHarvest",
+      "website": "skyharvest.eu",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "Sintea",
+      "website": "sintea.eu",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "ProximaScale",
+      "website": "proximascale.com",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "Planethon",
+      "website": "planethon.io",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "Phin",
+      "website": "phintech.de",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "PMC Optimized",
+      "website": null,
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "Nakama",
+      "website": "nakama-agro.es",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "Inside Edge",
+      "website": "inside-edge.co.uk",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "EnviPro",
+      "website": "envipro.fi",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "Energi og Byggestyring",
+      "website": "byggestyr.dk",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "Atos",
+      "website": "atos.net",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "Ariv Pay",
+      "website": "arivpay.com",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "Algavo",
+      "website": "algavo.com",
+      "total_score": 35.294,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 35.294
+      }
+    },
+    {
+      "operational_name": "Educos",
+      "website": "educos.eu",
+      "total_score": 34.65,
+      "breakdown": {
+        "semantic_core_offerings": 32.203,
+        "semantic_description": 10.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 0.0,
+        "naics_penalty": 15.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 49.65
+      }
+    },
+    {
+      "operational_name": "Staff & Go",
+      "website": "staffngo.com",
+      "total_score": 32.439,
+      "breakdown": {
+        "semantic_core_offerings": 32.313,
+        "semantic_description": 8.01,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 0.0,
+        "naics_penalty": 15.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 47.439
+      }
+    },
+    {
+      "operational_name": "Sesame HR",
+      "website": "sesamehr.es",
+      "total_score": 32.403,
+      "breakdown": {
+        "semantic_core_offerings": 32.283,
+        "semantic_description": 8.01,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 0.0,
+        "naics_penalty": 15.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 47.403
+      }
+    },
+    {
+      "operational_name": "Tenea Talent",
+      "website": "teneatalent.com",
+      "total_score": 32.392,
+      "breakdown": {
+        "semantic_core_offerings": 32.273,
+        "semantic_description": 8.01,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 0.0,
+        "naics_penalty": 15.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 47.392
+      }
+    },
+    {
+      "operational_name": "Virtualia",
+      "website": "virtualia.fr",
+      "total_score": 32.345,
+      "breakdown": {
+        "semantic_core_offerings": 32.233,
+        "semantic_description": 8.01,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 0.0,
+        "naics_penalty": 15.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 47.345
+      }
+    },
+    {
+      "operational_name": "Kammi",
+      "website": "kammi.fr",
+      "total_score": 32.333,
+      "breakdown": {
+        "semantic_core_offerings": 32.223,
+        "semantic_description": 8.01,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 0.0,
+        "naics_penalty": 15.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 47.333
+      }
+    }
+  ]
+}
