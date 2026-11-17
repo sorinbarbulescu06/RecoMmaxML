@@ -1,13 +1,6 @@
 venv/
-
+.venv
 .env
-
 __pycache__
-
+results
 dataset/temp/
-
-TODO
-
-out.txt
-
-prompt.md

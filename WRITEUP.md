@@ -1,333 +1,360 @@
-# Inceputul proiectului
+# Project Inception
 
-Plecarea conteaza foarte tare asa ca tregbuie stabilit totul de la inceput
-Propun construirea unei aplicatii care sparge query ul in multe subunitati care sa fie testate individual si construirea unui sistem unic de premiere a fiecarei companii din baza de date.
+The starting point matters a lot, so everything must be established right from the beginning.
+I propose building an application that breaks down the query into multiple subunits to be tested individually, alongside building a unique rewarding system for each company in the database.
 
-## Probleme punctuale:
-### PROBLEMA 1 - Neconcordanta intre query si baza de date
-- Datele din query vor sa caute ceva, dar cu alt nume sau pur si simplu nu s a oferit un data pinpoint(spre exemplu in query scrie: "logistics company in Balkans or Romania", iar in baza de date am o companie disponibila la Brasov)
+## Specific Problems:
+### PROBLEM 1 - Mismatch between query and database
+- The data in the query aims to search for something, but under a different name, or simply no data pinpoint was provided (for example, the query says: "logistics company in Balkans or Romania", while in the database I have a company available in Brasov).
 
-- Confirmarea problemei: Dupa o analiza pe baza de date folosind Gemini, am observat ca datele intr-adevar sunt salvate intr un mod non-general, astfel trebuie implementata o asa zisa: "metoda de normalizare" ca baza de date si query ul sa vorbeasca aceeasi limba
+- Confirming the problem: After analyzing the database using Gemini, I noticed that the data is indeed saved in a non-general way. Therefore, a so-called "normalization method" must be implemented so the database and the query speak the same language.
 
-### PROBLEMA 2 - Campurile scrise "la liber"
+### PROBLEM 2 - "Free-text" fields
 
-- Datele din baza de date au campuri care trebuie doar **CITITE**. O companie poate fi obiectiv in Brasov, iar daca query ul zice Balcani, Europa, Romania, tot in Brasov ramane sau daca e companie publica sau nu, e ceva fix. Exista totusi campuri care sunt scrise de un om si trebuie **INTELESE**, o descriere, un scop, care e subiectiv, difera foarte tare de cine scrie si trebuie inteleasa acea descriere in mod constient.
+- The database records have fields that only need to be **READ**. A company might objectively be in Brasov, and if the query says Balkans, Europe, or Romania, it still remains in Brasov. Or whether a company is public or not, that's a fixed fact. However, there are fields written by a human that must be **UNDERSTOOD**—a description or an objective, which is subjective, varies greatly depending on who writes it, and that description must be consciously understood.
 
-### PROBLEMA 3 - Campuri lipsa in baza de date
+### PROBLEM 3 - Missing fields in the database
 
-- Datele din baza de date au campuri care nu contin informatie, problema apare cand un query cere intentionat acea informatie. Ce sa faca LLM ul aici? sa anuleze de tot compania sau sa primeasca "benefit of the doubt", iar in cazul acesta, cat de permisiv sa fie cu acest concept?
+- The database records have fields that contain no information. The problem arises when a query intentionally asks for that information. What should the LLM do here? Completely void the company or give it the "benefit of the doubt"? And in that case, how lenient should it be with this concept?
 
-- Trebuie luata o decizie in directia nivelului de permisiune(toleranta): dacă lipsesc date si esti strict, pierzi firme care s-ar fi potrivit. Dacă ești permisiv, adaugi firme care nu se potrivesc.
+- A decision must be made regarding the level of leniency (tolerance): if data is missing and you are strict, you lose companies that would have been a good fit. If you are lenient, you add companies that don't match.
 
-- Mentiune speciala: Daca query-ul nu mentioneaza adresa sau numarul de angajati sa zicem, ideea de "benefit of the doubt" pica pentru campul respectiv, devine un camp neimportant.
+- Special mention: If the query doesn't mention the address or the number of employees, for instance, the "benefit of the doubt" idea drops for that respective field; it becomes an unimportant field.
 
-### PROBLEMA 4 - Trade-off (viteza vs acuratete vs cost)
+### PROBLEM 4 - Trade-off (speed vs accuracy vs cost)
 
-- Agentul trebuie sa aiba undeva un trade-off. Variabilele sunt:
-viteza, cost si acuratete. Problema se pune: cand trebuie sa se modifice overheadurile la toate 3? in functie de ce si cand.
+- The agent must have a trade-off somewhere. The variables are:
+speed, cost, and accuracy. The question is: when should the overheads for all 3 be modified? Depending on what and when.
 
-- Un call catre un agent extern este foarte folositor dar costisitor, asa ca trebuie folosit, dar cu foarte multa grija si atentie pentru a nu pierde resurse. Problema apare: pentru ce firme/situatii merita apelul extern, astfel incat sa nu fie un compromis foarte mare la cost?
+- A call to an external agent is very useful but expensive, so it must be used, but with great care and attention to avoid wasting resources. The problem arises: for which companies/situations is the external call worth it, so that there isn't a massive compromise on cost?
 
-## Idei de implementare
+## Implementation Ideas
 
 ### Query division:
- "Spargem" query ul in informatii separate si vedem ce putem alege din ele.
+We "break down" the query into separate pieces of information and see what we can pick from them.
 
- - Cum? : Spargem query ul in conditii (secvente **CONTEXTUALE**) ca sa putem dobandi informatii pe care sa le comparam cu baza de date printr sistem de: local ai si api call.
- - De ce 2 modele ai? : Primul pas caută argumente **SIGURE** și **CLARE** care îngustează aria de căutare în baza de date, iar pentru ce nu înțelege spune simplu **NU ȘTIU**. API call ul va oferi context si un mod mai inteligent de a citi query ul, in locurile unde agentul local va avea dificultati sa acopere un caz mai neconcludent. El va stoca si cateva informatii cheie care o sa ne ajute la a identifica companiile suitable pe baza lor.
+ - How? : We break the query into conditions (**CONTEXTUAL** sequences) so we can acquire information to compare with the database through a system of: local ai and api call.
+ - Why 2 AI models? : The first step looks for **SAFE** and **CLEAR** arguments that narrow the search area in the database, and for what it doesn't understand, it simply says **I DON'T KNOW**. The API call will provide context and a smarter way to read the query, in places where the local agent will struggle to cover an inconclusive case. It will also store a few key pieces of information that will help us identify suitable companies based on them.
 
- ### Prima Triere:
- Dupa apelarea celor 2 modele vom primi niste date concludente (SI OBIECTIVE) pe care sa le folosim ca sa micsoram numarul de potentiale companii. Campurile intrepretabile cum ar fi website-ul sau descrierea vor ramane momentan pe pauza.
+ ### First Sorting:
+ After calling the 2 models, we will receive some conclusive (AND OBJECTIVE) data that we can use to reduce the number of potential companies. Interpretable fields like the website or description will remain on pause for now.
 
- # Etapa 1 : Query Divizion
- Incepem lucrul prin a construi initial codul folosind principii ale programarii orientate pe obiecte ca sa generam o baza de lucru al query ului
- Am facut un package care sa contina viitoarele trieri(cea locala si cea cu api call)
+ # Stage 1: Query Division
+ We begin the work by initially building the code using object-oriented programming principles to generate a working base for the query.
+ I created a package that will contain the future sortings (the local one and the API call one).
  
- Structura: Vreau ca proiectul sa aiba mai multe etape de colectare a conditiilor pt a usura la final trierea finala, astfel voi incepe sa implementez rand pe rand aceste etape.
+ Structure: I want the project to have multiple stages of condition collection to ease the final sorting, so I will start implementing these stages one by one.
 
- Incep cu API call-ul pentru ca e cel mai simplu de testat.
+ I'm starting with the API call because it's the easiest to test.
 
- ## Rezolvari ale problemelor in cadrul implementarii
- #### Separation of Concerns si SSOT
- - Am facut un package care o sa imi tina loc de "main lobby ul" aplicatiei. Acesta are 2 fisiere si 1 tine loc de dictionar global (config) iar celalalt face primele verificari : cea locala(inca nu e implementata) si cea cu apel. Dupa api call, fiecare camp care e returnat de LLM va fi de tip Condition, deci primim mereu un format valid (continutul local poate fi gresit)
-  - Am eliminat orice date "hardcodate" (magic strings). Tot ce ține de mediu (API keys, versiuni de modele) este gestionat exclusiv dintr-un fișier .env și validat global printr-o clasă unică Config
+ ## Problem Solving during implementation
+ #### Separation of Concerns and SSOT
+ - I made a package that will act as the "main lobby" of the application. It has 2 files: 1 acts as a global dictionary (config) and the other does the initial checks: the local one (not yet implemented) and the call one. After the API call, every field returned by the LLM will be of type Condition, so we always receive a valid format (the local content can be wrong).
+  - I eliminated any "hardcoded" data (magic strings). Everything environment-related (API keys, model versions) is exclusively managed from an .env file and globally validated through a unique Config class.
 
 #### Benefit of the doubt
- - Dacă un query nu menționează explicit un câmp obiectiv (ex: nu se specifică anul fondării sau numărul de angajați), sistemul marchează automat acel câmp ca fiind "fantomă". Astfel, la faza de filtrare a companiilor, motorul va ști să nu penalizeze firmele care au employee_count: null, pentru că acel câmp nici măcar nu a fost o cerință a utilizatorului.
+ - If a query does not explicitly mention an objective field (e.g., the founding year or the number of employees is not specified), the system automatically marks that field as a "phantom". Thus, at the company filtering stage, the engine will know not to penalize companies that have employee_count: null, because that field wasn't even a user requirement.
 
- #### Brute-Mode si Fault Tolerance
- - Un API call eșuat nu va opri aplicația. Eroarea este prinsă (try/except), se aplică condițiile fantomă pe tot query-ul, iar execuția merge mai departe.
+ #### Brute-Mode and Fault Tolerance
+ - A failed API call will not stop the application. The error is caught (try/except), the phantom conditions are applied to the entire query, and the execution moves forward.
 
- - Brute-Mode: Am construit sistemul astfel încât să poată rula chiar și fără o cheie API configurată în .env. Dacă un evaluator clonează repo-ul și nu introduce o cheie, se detectează lipsa ei, se notifică utilizatorul printr-un avertisment clar în consolă și continuă procesarea strict pe baza faza 1 (Local), implementand astfel un Graceful Degradation al sistemului, în loc de un crash.
+ - Brute-Mode: I built the system so it can run even without an API key configured in the .env. If an evaluator clones the repo and doesn't input a key, its absence is detected, the user is notified via a clear warning in the console, and processing continues strictly based on phase 1 (Local), thus implementing a Graceful Degradation of the system instead of a crash.
 
- #### Expansiunea Semantica
- - Pentru a evita răspunsurile inconsistente și lente, faza 2 folosește API-ul Gemini forțat printr-o schemă Pydantic strictă. LLM-ul nu mai trebuie să ghicească firme; el doar primește bucata de query neînțeleasă local (query.remainder) și o sparge în array-uri semantice.
-De exemplu, pentru "packaging materials", modelul a fost instruit să facă expansiune semantică (adaugă automat: ['bottles', 'jars', 'tubes']), crescând enorm șansele de match pe textul liber din descrierile companiilor.
+ #### Semantic Expansion
+ - To avoid inconsistent and slow responses, phase 2 uses the Gemini API forced through a strict Pydantic schema. The LLM no longer has to guess companies; it just receives the piece of the query not understood locally (query.remainder) and breaks it down into semantic arrays.
+For example, for "packaging materials", the model was instructed to do semantic expansion (it automatically adds: ['bottles', 'jars', 'tubes']), massively increasing the chances of a match on the free text from the company descriptions.
 
 ----
-Acum ca API call-ul a fost implementat si e functional trebuie sa incepem constructia modelului local, care va avea 3 functii foarte importante:
+Now that the API call has been implemented and is functional, we must start building the local model, which will have 3 very important functions:
  
- - Cautare de flaguri boolene: cauta daca firma e publica sau nu, sau ramane neconcludent daca nu gaseste
+ - Searching for boolean flags: searches if the company is public or not, or remains inconclusive if it finds nothing.
 
- - Cautare anul fondarii: Se va uita dupa cuvinte cheie care sa mentioneze anul fondarii, si dupa dupa acest an ca sa formeze un regex
+ - Searching for founding year: It will look for keywords that mention the founding year, and then look for this year to form a regex.
 
- - Cautare metrici cantitative(venit si angajati) : va forma tot un regex despre aceste date 
+ - Searching for quantitative metrics (revenue and employees): it will also form a regex about this data.
 
-#### BONUS: Metoda-Brute-Force
-In cazul in care API key ul nu exista in fisier, modul de rulare va functiona intr o norma 100% locala pe keywords hardcodate.
+#### BONUS: Brute-Force Method
+In case the API key does not exist in the file, the run mode will operate on a 100% local norm based on hardcoded keywords.
 
-## Rezultate teste 
-Am rulat 3 teste folosind cele 12 query uri oferite ca exemplu(rezultatele se afla in `assets/`):
-1. NoLocalJustApi - se foloseste doar apelul extern, iar intern nu se ia nicio decizie
-2. LocalAndApi - se foloseste si apelul local si cel extern
-3. LocalNoAPI - se foloseste exclusiv apelul local pe modul Brute-Force pentru a da grep la cat mai multa informatie
+## Test Results 
+I ran 3 tests using the 12 queries provided as an example (results are in `assets/`):
+1. NoLocalJustApi - only the external call is used, and internally no decision is made.
+2. LocalAndApi - both the local and the external call are used.
+3. LocalNoAPI - the local call is used exclusively on Brute-Force mode to grep as much information as possible.
 
-Rezultatele sunt unele decente dar se pot observa cateva erori si capacitati de imbunatatire
+The results are decent, but a few errors and room for improvement can be observed.
 
-## Probleme si solutii la implementarea actuala:
+## Problems and solutions in the current implementation:
 
-#### Eroare la apelarea API-ului
- - Daca cumva API - ul intoarce eroarea 503, adica nu a putut fi accesat modelul, asta inseamna ca metoda brute-force nu a fost apelata deloc in stagiul incipient. De exemplu, la „Clean energy startups...“ API-ul a dat 503, nu s-a extras nimic și au trecut toate cele 477 de firme. Acum trec 0.
-   + `Rezolvare`: Folosim catch exception si daca este o eroare de genul, se apeleaza de urgenta modul brute-force pentru a nu pierde timpul si informatie pretioasa.
+#### Error when calling the API
+ - If somehow the API returns error 503, meaning the model could not be accessed, this means the brute-force method wasn't called at all in the incipient stage. For example, for „Clean energy startups...“ the API gave 503, nothing was extracted and all 477 companies passed. Now 0 pass.
+   + `Fix`: We use catch exception and if there is such an error, the brute-force mode is urgently called so as not to waste time and precious information.
 
- - Am corectat regula care decide dacă mai e nevoie de API (ignor punctuația și cuvintele de legătură). Pe cele 207 de query-uri, rata de apeluri a rămas 100%, pentru că fiecare query conține o parte semantică (industrie) pe care agentul local nu o poate extrage. Concluzie: API-ul nu e un „plan B“, ci o parte necesară a sistemului, iar economia reală de cost ar veni dintr-un cache sau dintr-un model local pentru industrii, nu din reguli mai bune.
+ - I corrected the rule that decides if the API is still needed (I ignore punctuation and connecting words). On the 207 queries, the call rate remained 100%, because every query contains a semantic part (industry) that the local agent cannot extract. Conclusion: The API is not a "Plan B", but a necessary part of the system, and real cost savings would come from a cache or a local model for industries, not from better rules.
 
- #### Nivelul de intelegere al unui query
- - La rulare a aparut problema in care api ul si nici agentul local nu au reusit sa capteze nicio informatie, iar din cauza asta nu s a facut nicio triere asupra bazei de date.(programul considera ca toate firmele au sansa sa fie compatibile, cu toate ca nu au nicio informatie de comparatie)
-   - `Rezolvare` : fiecare query primeste un status (`understood`, `partial`, `failed`) in functie de ce conditii active reuseste sa inteleaga.
+ #### The level of understanding of a query
+ - During the run, a problem occurred where neither the api nor the local agent managed to capture any information, and because of this no sorting was done on the database. (the program considers that all companies have a chance to be compatible, even though they have no comparison information).
+   - `Fix` : each query receives a status (`understood`, `partial`, `failed`) depending on what active conditions it manages to understand.
 
-     + `understood` : se primeste atunci cand query ul reuseste sa determine macar o conditie, iar API ul nu a dat fail(sau pur cheia de la api nu este prezenta si modelul ruleaza 100% local), se face trierea mai departe...
-     + `partial` : se primeste atunci cand query ul reuseste sa determine macar o conditie, iar API ul returneaza o eroare(pe scurt, localul a gasit ceva, iar ce a rams ptr API a ramas neadresat de catre API, iar modelul brute-force a incercat sa echivaleze, dar nu e nicio garantie ca tot textul a fost inteles), se face trierea mai departe...
-     + `failed` : nu s-a determinat nicio condiție (nici obiectivă, nici interpretabilă), așa că nu returnăm nicio firmă, pentru că nu avem pe ce să ne bazăm.
-
-
- #### Dublarea conditiilor
-
- - LLM ul poate sa genereze informatie din context si astfel poate genera informatie ptr campuri deja adresate de modelul local.(exemplu poate sa considere ca "startup" ofera informatia year_founded => 2019 si acolo se afla o contradictie).
-- Se pune problema pe care dintre ele sa le ascultam? Conteaza foarte mult de toleranta dar in contextul unei codari astfel de stricte, daca modelul capteaza informatii local de cele mai multe ori sunt sigure deci putem sa ne bazam pe o toleranta marita
-  - `Rezolvare`: dacă modelul local a completat deja un câmp obiectiv (an, angajați, venit, public), API-ul nu îl mai suprascrie. Pentru restul, API-ul adaugă informația captată.
-
-#### Geografia functioneaza mai optim in local
-- Soluția locală merge bine pentru țări și regiuni scrise clar, pentru că adaugă și orașele (România → Brașov, București, Iași...), pe când API-ul lasă doar țara.
-- Expansiunea geografică acum rulează mereu în local. Până acum nu era chiar așa în modul normal, doar API-ul era îmbogățit cu orașe din dicționar
-  - `Rezolvare` : Apelam mereu expansiunea geografica(locala) la inceputul fazelor chiar daca cheia API este prezenta in.env iar la description in brute-force filtram cuvitnele care au facut deja match la geografie.
-
-#### Confuzia de roluri in Brute-Force
-- Modelul nu face diferenta intre ce trebuie sa **fie** firma si ce **livreaza** firma dintr-un query
-  - `Rezolvare` : In Brute-Force cautam mereu cuvinte precum "for" ca sa mapam corect in traget_markets(ce livreaza firma) nu in business_model(ce este firma)
+     + `understood` : is received when the query manages to determine at least one condition, and the API did not fail (or simply the api key is not present and the model runs 100% locally), the sorting moves forward...
+     + `partial` : is received when the query manages to determine at least one condition, and the API returns an error (in short, the local found something, and what remained for the API was left unaddressed by the API, and the brute-force model tried to equate, but there's no guarantee all the text was understood), the sorting moves forward...
+     + `failed` : no condition was determined (neither objective nor interpretable), so we return no company, because we have nothing to base it on.
 
 
-## Erori in implementarea solutiilor
- - Am incercat sa scad limita de timeout din program la sub 8 secunde, dar minimul google e de 10 secunde 
-- AI ul local face foarte multe gafe cand vine vorba de intelegerea unor anumite cuvinte (ex :IT, 3D, AI) pentru ca baza de date a keywords urilor este destul de restransa
+ #### Duplication of conditions
 
-##  Solutia automatizata:
- - Pentru a completa toata lista si a ne asigura ca avem cat mai multe keywords de selectie am cerut de la un LLM sa imi genereze 200 (in 2 etape) de query uri diferite care sa testeze diferite aspecte si formulari (unele mai vagi altele mai clare si mai usor de dedus)
- - Dupa asta am rulat greping-ul LOCAL (fara vreun fel de API call) si am trimis rezultatele unui LLM care sa extraga exact cuvintele care nu au aparut in keywords-uri pentru a largi orizonturile agentului local.
+ - The LLM can generate information from context and thus can generate information for fields already addressed by the local model. (e.g. it might consider that "startup" offers the information year_founded => 2019 and there lies a contradiction).
+- The question is which one to listen to? It depends a lot on tolerance but in the context of such strict coding, if the model captures information locally, most of the time it is reliable, so we can rely on an increased tolerance.
+  - `Fix`: if the local model has already filled an objective field (year, employees, revenue, public), the API does not overwrite it anymore. For the rest, the API adds the captured information.
 
-Dupa cateva teste si incercari sa a ajuns la un model rapid si complex care reuseste sa imparta text in informatii punctuale despre firme
+#### Geography works more optimally in local
+- The local solution works well for countries and regions written clearly, because it also adds the cities (Romania → Brasov, Bucharest, Iasi...), whereas the API only leaves the country.
+- The geographical expansion now always runs in local. Until now it wasn't quite like that in normal mode, only the API was enriched with cities from the dictionary.
+  - `Fix` : We always call the geographic expansion (local) at the beginning of the phases even if the API key is present in .env, and in the brute-force description we filter the words that have already matched geography.
 
-Urmatoarea etapa: testarea totala, local + API si validarea datelor expuse.
-
-### Rezultate finale etapa de Query divizion:
-- Modelul rulează și fără cheie API (brute-mode) și a produs condiții pentru toate cele 12 query-uri. Cu API-ul, când apelul eșuează (503, 429, 504), sistemul trece automat pe varianta locală: în rularea cu 207 de query-uri, au fost 148 de astfel de cazuri, toate prinse.(cifre luate din `assets/stage1_v0/STATS.md`)
-- Model **RAPID** pentru agentul local (2 - 3 milisecunde), iar cu API call ~ 1 - 2 secunde
-- Capteaza cat mai multa informatie, o fragmenteaza si o tipizeaza ca sa poata fi folosita dupa la compararea cu firmele din baza de date a firmelor.  
-
-# Etapa 2 : Trierea
-
-### Planificarea:
-- Trierea se va face pe baza datelor total **OBIECTIVE** pe care le am descoperit in etapa anterioara (cum ar fi un regex despre venit sau un numar de angajati minim)
- - Vom aplica aici principiul 100% **BENEFIT OF THE DOUBT**, deci daca un astfel de camp obiectiv lipseste din compania din baza de date atunci ii oferim beneficiul de a se incadra la "candidat cu potential"
-- Campul de adresa necesita niste mici abordari pentru ca este un criteriu de triere extraordinar de bun, dar necesita niste imbunatatiri pentru a deveni optim pe nivel Local.  
-- Dupa asta vom aplica pe cele care au potential de companii posibile un criteriu de notare si le vom compara pe fiecare in parte.
-- Informatiile de aici sunt comparate **SUBIECTIV** deci fiecare companie va primi o nota anume care va fi compusa din alte note prin relatare camp-camp
-- Si aici vom impune benefit of the doubt si vom incerca sa "sapam" dupa informatii in alte campuri pentru a reusi sa deslusim informatiile lipsa carora le vom acorda la fel nota de confidence
-- Se pune problema: "Oare NAICS-ul firmei este un criteriu"
-### De ce eliminam(taiem) si nu le penalizam(bad scoring)
-#### Avantaje :
-- **Pentru a salva timp** : costul de a compara descrierile subiective ale firmelor sunt foarte costisitoare astfel noi incercam sa triem din start ce nu se potriveste din punct de vedere matematic sau logic. Cifrele si taraa sunt informatii exacte(obiective), nu pareri(subiective).
-- **Scalabilitatea** : pentru o baza de date de 400 de firme costul nu e o problema asa de mare, timpul de rulare e aproape minimal, dar in cazul **SCALARII**, cand baza de date se mareste substantial, vom avea probleme mari de complexitate si orice triere logica si instanta ne va avantaja.
-- **Benefit of the doubt** : firmele care au un camp obiectv lipsa vor fi adaugate in lista automat
-#### Dezavantaje :
-- **Greseli de intelegere a querry-ului** : Lista tarilor poate fi incompleta sau sa nu recunoasca un anumit oras sau regiune scrisa in querry.
-- **Pierderea** : Dupa ce o firma este exclusa, nu mai poate fi readusa in baza de selectie.
-- **Greseli de baza de date** : Detaliile din baza de date sunt noisy asa ca filtrul hard trebuie sa aiba o relativa toleranta la noise. Momentan toleranta la noise este 0, dar e o imbunatatire pe viitor.
-
-Am ales aceasta decizie pentru ca am acceptat riscul de a pierde firme pe baza adreselor (nu are ce cauta clar o firma din India in Romania) iar scoring ul cred ca nu e sufucient de deterministic pentru aceste campuri care sunt indisputabil **obiective**(precum numarul de angajati sau venitul mediu), cu toate ca se pot pierde firme aproximativ potrivite pentru acel query.
+#### Role confusion in Brute-Force
+- The model doesn't differentiate between what the company must **be** and what the company **delivers** from a query.
+  - `Fix` : In Brute-Force we always look for words like "for" to correctly map into target_markets (what the company delivers) not into business_model (what the company is).
 
 
+## Errors in implementing the solutions
+ - I tried to lower the timeout limit in the program to under 8 seconds, but google's minimum is 10 seconds. 
+- The local AI makes a lot of blunders when it comes to understanding certain specific words (e.g. :IT, 3D, AI) because the keyword database is quite restricted.
+
+##  The automated solution:
+ - To complete the whole list and ensure we have as many selection keywords as possible I asked an LLM to generate 200 (in 2 stages) different queries for me that test different aspects and phrasings (some vaguer others clearer and easier to deduce).
+ - After that I ran the LOCAL greping (without any kind of API call) and sent the results to an LLM to extract exactly the words that didn't appear in the keywords to broaden the local agent's horizons.
+
+After a few tests and attempts, a fast and complex model was reached that manages to split text into pinpoint information about companies.
+
+Next stage: total testing, local + API and validating the exposed data.
+
+### Final results Query division stage:
+- The model runs even without an API key (brute-mode) and produced conditions for all 12 queries. With the API, when the call fails (503, 429, 504), the system automatically switches to the local variant: in the run with 207 queries, there were 148 such cases, all caught. (figures taken from `assets/stage1_v0/STATS.md`)
+- **FAST** model for the local agent (2 - 3 milliseconds), and with API call ~ 1 - 2 seconds.
+- It captures as much information as possible, fragments it and typifies it so it can be used later when comparing with the companies in the company database.  
+
+# Stage 2 : Sorting
+
+### Planning:
+- The sorting will be done based on the totally **OBJECTIVE** data we discovered in the previous stage (like a revenue regex or a minimum number of employees).
+ - We will apply the 100% **BENEFIT OF THE DOUBT** principle here, so if such an objective field is missing from the company in the database then we offer it the benefit of qualifying as a "potential candidate".
+- The address field requires some minor tweaks because it is an extraordinarily good sorting criterion, but it needs some improvements to become optimal at a Local level.  
+- After that we will apply to those that have potential as possible companies a grading criterion and we will compare each one of them.
+- The information here is compared **SUBJECTIVELY** so each company will receive a certain grade that will be composed of other grades through field-by-field relatability.
+- Here too we will enforce the benefit of the doubt and we will try to "dig" for information in other fields to manage to unravel the missing information to which we will equally grant the confidence grade.
+- The question arises: "Is the company's NAICS a criterion?"
+### Why we eliminate (cut) and don't penalize (bad scoring)
+#### Advantages :
+- **To save time** : the cost of comparing subjective company descriptions is very expensive so we try to sort right from the start what doesn't fit mathematically or logically. Numbers and the country are exact information (objective), not opinions (subjective).
+- **Scalability** : for a database of 400 companies the cost is not such a big issue, the running time is almost minimal, but in the case of **SCALING**, when the database increases substantially, we will have major complexity problems and any logical and instant sorting will benefit us.
+- **Benefit of the doubt** : companies that are missing an objective field will be added to the list automatically.
+#### Disadvantages :
+- **Query understanding mistakes** : The list of countries might be incomplete or might not recognize a certain city or region written in the query.
+- **The loss** : Once a company is excluded, it cannot be brought back into the selection base.
+- **Database mistakes** : Details in the database are noisy so the hard filter must have a relative tolerance to noise. Currently the tolerance to noise is 0, but it's an improvement for the future (see 3.5).
+
+I chose this decision because I accepted the risk of losing companies based on addresses (a company from India clearly has no business in Romania) and I believe the scoring is not deterministic enough for these fields that are indisputably **objective** (like the number of employees or the average revenue), even though approximately suitable companies might be lost for that query.
 
 
-## Trierea Hard : <br> Idei de implementare(cu + si -)
-### Implementarea on the fly(greedy)
 
-Se deschide baza de date a firmelor si se trece prin fiecare in parte. Cand ajungem la firma i vom compara criteriile obiective, daca se potriveste atunci ii vom oferi o nota in functie de restul criteriilor si daca are cea mai mare nota o memoram. La final vom face un top 20 de firme care se potrivesc deci vom trece iar prin baza de date pentru a verifica candidatii si a-i sorta.
 
-- "+" este foarte rapida si practic ajunge sa gaseasca cea mai buna firma (care se potriveste dupa ce au gasit agentii locali si LLM, evident)
-- "+" nu ocupa foarte multa memorie ram pentru ca maximul care este incarcat este de 20 de firme la final dupa sortare
-- "-" nu putem face troubleshooting peste firmele din baza de date si strica putin ideea de a verifica cum gandeste sistemul de acreditare
-- "-" daca baza de date detine milioane de firme atunci sa faci un top 20 atunci ar trebui sa se treaca de 2 ori prin milioanele de firme ceea ce ar ingreuna foarte tare un sistem de calcul.
+## Hard Sorting : <br> Implementation ideas (with + and -)
+### On the fly (greedy) implementation
 
-### Implementarea Batching:
+The company database is opened and it goes through each one of them. When we reach company i we will compare the objective criteria, if it fits then we will offer it a grade based on the rest of the criteria and if it has the highest grade we memorize it. At the end we will make a top 20 of companies that fit so we will go through the database again to check the candidates and sort them.
 
-Se deschide baza de date a firmelor si se trece prin fiecare in parte. Cand ajungem la firma i vom compara criteriile obiective, daca se potricveste atunci o vom scrie intr un fisier temporar care memoreaza firmele care completeaza regex-urile. apoi parcurgem lista aceea nou formata si le dam note firmelor. Le sortam si apoi alegem top 20
-- "+" prin aceasta metoda putem sa omitem dublurile din baza de date ca sa nu trebuiasca sa scoram de 2 sau mai multe ori aceleasi companii
-- "+" putem vedea in timp real cum decide AI ul sa aleaga firmele si ce criterii a gasit el corecte sau gresite
-- "+" avem un log al firmelor care totusi au trecut de trierea HARD care totusi e considerata obiectiva, deci putem relua cautarile in cazul in care rezultatele sunt incorecte
-- "-" rescrierea in batch ocupa spatiu pe disk, asta nu e o problema cand e vorba de 10.000 de firme dar daca ajungem la ordinul milioanelor atunci poate deveni o problema pentru viteza si pentru spatiul de stocare(scenariu putin ireal pentru ca in viata reala nu s ar intampla ceva de genul, si chiar daca s ar intampla niciun sistem de cautare al firmelor nu ar fi prea rapid)
-- "-" viteza si costul acestui sistem este foarte variat si tine clar de cat de mult reuseste query ul sa trieze HARD baza de date pentru ca poate face o reducere mare (de la milioane de firme la zeci de mii) cu suficient de multe informatii hard
+- "+" it is very fast and practically manages to find the best company (that fits after what the local agents and the LLM found, obviously)
+- "+" it doesn't take up a lot of ram memory because the maximum that is loaded is 20 companies at the end after sorting
+- "-" we cannot do troubleshooting over the companies in the database and it kinda ruins the idea of checking how the accreditation system thinks
+- "-" if the database holds millions of companies then making a top 20 would mean going 2 times through the millions of companies which would highly burden a computing system.
+
+### Batching Implementation:
+
+The company database is opened and it goes through each one of them. When we reach company i we will compare the objective criteria, if it fits then we will write it in a temporary file that memorizes the companies that complete the regexes. then we traverse that newly formed list and give grades to the companies. We sort them and then choose the top 20
+- "+" through this method we can omit duplicates from the database so we don't have to score the same companies 2 or more times
+- "+" we can see in real time how the AI decides to choose companies and what criteria it found right or wrong
+- "+" we have a log of the companies that still passed the HARD sorting which is after all considered objective, so we can resume searches in case the results are incorrect
+- "-" rewriting in batch takes up space on the disk, this is not an issue when it comes to 10,000 companies but if we reach the order of millions then it can become an issue for speed and storage space (a somewhat unrealistic scenario because in real life something like this wouldn't happen, and even if it did no company search system would be very fast either)
+- "-" the speed and cost of this system is very varied and strictly depends on how much the query manages to HARD sort the database because it can make a big reduction (from millions of companies to tens of thousands) with enough hard information
 
 ---
-Tinand cont ca momentan proiectul este in stagiul de dezvoltare e nevoie neaparat de un environment de debugging asa ca alegerea este clara in `Implementarea Batching`.
+Considering that currently the project is in the development stage a debugging environment is absolutely needed so the choice is clearly in `Batching Implementation`.
 
-#### Rezultate dupa implementare 
-Trierea HARD rulează pe cele 12 query-uri și produce câte un fișier de candidați pentru fiecare. Fiecare query a păstrat cel puțin o firmă.(in medie fiecare are cam 30 - 40 posibili candidati, verificati)(date luate din `assets/Hard_knockout.png`)
+#### Results after implementation 
+HARD sorting runs on the 12 queries and produces a candidate file for each. Every query kept at least one company. (on average each has about 30 - 40 possible candidates, verified)(data taken from `assets/Hard_knockout.png`)
 
-# Etapa 3 : Scoring-ul
+# Stage 3 : Scoring
 
-## Idei generale:
-Acum ca pentru fiecare query se genereaza un set de companii posibile a venit momentul sa incerc sa vad cum as putea implementa tehnica de notare si de clasificare a acestor companii.
+## General ideas:
+Now that for each query a set of possible companies is generated, the time has come to try to see how I could implement the grading and classification technique for these companies.
 
-Pentru inceput a trebuit sa fac o analiza asupra firmelor care au trecut de filtru si am inceput sa imi notez ce detalii am observat, ce trade-off uri ar trebui sa implementez in model si cum sa abordez tehnica.
+To begin with, I had to do an analysis on the companies that passed the filter and I started to note down what details I observed, what trade-offs I should implement in the model and how to approach the technique.
 
-## Problema : Query predominant semantic
+## Problem : Predominantly semantic query
 
-- Cele mai multe querry uri functioneaza fara a oferi suficient de multe informatii in legatura cu veniturile firmelor si cu anul de infiintare samd. Astfel trierea actuala nu face nicio reductie in numarul firmelor, deci scoring-ul ramane la fel de parca nu am facut nicio procesare. ex: "Companies that manufacture or supply critical components for electric vehicle battery production" (`assets/Hard_knockout.png`, candidate_q12.jsonl)
-- `Problema` : Pentru o lista de 500 de firme nu ar trebui sa fie un cost de timp asa de mare scorarea lor, dar daca lista ajunge la un prag de ordinul milioanelor de firme, procesarea aceasta este lunga si de cele mai multe ori destul de overkill, asa ca trebuie cumva sa ne folosim si de nisa de lucru a firmei cu care lucram, pentru a reusi sa pastram o viteza de executie care sa nu limiteze utilizatorii. Precizarea este: un singur query nu ar trebui sa puna probleme, dar mai multe query uri ar ingreuna un server si ar face user experience-ul un cosmar.
-  - `Rezolvare` : Trebuie introdus un mod de a compara NAICS-urile, pentru ca ne ofera o baza solida despre modul de operare al unei firme si cum functioneaza ea, iar acest NAICS sa fie un criteriu hard de triere.
+- Most queries work without providing enough information regarding company revenues and the founding year, and so on. Thus, the current sorting makes no reduction in the number of companies, so the scoring remains the same as if we did no processing. e.g.: "Companies that manufacture or supply critical components for electric vehicle battery production" (`assets/Hard_knockout.png`, candidate_q12.jsonl)
+- `Problem` : For a list of 500 companies it shouldn't be such a big time cost to score them, but if the list reaches a threshold of the order of millions of companies, this processing is long and most of the time quite overkill, so we must somehow also use the working niche of the company we are working with, to manage to maintain an execution speed that doesn't limit users. The specification is: a single query shouldn't cause problems, but multiple queries would burden a server and make the user experience a nightmare.
+  - `Fix` : A way to compare NAICSes must be introduced, because it offers us a solid base about the operating model of a company and how it works, and this NAICS should be a hard sorting criterion.
 
-## Idee de implementare :
-- La apelul API ului si al agentului local, se va incerca generarea unei liste de posibile(si foarte indulgente pentru ca NAICS-urile) de NAICS-uri (sau prefixe de NAICS-uri) care sa functioneze ca un nou criteriu de preselectie.
-- Alegem ca NAICS-urile sa fie indulgente pentru ca acestea au aceeasi capacitate ca adresele de a se **MOSTENI** (exemplu : "Pharmaceutical companies in Switzerland" nu face parte doar din sectorul de retail, face parte si din sectorul de manufacturing, subsectorul "pharmaceuticals and medical manufacturing", deci o firma care e descrisa de cateva cuvinte poate aparea in mai multe sectoare, respectiv subsectoare ale unui sector) 
-- Dupa aceasta triere, vom incepe sa calificam firmele pe baza a ce date contin(!=null) si cat de relevante sunt cu datele pe care query ul nostru l a retinut.
-- Problema apare atunci cand acest NAICS este gresit in baza de date a firmelor(din cauze birocratice sau de introducere manuala), sau chiar din cauza modului de calculare gresit al API-ului sau agentului local, astfel avem nevoie de un backup care sa nu pedepseasca capital toate firmele care nu se potrivesc cu NAICS-ul.
-### Implementare nou criteriu HARD:
-- Se va verifica daca vreun NAICS din query se potriveste cu NAICS-ul din baza de date.
-  - Daca se potriveste, il adaugam in lista de poisibili candidati
-  - Daca NAICS-ul din baza de date lipseste sau nu se potriveste cu cel din query trecem la urmatoarea etapa si anume verificam daca din campurile `core_offerings` si `business_model` ale query ului se potrives cu ceva din descrierea firmei prin metoda **TOKEN INTERSECTION**(Jaccard Index pe siruri de cuvinte normalizate) care calculeaza un scor intre intre 0 si 1 si il comparam cu un prag de toleranta flexibil.
-    - Daca trece pragul de toleranta si se regasesc astfel de cuvinte in descriere inseamna ca acea companie poate fi un candidat corect
-    - Daca nu trece pragul atunci firma este respinsa total.
+## Implementation idea :
+- At the call of the API and the local agent, an attempt will be made to generate a list of possible (and very lenient because the NAICSes) NAICSes (or NAICS prefixes) that act as a new preselection criterion.
+- We choose the NAICSes to be lenient because they have the same capacity as addresses to be **INHERITED** (example: "Pharmaceutical companies in Switzerland" is not only part of the retail sector, it's also part of the manufacturing sector, the "pharmaceuticals and medical manufacturing" subsector, so a company that is described by a few words can appear in several sectors, respectively subsectors of a sector).
+- After this sorting, we will start qualifying companies based on what data they contain (!=null) and how relevant they are with the data that our query retained.
+- The problem arises when this NAICS is wrong in the company database (due to bureaucratic causes or manual entry), or even due to the wrong calculation method of the API or local agent, thus we need a backup that doesn't capitally punish all companies that don't match the NAICS.
+### New HARD criterion implementation:
+- It will be checked if any NAICS from the query matches the NAICS from the database.
+  - If it matches, we add it to the list of possible candidates.
+  - If the NAICS from the database is missing or doesn't match the one from the query we move to the next stage, namely we check if from the `core_offerings` and `business_model` fields of the query they match with anything in the company description through the **TOKEN INTERSECTION** method (Jaccard Index on normalized strings of words) which calculates a score between 0 and 1 and we compare it with a flexible tolerance threshold.
+    - If it passes the tolerance threshold and such words are found in the description it means that company can be a correct candidate.
+    - If it doesn't pass the threshold then the company is totally rejected.
 
-- Pragul de toleranta va fi unul dinamic si adaptiv, pentru ca din testele pe care le am rulat, atunci cand query ul capteaza suficiente informatii in core_offerings, daca hardcodam pragul e posibil sa fie incorect si injust fata de unele firme si sa devina prea permisim, iar la celalalt capat al balantei, putem astfel sa devenim prea robusti si rigizi si sa respingem degeaba firme care isi pot face prezenta in lista potentiala de firme, astfel am stabilit un prag adaptiv care este limitat in intervalul [0.05, 0.25] si calculul ei se face in functie de cate date contine descrierea si cate date memoreaza core_offerings-urile query ului
-- `Concluzie` : Aici se face un trade off in detrimentul acuratetei pentru ca se introduce in joc o noua variabila care poate sa destabilizeze si sa alunge o companie posibil ca si candidat, dar castiga o viteza extrem de importanta la scalare care poate face user experience-ul sa se simta mult mai placut. 
+- The tolerance threshold will be a dynamic and adaptive one, because from the tests I ran, when the query captures enough information in core_offerings, if we hardcode the threshold it might be incorrect and unfair to some companies and become too lenient, and at the other end of the balance, we can thus become too robust and rigid and reject for nothing companies that can make their presence in the potential list of companies, thus I established an adaptive threshold that is limited in the interval [0.05, 0.25] and its calculation is done depending on how much data the description contains and how much data the query's core_offerings memorize.
+- `Conclusion` : Here a trade-off is made to the detriment of accuracy because a new variable is introduced into the game that can destabilize and drive away a company possibly as a candidate, but it gains an extremely important speed at scaling that can make the user experience feel much more pleasant.
 
-#### Rezultate:
- - NAICS ca prim criteriu, apoi potrivirea de cuvinte cu prag adaptiv, iar firmele fara date in descriere trec(benefit of the doubt)
- - In total 2567 → 676 firme (−74%), iar la cele trei query-uri semantice, care înainte lăsau toate cele 477 de firme, acum rămân 58, 66 și 76(sursa : `assets/runs/test_better_naics`)
- - Ce merge : farma în Elveția, 34 de firme, toate de farma;
- - Ce **NU** merge : logistica în România, unde intră și Rompetrol și OMV, pe lângă CFR, Portul Constanța și Poșta Română.
-Cauzele reale (le-am verificat): un singur cuvânt generic („process“) lasă să treacă firme de software la „food în Franța“, prefixe NAICS prea largi (3359, „45“) lasă firme fără legătură, iar „e un distribuitor de petrol logistică?“ nu are răspuns clar.
- - Idei viitoare de imbunatatiri: query ul si compania sa aiba cel puțin 2 cuvinte comune, să se trateze cuvintele generice ca slabe, să se dedubleze (44 din 676 de rânduri se repetă). Decizia finală o ia scoring-ul.
- - **SOLVED BUG** : potrivirea cuvintelor producea un bug de identificare semantica("it" era gasit in interiorul cuvantului "with"), dupa masurarea listelor gresite am reusit sa identific si sa repar.
+#### Results:
+ - NAICS as the first criterion, then matching words with an adaptive threshold, and companies without data in the description pass (benefit of the doubt).
+ - In total 2567 → 676 companies (−74%), and at the three semantic queries, which previously let all 477 companies pass, now 58, 66 and 76 remain (source: `assets/runs/test_better_naics`)
+ - What works: pharma in Switzerland, 34 companies, all pharma;
+ - What **DOES NOT** work: logistics in Romania, where Rompetrol and OMV also enter, alongside CFR, Portul Constanta and Posta Romana.
+The real causes (I verified them): a single generic word ("process") lets software companies pass to "food in France", NAICS prefixes that are too broad (3359, "45") let unrelated companies pass, and "is an oil distributor logistics?" doesn't have a clear answer.
+ - Future improvement ideas: the query and the company should have at least 2 common words, treat generic words as weak, deduplicate (44 out of 676 rows repeat). The final decision is taken by the scoring.
+ - **SOLVED BUG** : word matching produced a semantic identification bug ("it" was found inside the word "with"), after measuring the wrong lists I managed to identify and fix it.
 
-Prin acest update, am transformat un filtru care lăsa să treacă totul pe bază semantică într-un pre-motor de căutare extrem de fin, capabil să facă diferența între intenția de afacere și modelul operațional. Acum, coșul restrâns și hiper-revelant de candidați poate fi trimis către **Etapa de Scoring**.
+Through this update, I transformed a filter that let everything pass on a semantic basis into an extremely fine pre-search engine, capable of distinguishing between the business intention and the operational model. Now, the narrowed and hyper-relevant basket of candidates can be sent to the **Scoring Stage**.
 
-## SCORING-UL :
+## THE SCORING :
 
-Etapa de scoring se bazeaza pe oferirea recompenselor firmelor care contin campuri relevante cu query ul si penalizarea celor care au campuri lipsa sau irelevante.
+The scoring stage is based on offering rewards to companies that contain fields relevant to the query and penalizing those that have missing or irrelevant fields.
 
 
-Dupa o analiza a situatiei actuale si a bazei de date a firmelor ramase candidate pentru query uri am observat cateva lucruri:
+After an analysis of the current situation and the database of companies remaining candidates for queries I noticed a few things:
 
-### Observatii:
- - acum fiecare firma are trecute filtrele HARD, dar ele trebuie sa fie apreciate, asa ca trebuie sa penalizam companiile care au trecut `null` in campurile de filtrare hard
+### Observations:
+ - now every company has passed the HARD filters, but they must be appreciated, so we must penalize the companies that passed `null` in the hard filtering fields.
 
- - Firmele care mi au atras cel mai mult atentia (adica trebuie notate cel mai bine) au fost cele care aveau in `core_offerings`, `description` si `target_markets`.
+ - The companies that caught my attention the most (meaning they must be graded the best) were the ones that had in `core_offerings`, `description` and `target_markets`.
 
- - Companiile care aveau match perfect de NAICS au avut avantaje fata de celelalte companii care n au dat match pe NAICS
+ - Companies that had a perfect NAICS match had advantages over the other companies that didn't match on NAICS.
 
- - Avataj au mai avut si firmele care prezentau anumite key_words in toate campurile existente, (`primary_naics:label`, `core_offerings`, `description`)
+ - Companies that presented certain key_words in all existing fields also had an advantage, (`primary_naics:label`, `core_offerings`, `description`)
 
- ### Decizii importate care trebuie luate:
-- Metoda de scorare trebuie aleasa in asa fel incat sa functioneze pe oricate companii selectate, oricate date contine query si sa returneze un scor normalizat, pentru a putea compara **CORECT** firmele intre ele.
-- Modul in care impartim nota finala (principiul ponderilor) va trebui sa fie **fine-tuned** din simplul motiv ca unele criterii mai putin importante sa combata scorarea unor firme care au reusit sa indeplineasca criterii mai importante. 
-- Propun construirea unui soi de sandbox in care sa incercam diferite valori pentru a ne fi mai usor procesul de fine-tuning al acestor valori, in cadrul careia sa implementam si metode telemetrice pentru vizualizarea erorilor.
+ ### Important decisions to be made:
+- The scoring method must be chosen in such a way that it works on however many companies selected, however much data the query contains and returns a normalized score, to be able to **CORRECTLY** compare companies against each other.
+- The way we divide the final grade (the weighting principle) will have to be **fine-tuned** for the simple reason that some less important criteria might combat the scoring of some companies that managed to fulfill more important criteria.
+- I propose building some sort of sandbox where we can try different values to make our fine-tuning process of these values easier, within which we also implement telemetric methods to visualize errors.
 
-### Idee de implementare initiala:
+### Initial implementation idea:
 
-- Sistemul de scorare va fi impartit in 5 etape fiecare cu punctajul ei(insumate = 100p)
-   - `Notarea semantica`: 60p (relevanta core_offerings, description, target_markets)
-   - `NAICS mathcing`: 20p
-   - `Matching-ul pe date obiective`: 10p
-   - `Coerenta si consecventa` : 10 p
+- The scoring system will be divided into 5 stages each with its points (summed = 100p)
+   - `Semantic grading`: 60p (relevance core_offerings, description, target_markets)
+   - `NAICS matching`: 20p
+   - `Matching on objective data`: 10p
+   - `Coherence and consistency` : 10 p
 ---
-### Notarea Semantica
-- Se va baza in principiu pe compararea a ce detine query ul si a ce detine o companie oarecare din baza de date calificata.
-- Modul de comparare va fi bazat pe procentul de potrivire dintre query si campurile companiei: **MENTIUNE** :
-  - trebuie sa fim constienti de faptul ca pot aparea typing mismatches(query : "Pharmaceuticals", Company: "Pharmaceutical"), sau comparatii contextuale, care trebuie toate luate in considerare, pentru a evita edge-case urile.
-  - trebuie sa avem grija la cum comparam descrierile pentru ca de multe ori trebuie comparat **CONTEXTUAL**, astfel trebuie sa folosim niste metode subiective de acordare a notei finale.
-  - trebuie sa avem in vedere ce campuri au fost generate de query si mai mult decat atat trebuie sa avem in vedere ce campuri poate sa genereze si LLM ul si agentul local(e incorect sa incercam sa comparam companiile intre ele bazat pe `target_markets` sa zicem daca agentul nostru local nici macar nu poate scrie acolo ceva)
-  - trebuie sa avem in vedere cazurile in care le lipsesc firmelor campurile acestea 3 despre care am vorbit si cum taxam firmele respective.
-- Campurile vor fi cotate deiferit, iar propunerea incipienta a AI-ului a fost ca:
-   - `core_offerings` : 30p (daca are 100% din ce contine si query ul, primeste 30p)
+### Semantic Grading
+- It will essentially be based on comparing what the query holds and what any given company from the qualified database holds.
+- The comparison method will be based on the matching percentage between the query and the company's fields: **MENTION** :
+  - we must be aware of the fact that typing mismatches can appear (query: "Pharmaceuticals", Company: "Pharmaceutical"), or contextual comparisons, which must all be taken into consideration, to avoid edge-cases.
+  - we must be careful how we compare descriptions because many times it must be compared **CONTEXTUALLY**, thus we must use some subjective methods of granting the final grade.
+  - we must keep in mind what fields were generated by the query and even more than that we must keep in mind what fields the LLM and the local agent can generate (it's incorrect to try to compare companies among themselves based on `target_markets` let's say if our local agent can't even write anything there).
+  - we must consider the cases where companies are missing these 3 fields we talked about and how we tax those respective companies.
+- The fields will be quoted differently, and the AI's incipient proposal was that:
+   - `core_offerings` : 30p (if it has 100% of what the query contains, it receives 30p)
    - `description` : 15p
    - `target_markets` : 15p
 
-- Alegerea acestor numere a fost facuta pentru cazurile in care firmelor le lipseste NAICS-ul(sau e gresit), dar ele pot avea un head-start in fata celorlalte pentru ca au demonstrat prin descriere si date subiective ca sunt suficient de apte pentru a candida.
+- The choice of these numbers was made for the cases where companies are missing the NAICS (or it's wrong), but they can have a head-start over the others because they demonstrated through the description and subjective data that they are capable enough to be candidates.
 
 ### NAICS matching :
-- Compararea directa cu lista de NAICS-uri ale query ului:
+- Direct comparison with the query's list of NAICSes:
    - `MATCH` = 20p
    - `NOT MATCH` = 0p
 
-- Daca o companie nu reuseste sa faca destule puncte din datele subiective(exista un mismatch pe datele query ului), ea nu va fi cotata prost daca are acest NAICS pentru ca va avea destul de multe puncte peste firmele care nu au restul de date relevante(ex: O companie care a nimerit un NAICS vag din întâmplare (20 pct) va fi distrusă în clasament de o companie care nu are NAICS deloc, dar are o descriere 1-la-1 cu query-ul (60 pct))
+- If a company doesn't manage to make enough points from the subjective data (there is a mismatch on the query's data), it won't be poorly quoted if it has this NAICS because it will have quite a few points over companies that don't have the rest of the relevant data (e.g.: A company that hit a vague NAICS by chance (20 pts) will be destroyed in the ranking by a company that has no NAICS at all, but has a 1-to-1 description with the query (60 pts))
 
-### Matching-ul pe date obiective
-- Verificam daca (si cate) campuri obiective bifeaza compania noastra in raport cu ce detine query-ul si facem un procentaj. **MENTIUNE**:
-   - trebuie sa avem in vedere cate campuri fantoma si cate campuri REALE a reusit sa detecteze agentul in query, pentru a putea face o idee de cate campuri ar trebui sa detina "compania perfecta"
-   - penalizarea trebuie sa fie in raport cu cate date obiective are query ul si cate campuri lipsa are firma de notat
+### Matching on objective data
+- We check if (and how many) objective fields our company ticks in relation to what the query holds and we make a percentage. **MENTION**:
+   - we must consider how many phantom fields and how many REAL fields the agent managed to detect in the query, to be able to get an idea of how many fields the "perfect company" should hold.
+   - the penalty must be in relation to how much objective data the query has and how many missing fields the company to be graded has.
 
-- Notarea:
-   - `toate campurile obiective prezente` : 10p
-   - `Niciun camp obiectiv prezent` : 0p
+- Grading:
+   - `all objective fields present` : 10p
+   - `No objective field present` : 0p
 
-### Coerenta si consecventa:
-- Tokenii firmei trebuie cautati (**MENTIUNE** : SEMANTIC, deci subiectiv si contextual) in 3 campuri diferite ale companiei si anume : `NAICS_LABEL`, `core_offerings`, `description`
-- Daca gasim aceasta coerenta in datele firmelor, in raport cu ce se afla in query, trebuie sa oferim un total de 10p.
+### Coherence and consistency:
+- The company's tokens must be searched for (**MENTION** : SEMANTICALLY, so subjectively and contextually) in 3 different fields of the company namely : `NAICS_LABEL`, `core_offerings`, `description`
+- If we find this coherence in the companies' data, in relation to what is in the query, we must offer a total of 10p.
 ---
-La final toate aceste valori vor fi adunate si clasate si notate(folosind indecsii fiecarei companii si nota lor), iar folosind o sortare aferenta de complexitate O(logn) vom reusi sa deducem primele k firme care au cea mai mare nota si le vom afisa in radacina proiectului intr-un fisier: `Topk.jsonl`
+In the end all these values will be added up and classified and graded (using the indices of each company and their grade), and using a corresponding O(logn) complexity sorting we will manage to deduce the first k companies that have the highest grade and we will display them in the project's root in a file: `Topk.jsonl`
 
-### Telemetria:
+### Telemetry:
 
-Am construit o metoda care sa ne ofere informatiile in legatura cu ce recompense a primit fiecare companie pe fiecare camp al scoring-ului, astfel incat sa putem sa identificam erori in logica sau de calcul.
+I built a method to offer us the information regarding what rewards each company received on each scoring field, so that we can identify logic or calculation errors.
 
 ---
-### Rezultate dupa telementrie:
-- **Ce merge**:
-   - NAICS-ul functioneaza ca un criteriu foarte bun de departajare.
-     - **EXEMPLU**: pentru query-ul: "Food and beverage manufacturers in France" toate firmele de mâncare și băuturi sunt ≥41, iar cele 6 firme fără legătură (Virtualia, Sun RH, European Pay, quarksUp...) sunt ≤21. NAICS-ul face diferența.
+### Results after telemetry:
+- **What works**:
+   - The NAICS functions as a very good tie-breaking criterion.
+     - **EXAMPLE**: for the query: "Food and beverage manufacturers in France" all food and beverage companies are ≥41, while the 6 unrelated companies (Virtualia, Sun RH, European Pay, quarksUp...) are ≤21. The NAICS makes the difference.
 
-  - Filarea industriilor se face corect
-    - **EXEMPLU**: pt query-ul: "Public software companies with more than 1,000 employees." cele 15 firme tăiate de filtrul de industrie sunt toate corect tăiate (construcții, farma, retail). Nu se văd pierderi.
+  - The filtering of industries is done correctly.
+    - **EXAMPLE**: for the query: "Public software companies with more than 1,000 employees." the 15 companies cut by the industry filter are all correctly cut (construction, pharma, retail). No losses are seen.
 
-  - Telemetria pe componente e exact ce trebuia, fiindcă din ea văd de ce primește fiecare firmă scorul.
+  - The telemetry on components is exactly what was needed, because from it I see why each company receives the score.
 
-- **Ce NU merge**: 
-   - Scoruri nenormalizate și "plafonul de sticlă"
-     - **PROBLEMA**: Scorul maxim se bloca adesea pe la 75 de puncte. De ce? Pentru că dacă un query nu cerea explicit o "piață țintă" (target markets), bugetul alocat acelui câmp (15p) se pierdea complet. Mai mult, datele obiective (ex. numărul de angajați) acordau 10 puncte din oficiu tuturor firmelor care treceau de filtrul hard, devenind un bonus inutil, generalizat, în loc să departajeze candidații. Practic, scorurile nu mai erau comparabile între diferite query-uri.
-     - **Cum am rezolvat**: Am implementat o normalizare matematică dinamică. Acum, scorul brut se raportează strict la bugetul de criterii efectiv activate de query (dacă nu cere piață țintă, se împarte la bugetul rămas). Cât despre datele obiective, le-am transformat dintr-un bonus într-o penalizare: nu mai premiem firma pentru că există, ci o depunctăm proporțional doar dacă îi lipsesc datele esențiale cerute.
+- **What DOES NOT work**: 
+   - Unnormalized scores and the "glass ceiling"
+     - **PROBLEM**: The maximum score often got stuck around 75 points. Why? Because if a query didn't explicitly ask for a "target market" (target markets), the budget allocated to that field (15p) was completely lost. Moreover, the objective data (e.g. number of employees) granted 10 points by default to all companies that passed the hard filter, becoming a useless, generalized bonus, instead of separating the candidates. Basically, the scores were no longer comparable across different queries.
+     - **How I fixed it**: I implemented a dynamic mathematical normalization. Now, the raw score relates strictly to the budget of criteria effectively activated by the query (if it doesn't ask for a target market, it divides by the remaining budget). As for the objective data, I transformed them from a bonus into a penalty: we no longer reward the company because it exists, but we penalize it proportionally only if it lacks the essential requested data.
 
-  - Egalități arbitrare la coada clasamentului
-     - **PROBLEMA**: Sistemul genera blocuri întregi de companii cu scoruri perfect identice (grupuri de 5-7 firme cu scor fix 40.0 sau 71.0). Asta se întâmpla pentru că punctajul creștea în trepte fixe. Când aveai punctaj egal, departajarea finală se făcea total arbitrar, în funcție de ordinea în care firmele erau citite din baza de date.
-     - **Cum am rezolvat**: Am "spart" aceste egalități transformând scorul într-o valoare continuă, cu zecimale. Am introdus un mecanism de Term Frequency (TF) și un Bonus de Densitate. Acum, dacă o firmă are profilul mai bogat și folosește termenii cheie de mai multe ori, primește fracțiuni de puncte în plus (ex. +0.05 per token). Ca plasă de siguranță finală, am adăugat și sortarea alfabetică.
-     - **Idee de implementare pe viitor**: daca o companie abuzeaza in descriere de acelasi cuvant de exemplu : "Pharma ,Pharma ,Pharma ,Pharma ,Pharma" atunci va fi cotat ca bun deci practic trebuie introdus un sistem de anticheat
-  - Umplerea artificială a listelor Top-K
-     - **PROBLEMA**: Lista nu știa să se oprească la timp. Dacă pentru un query aveam doar 3 candidați cu adevărat relevanți, sistemul trăgea de la coada clasamentului firme slabe doar ca să livreze fișierul complet de 20 de firme.
-     - **Cum am rezolvat**: Am introdus Dynamic Thresholding (Tăiere Dinamică). Pe lângă un prag minim de bun-simț, sistemul evaluează acum scorul liderului și elimină fără milă orice companie care cade sub un anumit procent (50%-65%) din performanța acestuia. Așa, dacă un query are doar 3 rezultate excelente, lista se oprește natural la 3.
+  - Arbitrary ties at the bottom of the ranking
+     - **PROBLEM**: The system generated entire blocks of companies with perfectly identical scores (groups of 5-7 companies with a fixed score of 40.0 or 71.0). This happened because the score increased in fixed steps. When you had an equal score, the final tie-breaking was done totally arbitrarily, depending on the order in which the companies were read from the database.
+     - **How I fixed it**: I "broke" these ties by transforming the score into a continuous value, with decimals. I introduced a Term Frequency (TF) mechanism and a Density Bonus. Now, if a company has a richer profile and uses the key terms multiple times, it receives fractions of extra points (e.g. +0.05 per token). As a final safety net, I also added alphabetical sorting.
+     - **Future implementation idea**: if a company abuses the same word in the description for example: "Pharma ,Pharma ,Pharma ,Pharma ,Pharma" then it will be rated as good so basically an anticheat system needs to be introduced (see 3.5).
+  - Artificial filling of Top-K lists
+     - **PROBLEM**: The list didn't know how to stop in time. If for a query we only had 3 truly relevant candidates, the system pulled weak companies from the bottom of the ranking just to deliver the complete file of 20 companies.
+     - **How I fixed it**: I introduced Dynamic Thresholding (Dynamic Cutting). Besides a common-sense minimum threshold, the system now evaluates the leader's score and ruthlessly eliminates any company that falls below a certain percentage (50%-65%) of its performance. That way, if a query only has 3 excellent results, the list stops naturally at 3.
 
-  - Redundanța criteriului de Coerență
-     - **PROBLEMA**: Vechiul sistem acorda un bonus de "coerență" dacă termenii cheie apăreau în mai multe câmpuri simultan (NAICS, oferte, descriere). În practică, asta doar dubla punctajul obținut la secțiunea semantică, fără să aducă vreo informație sau valoare nouă.
-     - **Cum am rezolvat**: Am șters complet acest bonus și l-am înlocuit cu o penalizare mult mai utilă: NAICS Mismatch Penalty. Dacă o companie are un cod NAICS oficial clar definit, dar acesta contrazice flagrant industria cerută de query, aplicăm o penalizare chirurgicală (-15.0 puncte). Asta elimină rapid "intrușii" din clasament.
+  - The redundancy of the Coherence criterion
+     - **PROBLEM**: The old system awarded a "coherence" bonus if the key terms appeared in multiple fields simultaneously (NAICS, offerings, description). In practice, this just doubled the score obtained in the semantic section, without bringing any new information or value.
+     - **How I fixed it**: I completely deleted this bonus and replaced it with a much more useful penalty: NAICS Mismatch Penalty. If a company has a clearly defined official NAICS code, but it flagrantly contradicts the industry requested by the query, we apply a surgical penalty (-15.0 points). This quickly eliminates the "intruders" from the ranking.
 
 # FINAL
 
-Proiectul functioneaza, returneaza firme pe care le am verificat manual sa vad daca sunt bune, dar proiectul este departe de a fi gata pentru ca momentan modul de ordonare a datelor este haotic iar afisarea lor este la fel un user displeasure.
+The project works, it returns companies that I manually checked to see if they are good, but the project is far from ready because currently the way data is ordered is chaotic and displaying them is also a user displeasure.
 
-## Etapele de "curatare" are repository-ului
-1. Cand rulam aplicatia se vrea ca in consola se se afiseze exact top-ul companiilor si doar asta, iar datele vor fi salvate in `results/$datetime/`:
- - `log.txt`: va afisa tot ce a fost inteles de catre agentul local si de catre LLM, dar si ce eroare a primit acest LLM.
- - `top.txt`: va afisa query ul si topul(exact ce se va afisa si in consola)
- - `company_lists/`: un director in care se vor salva toate topurile tuturor query-urilor trimise in proces, sub forma de jsonl-uri
- - `query_list.jsonl`: un fisier in care se vor scrie toate query-urile cu toate datele care au fost captate(vechiul `assets/runs/`)
- - `telemetry_list/`: un director in care se vor salva toate datele despre notarea firmelor
+## The repository "cleaning" stages
+1. When we run the application we want the exact top of the companies to be displayed in the console and only that, and the data will be saved in `results/$datetime/`:
+ - `log.txt`: it will display everything that was understood by the local agent and by the LLM, but also what error this LLM received.
+ - `top.txt`: it will display the query and the top (exactly what will also be displayed in the console)
+ - `company_lists/`: a directory where all the tops of all the queries sent in the process will be saved, in the form of jsonls.
+ - `query_list.jsonl`: a file where all the queries with all the data that was captured will be written (the old `assets/runs/`).
+ - `telemetry_list/`: a directory where all the data about company grading will be saved.
+
+ ## 3.4 Scaling
+**If the system needed to handle 100,000 companies per query instead of 500, what would you change?**
+
+In its current state, the system sequentially reads a `.jsonl` file and applies filtering and tokenization rules in memory (O(N)). For 500-2500 companies, the *Batching* approach with writing to temporary files is acceptable, but at 100,000+ companies, the disk I/O and text processing in Python would generate a huge overhead. 
+
+To scale, I would implement the following architectural changes:
+*   **Migration to Elasticsearch (ES):** I would abandon the linear traversal of the `companies.jsonl` file. Elasticsearch is built exactly for this kind of problem. The criteria from the HARD sorting (employees, revenue, location, is_public) would instantly turn into pre-calculated boolean filters.
+*   **Replacing Token Intersection with BM25 / Vector Search:** The current *Jaccard Index* algorithm and the normalization of texts in Python would be replaced by native indexing from ES. For advanced scaling, I would add a vector database (e.g. Pinecone or Milvus). Instead of the LLM generating a list of keywords for *core_offerings*, I would transform the query into an *embedding* and do a semantic similarity search (K-Nearest Neighbors), dropping the response time to under 50ms per query.
+*   **Asynchronous / Parallel Scoring:** For the few hundred companies that pass the database filter, the detailed scoring engine (which applies the NAICS and consumer penalties) would run distributed using a process pool (`concurrent.futures` in Python or a framework like Ray), reducing the evaluation time to a few tenths of a second.
+
+## 3.5 Failure Modes
+**When might your system produce confident but incorrect results? What would you monitor in production to detect these failures?**
+
+The current system is robust, but there are a few scenarios (Failure Modes) where it can award an artificially high score to a wrong company:
+
+1.  **Keyword Stuffing & TF (Term Frequency) Anomalies:**
+    *   *The Problem:* Because the scoring engine offers a bonus proportional to the density and frequency of the requested tokens (to break ties), a company that does "SEO" on its own description (e.g. repeats the word *AI* 15 times) will be erroneously propelled to the top, obtaining a confident score, even though its quality is poor.
+    *   *Monitoring:* I would implement an alert on the score distribution. If a company recurrently obtains maximum scores on disjoint queries, or if its *Term Frequency* bonus exceeds a statistical threshold of 3 standard deviations (Z-score > 3), the system would send an anomaly log to a dashboard (e.g. Grafana/Datadog) for manual review.
+
+2.  **Over-expansion (Noise induced by LLM):**
+    *   *The Problem:* When the LLM is asked to "semantically expand" a very specific query (e.g. *"software for deep space nanosatellites"*), it can return a list that is too generous in `value_list` (e.g. *aerospace, planes, helicopters*). Thus, the adaptive HARD sorting will let helicopter manufacturers pass, awarding them a high score because they "match" the generated expansion, but completely missing the user's strict intention.
+    *   *Monitoring:* I would constantly log the edit/semantic distance between the raw query and the list of conditions generated by the LLM. If the expansion explodes in the number of tokens (e.g. from 3 tokens in the query to 50 industry tokens), the system should raise a *Semantic Drift Warning* flag.
+
+3.  **Silent Graceful Degradation (Hidden quality degradation):**
+    *   *The Problem:* If the external API returns 429 (Rate Limit) or 503 (Unavailable), the system uses `LocalConditionExtractor` in *Brute-Force* mode. From the outside, the user sees a valid and fast result, but the accuracy is much lower. If this degradation persists, trust in the system drops without the application actually "falling" (crash).
+    *   *Monitoring:* I would instrument metrics based on the query status (`api_error`, `status: partial`). If the fallback rate exceeds a tolerance threshold (e.g. >5% of requests in the last 5 minutes use Brute-Force mode), the system must immediately trigger a PagerDuty incident to investigate the API quota limits.

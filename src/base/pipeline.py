@@ -5,6 +5,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 import time
 from datetime import datetime
 from pathlib import Path
+from contextlib import redirect_stdout
 
 from src.query.query import Query
 from src.query.local import LocalConditionExtractor
@@ -15,12 +16,6 @@ from src.process.scorer import rank_candidates
 
 
 class QueryQualificationPipeline:
-    """
-    'Mother class' that orchestrates the condition grepping phases:
-    Initial Query -> Phase 1 (Local Agent) -> Phase 2 (API Call + Phantom Conditions)
-    -> Phase 3 (Hard Filtering on dataset/companies.jsonl -> temp JSONL file).
-    """
-
     def __init__(
         self,
         db_path: str | Path = "dataset/companies.jsonl",
@@ -39,15 +34,12 @@ class QueryQualificationPipeline:
         self.temp_dir.mkdir(parents=True, exist_ok=True)
 
     def run(self, raw_query: str) -> Query:
-        """Runs the full condition extraction pipeline on a user query string."""
         query = Query(text=raw_query)
 
-        # Phase 1: Local deterministic extraction
         t0 = time.perf_counter()
         query = self.phase1.process(query)
         query.local_ms = (time.perf_counter() - t0) * 1000
 
-        # Phase 2: API intelligent extraction + Phantom conditions for unmentioned fields
         t0 = time.perf_counter()
         query = self.phase2.process(query)
         query.api_ms = (time.perf_counter() - t0) * 1000
@@ -55,19 +47,10 @@ class QueryQualificationPipeline:
         return query
 
     def filter_database(self, qualified_query: Query, query_index: int = 1) -> tuple[Path, int, int, int]:
-        """
-        Deschide dataset/companies.jsonl, ia fiecare firma linie cu linie si o trimite
-        catre HardFilterProcessor (package-ul `process`).
-        Deduplica firmele identice (dupa website sau nume) inainte de a le scrie ca si candidati,
-        pentru a nu ingreuna inutil motorul de scorare.
-        Returneaza (calea_fisierului_temp, total_vazute, total_trecute, total_excluse).
-        """
         temp_file = self.temp_dir / f"candidates_q{query_index}.jsonl"
 
         if not self.db_path.exists():
-            raise FileNotFoundError(
-                f"Nu am gasit baza de date la calea: {self.db_path.resolve()}"
-            )
+            raise FileNotFoundError(f"Nu am gasit baza de date la calea: {self.db_path.resolve()}")
 
         seen_company_ids = set()
         total_seen_raw = 0
@@ -85,11 +68,9 @@ class QueryQualificationPipeline:
 
                     total_seen_raw += 1
                     
-                    # Generare ID unic pentru deduplicare (folosim website-ul, daca lipseste folosim numele)
                     unique_id = str(company_dict.get("website") or company_dict.get("operational_name") or "").strip().lower()
-                    
                     if not unique_id or unique_id in seen_company_ids:
-                        continue # Am vazut deja firma asta, o ignoram la nivel de pipeline
+                        continue
 
                     seen_company_ids.add(unique_id)
                     processor.process_company(company_dict, raw_json_line=stripped)
@@ -97,82 +78,85 @@ class QueryQualificationPipeline:
         return temp_file, total_seen_raw, processor.total_passed, processor.total_dropped
 
 
-if __name__ == "__main__":
-    from datetime import datetime  # Asigura-te ca ai acest import sus in fisier
-    
+def run_pipeline_logic(test_queries: list[str]):
+    """
+    Logica originala intacta. Primeste lista de query-uri si face toata treaba
+    cu redirectarea fisierelor si scoring-ul.
+    """
     pipeline = QueryQualificationPipeline(
         db_path="dataset/companies.jsonl",
         temp_dir="dataset/temp",
     )
 
-    # Cele 12 query-uri principale (poti decomenta/adauga restul de 200 oricand)
-    test_queries = [
-        "Logistic companies in Romania",
-        "Public software companies with more than 1,000 employees.",
-        "Food and beverage manufacturers in France",
-        "Companies that could supply packaging materials for a direct-to-consumer cosmetics brand",
-        "Construction companies in the United States with revenue over $50 million",
-        "Pharmaceutical companies in Switzerland",
-        "B2B SaaS companies providing HR solutions in Europe",
-        "Clean energy startups founded after 2018 with fewer than 200 employees",
-        "Fast-growing fintech companies competing with traditional banks in Europe.",
-        "E-commerce companies using Shopify or similar platforms",
-        "Renewable energy equipment manufacturers in Scandinavia",
-        "Companies that manufacture or supply critical components for electric vehicle battery production",
-    ]
-
-    run_dir = Path("assets/runs")
-    run_dir.mkdir(parents=True, exist_ok=True)
-    run_log = run_dir / f"run_{datetime.now():%Y%m%d_%H%M%S}.jsonl"
+    run_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    base_out_dir = Path("results") / run_timestamp
+    
+    company_lists_dir = base_out_dir / "company_lists"
+    telemetry_list_dir = base_out_dir / "telemetry_list"
+    company_lists_dir.mkdir(parents=True, exist_ok=True)
+    telemetry_list_dir.mkdir(parents=True, exist_ok=True)
+    
+    log_file = base_out_dir / "log.txt"
+    top_file = base_out_dir / "top.txt"
+    query_list_file = base_out_dir / "query_list.jsonl"
 
     for idx, q_text in enumerate(test_queries, start=1):
-        print("=" * 70)
-        result_query = pipeline.run(q_text)
-        print(f"QUERY #{idx}: {result_query.text}")
-        print(f"STATUS: {result_query.status} | API called: {result_query.api_called} | "
-              f"API error: {result_query.api_error} (retries: {result_query.api_retries}) | local: {result_query.local_ms:.1f} ms | "
-              f"api: {result_query.api_ms:.0f} ms\n")
-        if result_query.status == "failed":
-            print("[WARN] Query not understood (no active conditions): no company is returned.\n")
+        
+        with open(log_file, "a", encoding="utf-8") as f_log:
+            with redirect_stdout(f_log):
+                print("=" * 70)
+                result_query = pipeline.run(q_text)
+                print(f"QUERY #{idx}: {result_query.text}")
+                print(f"STATUS: {result_query.status} | API called: {result_query.api_called} | "
+                      f"API error: {result_query.api_error} (retries: {result_query.api_retries}) | local: {result_query.local_ms:.1f} ms | "
+                      f"api: {result_query.api_ms:.0f} ms\n")
+                
+                if result_query.status == "failed":
+                    print("[WARN] Query not understood (no active conditions): no company is returned.\n")
 
-        print("-> CONDITII ACTIVE (Ce cautam in baza de date):")
-        for c in result_query.active_conditions:
-            print(f"   [{c.source.upper()}] {c.field.value} {c.operator.value} {c.value} (conf={c.confidence:.2f})")
+                print("-> ACTIVE CONDITIONS (searching tokens):")
+                for c in result_query.active_conditions:
+                    print(f"   [{c.source.upper()}] {c.field.value} {c.operator.value} {c.value} (conf={c.confidence:.2f})")
 
-        print("\n-> CONDITII FANTOMA (Campuri marcate ca neimportante):")
-        for c in result_query.phantom_conditions:
-            print(f"   [PHANTOM] {c.field.value} -> {c.operator.value}")
+                print("\n-> PHANTOM CONDITIONS (Unimportant fields):")
+                for c in result_query.phantom_conditions:
+                    print(f"   [PHANTOM] {c.field.value} -> {c.operator.value}")
 
-        # Trierea Hard pe dataset/companies.jsonl -> dataset/temp/candidates_q{idx}.jsonl
-        temp_path, seen, passed, dropped = pipeline.filter_database(result_query, query_index=idx)
-        print(f"\n-> REZULTAT TRIERE HARD (Etapa 2A):")
-        print(f"   Total firme in DB: {seen} | Calificate: {passed} | Excluse: {dropped}")
-        print(f"   Fisier candidati:  {temp_path}")
+                temp_path, seen, passed, dropped = pipeline.filter_database(result_query, query_index=idx)
+                print(f"\n-> RESULTS HARD KNOCKOUT (STAGE 2A):")
+                print(f"   Total companies in DB: {seen} | Calificated: {passed} | Dismissed: {dropped}")
+                print(f"   Contestants file:  {temp_path}")
 
-        # === ETAPA 2B: Semantic Scoring & Telemetrie ===
-        K = 20 # Limita maxima, dar algoritmul va taia lista mai scurt daca firmele sunt slabe
-        top_companies = rank_candidates(
-            result_query, 
-            temp_path, 
-            query_index=idx, 
-            top_k=K, 
-            output_dir="top_results",
-            telemetry_dir="assets/captured_data"
-        )
-        print(f"   [SCORING] Salvat top_{K}_query_{idx}.jsonl in 'top_results/'")
-        print(f"   [TELEMETRIE] Salvat statistici detaliate in 'assets/captured_data/'")
+                K = 20
+                top_companies = rank_candidates(
+                    result_query, 
+                    temp_path, 
+                    query_index=idx, 
+                    top_k=K, 
+                    output_dir=company_lists_dir,
+                    telemetry_dir=telemetry_list_dir
+                )
+                print(f"   [SCORING] Saved top_{K}_query_{idx}.jsonl in '{company_lists_dir}'")
+                print(f"   [TELEMETRY] Saved detailed statistics in '{telemetry_list_dir}'\n")
 
-        # NOU: Afisarea in terminal doar a firmelor care au trecut pragul dinamic
+        # Afisarea curata ceruta in terminal si in top.txt (Fara scor matematic)
+        output_str = f"[{idx}/{len(test_queries)}] {result_query.text}\n"
+        
         if top_companies:
-            print(f"\n   -> TOP FIRME RELEVANTE (peste pragul dinamic):")
             for i, comp in enumerate(top_companies, 1):
-                name = comp['operational_name']
-                score = comp['total_score']
-                print(f"      {i}. {name:<40} | Scor: {score:.3f}")
+                name = comp.get('operational_name', 'N/A')
+                website = comp.get('website', 'N/A')
+                output_str += f"   {i}. {name:<40} | Web: {website}\n"
         else:
-            print(f"\n   -> [INFO] Nicio firma nu a atins pragul minim de relevanta.")
+            output_str += f"   -> [INFO] No company reached the minimum threshold of relevance.\n"
+        
+        output_str += "-" * 70 + "\n"
+        
+        print(output_str, end="")
+        
+        with open(top_file, "a", encoding="utf-8") as f_top:
+            f_top.write(output_str)
 
-        # === LOGICA DE SALVARE IN ASSETS/RUNS (Run Log) ===
         log_entry = {
             "query_index": idx,
             "text": result_query.text,
@@ -182,9 +166,7 @@ if __name__ == "__main__":
             "local_ms": round(result_query.local_ms, 2),
             "api_ms": round(result_query.api_ms, 2),
             "candidates_found": passed,
-            "top_k": len(top_companies)
+            "top_k_returned": len(top_companies)
         }
-        with open(run_log, "a", encoding="utf-8") as f:
-            f.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
-
-    print(f"\nRun log: {run_log}")
+        with open(query_list_file, "a", encoding="utf-8") as f_qlist:
+            f_qlist.write(json.dumps(log_entry, ensure_ascii=False) + "\n")

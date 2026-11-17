@@ -4,6 +4,9 @@ import unicodedata
 from typing import Any, Optional
 from src.base.geo import load_geo
 
+# NOU: Importam dictionarele separate
+from src.base.dictionaries import STOPWORDS, IGNORED_KEYS
+
 
 class AddressNormalizer:
     """
@@ -12,25 +15,6 @@ class AddressNormalizer:
     si ofera utilitare de normalizare pentru NAICS si Token Intersection.
     """
 
-    _IGNORED_KEYS: set[str] = {
-        "country_code", "country_name", "county", "house_number",
-        "latitude", "longitude", "postcode", "raw_text",
-        "region_code", "region_name", "street", "suburb", "town",
-    }
-
-    _STOPWORDS: set[str] = {
-        "a", "an", "the", "and", "or", "for", "to", "in", "on", "at", "by", "with",
-        "from", "of", "that", "which", "who", "is", "are", "was", "were", "be", "been",
-        "company", "companies", "firm", "firms", "business", "businesses", "brand",
-        "brands", "corporation", "inc", "ltd", "llc", "group", "solutions", "solution",
-        "services", "service", "products", "product", "global", "international",
-        "based", "located", "providing", "offering", "provider", "providers",
-        "enterprise", "enterprises", "commercial", "industrial", "management",
-        "development", "system", "systems", "platform", "platforms", "operations",
-        "b2b", "b2c", "b2g", "dtc",
-    }
-
-    # Mapare Nume Tara (lowercase) -> Coduri ISO de 2 litere
     _COUNTRY_TO_ISO: dict[str, list[str]] = load_geo()["country_iso"]
 
     @staticmethod
@@ -58,10 +42,6 @@ class AddressNormalizer:
 
     @classmethod
     def extract_country_code_and_text(cls, raw_address: Any) -> tuple[Optional[str], str]:
-        """
-        Returneaza (country_code_iso, text_aplatizat_fara_country_code).
-        Astfel, daca firma are 'country_code': 'kr', verificam codul ISO separat de numele oraselor!
-        """
         parsed_obj = cls._parse_raw_obj(raw_address)
         if parsed_obj is None:
             return None, ""
@@ -91,7 +71,7 @@ class AddressNormalizer:
                     tokens.append(str(item))
         else:
             raw_str = str(parsed_obj)
-            for key in cls._IGNORED_KEYS:
+            for key in IGNORED_KEYS:
                 raw_str = re.sub(rf"\b{key}\b", " ", raw_str, flags=re.IGNORECASE)
             raw_str = re.sub(r"\bnone\b", " ", raw_str, flags=re.IGNORECASE)
             tokens.append(raw_str)
@@ -114,11 +94,6 @@ class AddressNormalizer:
 
     @classmethod
     def split_query_locations(cls, locations: list[str]) -> tuple[set[str], list[str]]:
-        """
-        Imparte locatiile din Query in:
-        1. Set de coduri ISO de tara permise (ex: {'ro', 'de', 'fr', 'it'})
-        2. Lista de nume de tari/orase/regiuni de cautat in textul adresei.
-        """
         iso_codes: set[str] = set()
         text_locations: list[str] = []
 
@@ -140,16 +115,8 @@ class AddressNormalizer:
 
         return iso_codes, text_locations
 
-    # =========================================================================
-    # NORMALIZARE NAICS & TOKEN INTERSECTION (ETAPA 2A/3)
-    # =========================================================================
-
     @classmethod
     def extract_naics_codes(cls, primary_naics: Any, secondary_naics: Any = None) -> list[str]:
-        """
-        Extrage toate codurile NAICS numerice (ca string-uri) din primary_naics si secondary_naics,
-        indiferent daca sunt salvate ca dict, lista de dict-uri, string JSON sau int.
-        """
         codes: list[str] = []
 
         def _collect(raw_item: Any) -> None:
@@ -174,10 +141,6 @@ class AddressNormalizer:
 
     @classmethod
     def _stem_token(cls, word: str) -> str:
-        """
-        Reduce flexiunile comune (manufacturings -> manufactur, pharmaceuticals -> pharmaceutical)
-        pentru a preveni mismatch-urile artificiale la Token Intersection.
-        """
         if len(word) <= 3:
             return word
         if word.endswith("ings") and len(word) > 6:
@@ -194,10 +157,6 @@ class AddressNormalizer:
 
     @classmethod
     def tokenize_and_normalize(cls, value: Any) -> set[str]:
-        """
-        Transforma orice string, lista sau dict intr-un set de tokeni normalizati
-        (fara diacritice, lowercase, fara stopwords, cu stemming usor).
-        """
         parsed = cls._parse_raw_obj(value)
         if parsed is None:
             return set()
@@ -220,7 +179,7 @@ class AddressNormalizer:
 
         normalized_tokens: set[str] = set()
         for tok in raw_tokens:
-            if tok in cls._STOPWORDS or tok.isdigit():
+            if tok in STOPWORDS or tok.isdigit():
                 continue
             normalized_tokens.add(cls._stem_token(tok))
 
