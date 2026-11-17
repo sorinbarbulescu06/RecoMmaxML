@@ -3,11 +3,11 @@
   "query_status": "understood",
   "api_called": true,
   "api_error": null,
-  "total_candidates_evaluated": 60,
+  "total_candidates_above_threshold": 29,
   "score_statistics": {
-    "max_score": 60.0,
-    "min_score": 12.5,
-    "average_score": 36.44
+    "max_score": 55.678,
+    "min_score": 33.333,
+    "average_score": 46.196
   },
   "top_k_saved": 20,
   "output_file": "top_results\\top_20_query_9.jsonl",
@@ -15,781 +15,407 @@
     {
       "operational_name": "European Pay",
       "website": "european-pay.fr",
-      "total_score": 60.0,
+      "total_score": 55.678,
       "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 5.0,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Aircash",
-      "website": "aircash.eu",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 2.5,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Brink's Solutions Nederland",
-      "website": "brinks.nl",
-      "total_score": 56.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
+        "semantic_core_offerings": 15.11,
         "semantic_description": 0.0,
-        "semantic_target_markets": 10.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 55.678
       }
     },
     {
       "operational_name": "Ariv Pay",
       "website": "arivpay.com",
-      "total_score": 56.67,
+      "total_score": 55.644,
       "breakdown": {
-        "semantic_core_offerings": 6.67,
+        "semantic_core_offerings": 10.08,
         "semantic_description": 0.0,
         "semantic_target_markets": 10.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 55.644
       }
     },
     {
       "operational_name": "New Payment Innovation",
       "website": "npi.ie",
-      "total_score": 55.0,
+      "total_score": 55.633,
       "breakdown": {
-        "semantic_core_offerings": 10.0,
+        "semantic_core_offerings": 15.07,
         "semantic_description": 0.0,
         "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 55.633
       }
     },
     {
-      "operational_name": "Phin",
-      "website": "phintech.de",
-      "total_score": 54.17,
+      "operational_name": "Brink's Solutions Nederland",
+      "website": "brinks.nl",
+      "total_score": 55.611,
       "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 2.5,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "semantic_core_offerings": 10.05,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 55.611
       }
     },
     {
-      "operational_name": "Folio",
-      "website": "folio.no",
-      "total_score": 54.17,
+      "operational_name": "Aircash",
+      "website": "aircash.eu",
+      "total_score": 55.611,
       "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 2.5,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "EasyKassa",
-      "website": "easykassa.at",
-      "total_score": 51.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
+        "semantic_core_offerings": 15.05,
         "semantic_description": 0.0,
         "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "City Exchange",
-      "website": "sarafishahr.co.uk",
-      "total_score": 51.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Agility FX",
-      "website": "agility-fx.co.uk",
-      "total_score": 51.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "FGC Money Transfer",
-      "website": "fgcexchange.co.uk",
-      "total_score": 50.83,
-      "breakdown": {
-        "semantic_core_offerings": 3.33,
-        "semantic_description": 2.5,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Credito21",
-      "website": "credito21.es",
-      "total_score": 50.83,
-      "breakdown": {
-        "semantic_core_offerings": 3.33,
-        "semantic_description": 2.5,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Tietoevry",
-      "website": "tietoevry.com",
-      "total_score": 50.17,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 2.5,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "SkyHarvest",
-      "website": "skyharvest.eu",
-      "total_score": 49.33,
-      "breakdown": {
-        "semantic_core_offerings": 3.33,
-        "semantic_description": 5.0,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Salauddin Global Trading",
-      "website": "salauddinglobal.co.uk",
-      "total_score": 48.33,
-      "breakdown": {
-        "semantic_core_offerings": 3.33,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "VIP Exchange",
-      "website": "vipexchange.uk",
-      "total_score": 48.33,
-      "breakdown": {
-        "semantic_core_offerings": 3.33,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "CTC FUND",
-      "website": "ctcfundlimited.com",
-      "total_score": 47.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Telefónica Venture Builder",
-      "website": "telefonica.com",
-      "total_score": 47.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Globant",
-      "website": "globant.com",
-      "total_score": 47.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 55.611
       }
     },
     {
       "operational_name": "HRWare Consulting",
       "website": "hrware.de",
-      "total_score": 46.0,
+      "total_score": 50.067,
+      "breakdown": {
+        "semantic_core_offerings": 15.06,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.067
+      }
+    },
+    {
+      "operational_name": "Globant",
+      "website": "globant.com",
+      "total_score": 50.056,
+      "breakdown": {
+        "semantic_core_offerings": 10.05,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.056
+      }
+    },
+    {
+      "operational_name": "Folio",
+      "website": "folio.no",
+      "total_score": 50.033,
+      "breakdown": {
+        "semantic_core_offerings": 10.03,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.033
+      }
+    },
+    {
+      "operational_name": "CTC FUND",
+      "website": "ctcfundlimited.com",
+      "total_score": 50.033,
+      "breakdown": {
+        "semantic_core_offerings": 10.03,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.033
+      }
+    },
+    {
+      "operational_name": "Tietoevry",
+      "website": "tietoevry.com",
+      "total_score": 50.022,
+      "breakdown": {
+        "semantic_core_offerings": 10.02,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.022
+      }
+    },
+    {
+      "operational_name": "Telefónica Venture Builder",
+      "website": "telefonica.com",
+      "total_score": 50.022,
+      "breakdown": {
+        "semantic_core_offerings": 10.02,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.022
+      }
+    },
+    {
+      "operational_name": "City Exchange",
+      "website": "sarafishahr.co.uk",
+      "total_score": 50.022,
+      "breakdown": {
+        "semantic_core_offerings": 10.02,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.022
+      }
+    },
+    {
+      "operational_name": "Phin",
+      "website": "phintech.de",
+      "total_score": 50.011,
+      "breakdown": {
+        "semantic_core_offerings": 10.01,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.011
+      }
+    },
+    {
+      "operational_name": "EasyKassa",
+      "website": "easykassa.at",
+      "total_score": 50.0,
       "breakdown": {
         "semantic_core_offerings": 10.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.0
+      }
+    },
+    {
+      "operational_name": "Agility FX",
+      "website": "agility-fx.co.uk",
+      "total_score": 50.0,
+      "breakdown": {
+        "semantic_core_offerings": 10.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.0
       }
     },
     {
       "operational_name": "ASCIA",
       "website": "ascia.pt",
-      "total_score": 42.67,
+      "total_score": 44.533,
       "breakdown": {
-        "semantic_core_offerings": 6.67,
+        "semantic_core_offerings": 10.08,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 44.533
       }
     },
     {
-      "operational_name": "Mangal Money Transfer",
-      "website": "mangalmoneytransfer.co.uk",
-      "total_score": 41.0,
+      "operational_name": "VIP Exchange",
+      "website": "vipexchange.uk",
+      "total_score": 44.467,
       "breakdown": {
-        "semantic_core_offerings": 0.0,
+        "semantic_core_offerings": 5.02,
         "semantic_description": 0.0,
         "semantic_target_markets": 5.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 44.467
       }
     },
     {
-      "operational_name": "ECrowd Invest",
-      "website": null,
-      "total_score": 39.33,
+      "operational_name": "SkyHarvest",
+      "website": "skyharvest.eu",
+      "total_score": 44.444,
       "breakdown": {
-        "semantic_core_offerings": 3.33,
+        "semantic_core_offerings": 5.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 44.444
       }
     },
     {
-      "operational_name": "Rantum Capital",
-      "website": "rantumcapital.de",
-      "total_score": 39.33,
+      "operational_name": "Salauddin Global Trading",
+      "website": "salauddinglobal.co.uk",
+      "total_score": 44.444,
       "breakdown": {
-        "semantic_core_offerings": 3.33,
+        "semantic_core_offerings": 5.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 44.444
       }
     },
     {
-      "operational_name": "Euro-Rijn Financial Services",
-      "website": "erfinancial.services",
-      "total_score": 39.33,
+      "operational_name": "FGC Money Transfer",
+      "website": "fgcexchange.co.uk",
+      "total_score": 44.444,
       "breakdown": {
-        "semantic_core_offerings": 3.33,
+        "semantic_core_offerings": 5.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 44.444
+      }
+    },
+    {
+      "operational_name": "Credito21",
+      "website": "credito21.es",
+      "total_score": 44.444,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 44.444
       }
     },
     {
       "operational_name": "Atos",
       "website": "atos.net",
-      "total_score": 39.33,
+      "total_score": 38.911,
       "breakdown": {
-        "semantic_core_offerings": 3.33,
+        "semantic_core_offerings": 5.02,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 38.911
       }
     },
     {
-      "operational_name": "Zellis",
-      "website": "zellis.com",
-      "total_score": 33.33,
+      "operational_name": "Rantum Capital",
+      "website": "rantumcapital.de",
+      "total_score": 38.9,
       "breakdown": {
-        "semantic_core_offerings": 3.33,
+        "semantic_core_offerings": 5.01,
         "semantic_description": 0.0,
-        "semantic_target_markets": 10.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 38.9
       }
     },
     {
-      "operational_name": "Sesame HR",
-      "website": "sesamehr.es",
-      "total_score": 31.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Paychex",
-      "website": "paychex.de",
-      "total_score": 31.0,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Educos",
-      "website": "educos.eu",
-      "total_score": 30.83,
-      "breakdown": {
-        "semantic_core_offerings": 3.33,
-        "semantic_description": 2.5,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "ARMAI",
-      "website": "armai.org",
-      "total_score": 30.0,
+      "operational_name": "Mangal Money Transfer",
+      "website": "mangalmoneytransfer.co.uk",
+      "total_score": 38.889,
       "breakdown": {
         "semantic_core_offerings": 0.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 0.0
+        "semantic_target_markets": 5.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 38.889
       }
     },
     {
-      "operational_name": "PMC Optimized",
+      "operational_name": "Euro-Rijn Financial Services",
+      "website": "erfinancial.services",
+      "total_score": 38.889,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 38.889
+      }
+    },
+    {
+      "operational_name": "ECrowd Invest",
       "website": null,
-      "total_score": 30.0,
+      "total_score": 38.889,
       "breakdown": {
-        "semantic_core_offerings": 0.0,
+        "semantic_core_offerings": 5.0,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 0.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 38.889
       }
     },
     {
       "operational_name": "ProximaScale",
       "website": "proximascale.com",
-      "total_score": 30.0,
+      "total_score": 33.333,
       "breakdown": {
         "semantic_core_offerings": 0.0,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 0.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 33.333
       }
     },
     {
-      "operational_name": "Ciphr",
-      "website": "ciphr.com",
-      "total_score": 28.33,
-      "breakdown": {
-        "semantic_core_offerings": 3.33,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "METRO România",
-      "website": "metro.ro",
-      "total_score": 27.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Novative",
-      "website": "novative.com",
-      "total_score": 26.83,
-      "breakdown": {
-        "semantic_core_offerings": 3.33,
-        "semantic_description": 2.5,
-        "semantic_target_markets": 5.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Sincron HR",
-      "website": "sincronhr.com",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Kapsoon",
-      "website": "kapsoon.io",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Personio",
+      "operational_name": "PMC Optimized",
       "website": null,
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "quarksUp",
-      "website": "quarksup.com",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Factorial",
-      "website": "factorialhr.de",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Visma YouServe",
-      "website": "youserve.nl",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Virtualia",
-      "website": "virtualia.fr",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Kammi",
-      "website": "kammi.fr",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Buzz HR",
-      "website": "buzzhr.co.uk",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Crocodile",
-      "website": "crocodile.hr",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Sun RH",
-      "website": "sun-e.fr",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Trakstar",
-      "website": "trakstar.nl",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "IguanaHR",
-      "website": "iguanahr.co.uk",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Lucca",
-      "website": "lucca-software.es",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Jooma",
-      "website": "jooma-paye.fr",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Team2go",
-      "website": "team2go.es",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "UK HR Cloud",
-      "website": "ukhrcloud.com",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Safebridge",
-      "website": "safebridge.es",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Knowledgator",
-      "website": "knowledgator.com",
-      "total_score": 26.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "AliveDx",
-      "website": "alivedx.com",
-      "total_score": 25.17,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 2.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Katana ML",
-      "website": "katanaml.io",
-      "total_score": 23.33,
-      "breakdown": {
-        "semantic_core_offerings": 3.33,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Nakama",
-      "website": "nakama-agro.es",
-      "total_score": 22.67,
-      "breakdown": {
-        "semantic_core_offerings": 6.67,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Platfohrm",
-      "website": "platfohrm.com",
-      "total_score": 19.33,
-      "breakdown": {
-        "semantic_core_offerings": 3.33,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Ford Credit",
-      "website": "ford.co.uk",
-      "total_score": 12.5,
+      "total_score": 33.333,
       "breakdown": {
         "semantic_core_offerings": 0.0,
-        "semantic_description": 2.5,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 0.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 33.333
+      }
+    },
+    {
+      "operational_name": "ARMAI",
+      "website": "armai.org",
+      "total_score": 33.333,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 33.333
       }
     }
   ]

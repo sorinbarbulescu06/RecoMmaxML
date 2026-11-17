@@ -1,0 +1,458 @@
+{
+  "query_text": "Pharmaceutical companies in Switzerland",
+  "query_status": "understood",
+  "api_called": true,
+  "api_error": null,
+  "total_candidates_evaluated": 34,
+  "score_statistics": {
+    "max_score": 85.0,
+    "min_score": 30.0,
+    "average_score": 60.74
+  },
+  "top_k_saved": 20,
+  "output_file": "top_results\\top_20_query_6.jsonl",
+  "full_candidates_breakdown": [
+    {
+      "operational_name": "Novartis",
+      "website": "novartis.com",
+      "total_score": 85.0,
+      "breakdown": {
+        "semantic_core_offerings": 30.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Sumitomo Pharma Switzerland",
+      "website": "sumitomo-pharma.com",
+      "total_score": 70.0,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "PSI CRO",
+      "website": "psi-cro.com",
+      "total_score": 70.0,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Acino",
+      "website": "acino.swiss",
+      "total_score": 70.0,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Idorsia",
+      "website": "idorsia.com",
+      "total_score": 70.0,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "IBSA",
+      "website": "ibsagroup.com",
+      "total_score": 70.0,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "MSD",
+      "website": "msd.ch",
+      "total_score": 70.0,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Tillotts Pharma",
+      "website": "tillotts.com",
+      "total_score": 70.0,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Lonza",
+      "website": "lonza.com",
+      "total_score": 65.0,
+      "breakdown": {
+        "semantic_core_offerings": 10.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Ferring",
+      "website": "ferring.com",
+      "total_score": 65.0,
+      "breakdown": {
+        "semantic_core_offerings": 10.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Galderma",
+      "website": "galderma.com",
+      "total_score": 65.0,
+      "breakdown": {
+        "semantic_core_offerings": 10.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "CordenPharma",
+      "website": "cordenpharma.com",
+      "total_score": 65.0,
+      "breakdown": {
+        "semantic_core_offerings": 10.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Bachem",
+      "website": "bachem.com",
+      "total_score": 65.0,
+      "breakdown": {
+        "semantic_core_offerings": 10.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "CARBOGEN AMCIS",
+      "website": "carbogen-amcis.com",
+      "total_score": 65.0,
+      "breakdown": {
+        "semantic_core_offerings": 10.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Debiopharm",
+      "website": "debiopharm.com",
+      "total_score": 65.0,
+      "breakdown": {
+        "semantic_core_offerings": 10.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Helsinn",
+      "website": "helsinn.com",
+      "total_score": 65.0,
+      "breakdown": {
+        "semantic_core_offerings": 10.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Octapharma",
+      "website": "octapharma.com",
+      "total_score": 61.0,
+      "breakdown": {
+        "semantic_core_offerings": 10.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 6.0
+      }
+    },
+    {
+      "operational_name": "Lonza Capsules & Health Ingredients",
+      "website": "capsugel.com",
+      "total_score": 60.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "PolyPeptide",
+      "website": "polypeptide.com",
+      "total_score": 60.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Stallergenes Greer",
+      "website": "stallergenesgreer.com",
+      "total_score": 60.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Alcon",
+      "website": "aeriepharma.com",
+      "total_score": 60.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Teoxane",
+      "website": "teoxane.com",
+      "total_score": 60.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "AbelaPharm",
+      "website": "abelapharm.ch",
+      "total_score": 60.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "TRB Chemedica",
+      "website": "trbchemedica.com",
+      "total_score": 60.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "ADC Therapeutics",
+      "website": "adctherapeutics.com",
+      "total_score": 60.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "KD Pharma Group",
+      "website": "kdpharmagroup.com",
+      "total_score": 60.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "A. Menarini",
+      "website": "menarini.ch",
+      "total_score": 60.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Nestlé Health Science",
+      "website": "nestlehealthscience.com",
+      "total_score": 56.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 6.0
+      }
+    },
+    {
+      "operational_name": "Siegfried",
+      "website": "siegfried.ch",
+      "total_score": 56.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 15.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 6.0
+      }
+    },
+    {
+      "operational_name": "CRISPR Therapeutics",
+      "website": "crisprtx.com",
+      "total_score": 51.0,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 6.0
+      }
+    },
+    {
+      "operational_name": "Drugs for Neglected Diseases initiative",
+      "website": "dndi.org",
+      "total_score": 45.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 10.0
+      }
+    },
+    {
+      "operational_name": "Celonic",
+      "website": "celonic.com",
+      "total_score": 41.0,
+      "breakdown": {
+        "semantic_core_offerings": 5.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 6.0
+      }
+    },
+    {
+      "operational_name": "OM Pharma",
+      "website": "ompharma.com",
+      "total_score": 30.0,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 0.0
+      }
+    },
+    {
+      "operational_name": "AliveDx",
+      "website": "alivedx.com",
+      "total_score": 30.0,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 20.0,
+        "objective_fields": 10.0,
+        "coherence_consistency": 0.0
+      }
+    }
+  ]
+}

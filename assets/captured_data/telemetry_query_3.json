@@ -3,11 +3,11 @@
   "query_status": "understood",
   "api_called": true,
   "api_error": null,
-  "total_candidates_evaluated": 26,
+  "total_candidates_above_threshold": 20,
   "score_statistics": {
-    "max_score": 71.0,
-    "min_score": 10.0,
-    "average_score": 49.15
+    "max_score": 70.147,
+    "min_score": 40.0,
+    "average_score": 56.085
   },
   "top_k_saved": 20,
   "output_file": "top_results\\top_20_query_3.jsonl",
@@ -15,339 +15,281 @@
     {
       "operational_name": "La Péro",
       "website": "la-pero.fr",
-      "total_score": 71.0,
+      "total_score": 70.147,
       "breakdown": {
-        "semantic_core_offerings": 20.0,
-        "semantic_description": 15.0,
+        "semantic_core_offerings": 22.61,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Geyer",
-      "website": null,
-      "total_score": 70.0,
-      "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "L'Essinganaise",
-      "website": "lessinganaise.com",
-      "total_score": 66.0,
-      "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 70.147
       }
     },
     {
       "operational_name": "Auvergnat Cola",
       "website": "auvergnatcola.com",
-      "total_score": 65.0,
+      "total_score": 70.147,
       "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 10.0,
+        "semantic_core_offerings": 22.61,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Domaine Godeau",
-      "website": null,
-      "total_score": 61.0,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 70.147
       }
     },
     {
       "operational_name": "Kermené",
       "website": "kermene.fr",
-      "total_score": 61.0,
+      "total_score": 70.107,
       "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 10.0,
+        "semantic_core_offerings": 22.58,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 70.107
       }
     },
     {
-      "operational_name": "Dechelette Estate",
+      "operational_name": "Geyer",
       "website": null,
-      "total_score": 61.0,
+      "total_score": 70.04,
       "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 15.0,
+        "semantic_core_offerings": 22.53,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 70.04
       }
     },
     {
       "operational_name": "LA MULTILOCALE",
       "website": "lamultilocale.org",
-      "total_score": 60.0,
+      "total_score": 60.16,
       "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 5.0,
+        "semantic_core_offerings": 15.12,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.16
+      }
+    },
+    {
+      "operational_name": "L'Essinganaise",
+      "website": "lessinganaise.com",
+      "total_score": 60.093,
+      "breakdown": {
+        "semantic_core_offerings": 15.07,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.093
+      }
+    },
+    {
+      "operational_name": "Dechelette Estate",
+      "website": null,
+      "total_score": 60.04,
+      "breakdown": {
+        "semantic_core_offerings": 15.03,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.04
       }
     },
     {
       "operational_name": "Famille Pouille",
       "website": "pouille.eu",
-      "total_score": 60.0,
+      "total_score": 60.027,
       "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 10.0,
+        "semantic_core_offerings": 15.02,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.027
       }
     },
     {
-      "operational_name": "Fermenting & Co",
-      "website": "fermentingandco.fr",
+      "operational_name": "Domaine Godeau",
+      "website": null,
       "total_score": 60.0,
       "breakdown": {
-        "semantic_core_offerings": 5.0,
-        "semantic_description": 15.0,
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Club-Mate",
-      "website": "club-mate.fr",
-      "total_score": 60.0,
-      "breakdown": {
-        "semantic_core_offerings": 5.0,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.0
       }
     },
     {
       "operational_name": "Riviera Kombucha",
       "website": "rivierakombucha.com",
-      "total_score": 60.0,
+      "total_score": 50.16,
       "breakdown": {
-        "semantic_core_offerings": 5.0,
-        "semantic_description": 15.0,
+        "semantic_core_offerings": 7.62,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Paniers d'Eve",
-      "website": null,
-      "total_score": 56.0,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 10.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "MILHADE Vins & Spiritueux",
-      "website": null,
-      "total_score": 56.0,
-      "breakdown": {
-        "semantic_core_offerings": 5.0,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Yumi",
-      "website": "yumi.fr",
-      "total_score": 55.0,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 5.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "La Limonaderie de Paris",
-      "website": "lalimonaderiedeparis.com",
-      "total_score": 55.0,
-      "breakdown": {
-        "semantic_core_offerings": 5.0,
-        "semantic_description": 10.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.16
       }
     },
     {
       "operational_name": "GreenLeaf Mate",
       "website": "greenleaf-mate.com",
-      "total_score": 55.0,
+      "total_score": 50.16,
       "breakdown": {
-        "semantic_core_offerings": 5.0,
-        "semantic_description": 10.0,
+        "semantic_core_offerings": 7.62,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.16
       }
     },
     {
-      "operational_name": "Conserverie Fourmi",
-      "website": "conserverie-fourmi.fr",
-      "total_score": 51.0,
+      "operational_name": "Club-Mate",
+      "website": "club-mate.fr",
+      "total_score": 50.133,
       "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 5.0,
+        "semantic_core_offerings": 7.6,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.133
       }
     },
     {
       "operational_name": "Elixia",
       "website": "elixia.bio",
-      "total_score": 51.0,
+      "total_score": 50.12,
       "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 5.0,
+        "semantic_core_offerings": 7.59,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.12
+      }
+    },
+    {
+      "operational_name": "Yumi",
+      "website": "yumi.fr",
+      "total_score": 50.107,
+      "breakdown": {
+        "semantic_core_offerings": 7.58,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.107
+      }
+    },
+    {
+      "operational_name": "Conserverie Fourmi",
+      "website": "conserverie-fourmi.fr",
+      "total_score": 50.107,
+      "breakdown": {
+        "semantic_core_offerings": 7.58,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.107
+      }
+    },
+    {
+      "operational_name": "La Limonaderie de Paris",
+      "website": "lalimonaderiedeparis.com",
+      "total_score": 50.053,
+      "breakdown": {
+        "semantic_core_offerings": 7.54,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.053
+      }
+    },
+    {
+      "operational_name": "Fermenting & Co",
+      "website": "fermentingandco.fr",
+      "total_score": 50.053,
+      "breakdown": {
+        "semantic_core_offerings": 7.54,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.053
+      }
+    },
+    {
+      "operational_name": "MILHADE Vins & Spiritueux",
+      "website": null,
+      "total_score": 50.04,
+      "breakdown": {
+        "semantic_core_offerings": 7.53,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.04
+      }
+    },
+    {
+      "operational_name": "Paniers d'Eve",
+      "website": null,
+      "total_score": 50.0,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.0
       }
     },
     {
       "operational_name": "INOU",
       "website": "inou.fr",
-      "total_score": 41.0,
-      "breakdown": {
-        "semantic_core_offerings": 5.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Virtualia",
-      "website": "virtualia.fr",
-      "total_score": 21.0,
-      "breakdown": {
-        "semantic_core_offerings": 5.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Sun RH",
-      "website": "sun-e.fr",
-      "total_score": 21.0,
-      "breakdown": {
-        "semantic_core_offerings": 5.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Agir&Tude",
-      "website": "agiretude.fr",
-      "total_score": 21.0,
-      "breakdown": {
-        "semantic_core_offerings": 5.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "quarksUp",
-      "website": "quarksup.com",
-      "total_score": 15.0,
-      "breakdown": {
-        "semantic_core_offerings": 5.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 0.0
-      }
-    },
-    {
-      "operational_name": "Produit en Bretagne",
-      "website": "produitenbretagne.bzh",
-      "total_score": 15.0,
-      "breakdown": {
-        "semantic_core_offerings": 0.0,
-        "semantic_description": 5.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 0.0
-      }
-    },
-    {
-      "operational_name": "European Pay",
-      "website": "european-pay.fr",
-      "total_score": 10.0,
+      "total_score": 40.0,
       "breakdown": {
         "semantic_core_offerings": 0.0,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 0.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 40.0
       }
     }
   ]

@@ -1,210 +1,57 @@
 {
   "query_text": "Logistic companies in Romania",
-  "query_status": "understood",
+  "query_status": "partial",
   "api_called": true,
-  "api_error": null,
-  "total_candidates_evaluated": 15,
+  "api_error": "other",
+  "total_candidates_above_threshold": 3,
   "score_statistics": {
-    "max_score": 65.91,
-    "min_score": 20.91,
-    "average_score": 35.19
+    "max_score": 53.408,
+    "min_score": 42.857,
+    "average_score": 46.374
   },
-  "top_k_saved": 15,
-  "output_file": "top_results\\top_20_query_1.jsonl",
+  "top_k_saved": 3,
+  "output_file": "top_results\\top_3_query_1.jsonl",
   "full_candidates_breakdown": [
     {
       "operational_name": "Brasov Industrial Portfolio",
       "website": "brasov-industrialportfolio.ro",
-      "total_score": 65.91,
+      "total_score": 53.408,
       "breakdown": {
-        "semantic_core_offerings": 10.91,
-        "semantic_description": 15.0,
+        "semantic_core_offerings": 12.897,
+        "semantic_description": 2.5,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "METRO România",
-      "website": "metro.ro",
-      "total_score": 41.91,
-      "breakdown": {
-        "semantic_core_offerings": 10.91,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "OSCAR",
-      "website": "oscars.ro",
-      "total_score": 39.18,
-      "breakdown": {
-        "semantic_core_offerings": 8.18,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Compania Națională de Căi Ferate CFR",
-      "website": "cfr.ro",
-      "total_score": 38.73,
-      "breakdown": {
-        "semantic_core_offerings": 2.73,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Fildas Trading",
-      "website": "fildas.ro",
-      "total_score": 36.45,
-      "breakdown": {
-        "semantic_core_offerings": 5.45,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Poșta Română",
-      "website": "posta-romana.ro",
-      "total_score": 36.45,
-      "breakdown": {
-        "semantic_core_offerings": 5.45,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Valtec",
-      "website": "valtec.nl",
-      "total_score": 36.45,
-      "breakdown": {
-        "semantic_core_offerings": 5.45,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "STILL",
-      "website": "still.ro",
-      "total_score": 36.45,
-      "breakdown": {
-        "semantic_core_offerings": 5.45,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "AQUA CENTER",
-      "website": "aquacenter.ro",
-      "total_score": 36.45,
-      "breakdown": {
-        "semantic_core_offerings": 5.45,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Rompetrol",
-      "website": "rompetrol.com",
-      "total_score": 33.73,
-      "breakdown": {
-        "semantic_core_offerings": 2.73,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 53.408
       }
     },
     {
       "operational_name": "Portul Constanta",
       "website": "portofconstantza.com",
-      "total_score": 32.73,
+      "total_score": 42.857,
       "breakdown": {
-        "semantic_core_offerings": 2.73,
+        "semantic_core_offerings": 6.429,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 0.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 42.857
       }
     },
     {
-      "operational_name": "TIMAC AGRO",
-      "website": "timacagro.com",
-      "total_score": 24.18,
+      "operational_name": "Compania Națională de Căi Ferate CFR",
+      "website": "cfr.ro",
+      "total_score": 42.857,
       "breakdown": {
-        "semantic_core_offerings": 8.18,
+        "semantic_core_offerings": 6.429,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Bunge Romania",
-      "website": "bunge-romania.ro",
-      "total_score": 24.18,
-      "breakdown": {
-        "semantic_core_offerings": 8.18,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Romgaz",
-      "website": "romgaz.ro",
-      "total_score": 24.18,
-      "breakdown": {
-        "semantic_core_offerings": 8.18,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "OMV",
-      "website": "omv.ro",
-      "total_score": 20.91,
-      "breakdown": {
-        "semantic_core_offerings": 10.91,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 0.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 42.857
       }
     }
   ]

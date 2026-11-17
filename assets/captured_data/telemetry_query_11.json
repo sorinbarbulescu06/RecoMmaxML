@@ -3,1209 +3,1021 @@
   "query_status": "understood",
   "api_called": true,
   "api_error": null,
-  "total_candidates_evaluated": 92,
+  "total_candidates_above_threshold": 72,
   "score_statistics": {
-    "max_score": 71.25,
-    "min_score": 27.25,
-    "average_score": 53.42
+    "max_score": 85.093,
+    "min_score": 50.0,
+    "average_score": 63.322
   },
   "top_k_saved": 20,
   "output_file": "top_results\\top_20_query_11.jsonl",
   "full_candidates_breakdown": [
     {
-      "operational_name": "Naust Marine",
-      "website": "naust.is",
-      "total_score": 71.25,
-      "breakdown": {
-        "semantic_core_offerings": 20.0,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
       "operational_name": "Sunnytek",
       "website": "sunnytek.se",
-      "total_score": 70.0,
+      "total_score": 85.093,
       "breakdown": {
-        "semantic_core_offerings": 22.5,
-        "semantic_description": 7.5,
+        "semantic_core_offerings": 33.82,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 85.093
       }
     },
     {
-      "operational_name": "International Wind Energy",
-      "website": null,
-      "total_score": 66.25,
+      "operational_name": "Naust Marine",
+      "website": "naust.is",
+      "total_score": 80.053,
       "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 11.25,
+        "semantic_core_offerings": 30.04,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "JN-Solar",
-      "website": "jn-solar.fi",
-      "total_score": 66.25,
-      "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "International Wind Energy",
-      "website": null,
-      "total_score": 66.25,
-      "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Sowin Power",
-      "website": "sowinpower.no",
-      "total_score": 65.0,
-      "breakdown": {
-        "semantic_core_offerings": 17.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Againity",
-      "website": "againity.com",
-      "total_score": 65.0,
-      "breakdown": {
-        "semantic_core_offerings": 17.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "VASOL TECH",
-      "website": "vasol.se",
-      "total_score": 63.75,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Norhybrid Renewables",
-      "website": "norhybrid.com",
-      "total_score": 62.5,
-      "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Ecopwr",
-      "website": "ecopwr.se",
-      "total_score": 62.5,
-      "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Climatico",
-      "website": "climatico.dk",
-      "total_score": 62.5,
-      "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Norhybrid Renewables",
-      "website": "norhybrid.com",
-      "total_score": 62.5,
-      "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "BlueTec Vest",
-      "website": "bluetecvest.no",
-      "total_score": 62.25,
-      "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "SideWind",
-      "website": "sidewind.is",
-      "total_score": 61.25,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Winergy Finland",
-      "website": null,
-      "total_score": 61.25,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Fallorka",
-      "website": "fallorka.is",
-      "total_score": 61.25,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "BRF Vivstavarvsvägen",
-      "website": "vivstavarvsvagen.se",
-      "total_score": 61.25,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Home Energy",
-      "website": "homeenergy.se",
-      "total_score": 61.25,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Siemens Energy",
-      "website": null,
-      "total_score": 60.0,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "ICEWIND",
-      "website": "icewind.is",
-      "total_score": 60.0,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Ventum Dynamics",
-      "website": "ventumdynamics.com",
-      "total_score": 60.0,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Rögle Vindkraftpark",
-      "website": null,
-      "total_score": 60.0,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Fred. Olsen 1848",
-      "website": "fredolsen1848.com",
-      "total_score": 60.0,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Fred. Olsen 1848",
-      "website": "fredolsen1848.com",
-      "total_score": 60.0,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Rögle Vindkraftpark",
-      "website": null,
-      "total_score": 60.0,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Moventas",
-      "website": "moventas.com",
-      "total_score": 59.75,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "DEIF",
-      "website": "deif.com",
-      "total_score": 59.75,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Folksol",
-      "website": "folksol.se",
-      "total_score": 59.75,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Finnwind",
-      "website": "finnwind.fi",
-      "total_score": 58.75,
-      "breakdown": {
-        "semantic_core_offerings": 7.5,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Rhino Power",
-      "website": "rhinopower.fi",
-      "total_score": 58.75,
-      "breakdown": {
-        "semantic_core_offerings": 7.5,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Alotta",
-      "website": "alotta.no",
-      "total_score": 58.75,
-      "breakdown": {
-        "semantic_core_offerings": 7.5,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Wave Dragon",
-      "website": "wavedragon.com",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "windainergy",
-      "website": "windainergy.com",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "MantaWind",
-      "website": null,
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Vestas",
-      "website": "vestas.com",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "World Wide Wind",
-      "website": "worldwidewind.no",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "DEIF Wind Power Technology",
-      "website": null,
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Verta",
-      "website": null,
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Sol Industries",
-      "website": "sol-ind.com",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Erikshester Vindpark",
-      "website": "vindparken.se",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Envision Energy Denmark",
-      "website": null,
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Logic-Energy",
-      "website": "teunhulst.nl",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Thyborøn Sydhavn 2 | Vestas-mølle",
-      "website": "thybsydhavnmolle-2.dk",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Erikshester Vindpark",
-      "website": "vindparken.se",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "windainergy",
-      "website": "windainergy.com",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Logic-Energy",
-      "website": "teunhulst.nl",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "KVA Wind",
-      "website": "kva-vind.dk",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Envision Energy Denmark",
-      "website": null,
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Verta",
-      "website": null,
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "MantaWind",
-      "website": null,
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "World Wide Wind",
-      "website": "worldwidewind.no",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Sol Industries",
-      "website": "sol-ind.com",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "DEIF Wind Power Technology",
-      "website": null,
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Wave Dragon",
-      "website": "wavedragon.com",
-      "total_score": 57.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 80.053
       }
     },
     {
       "operational_name": "Texon",
       "website": "texonsystems.com",
-      "total_score": 57.25,
+      "total_score": 75.16,
       "breakdown": {
-        "semantic_core_offerings": 17.5,
-        "semantic_description": 3.75,
+        "semantic_core_offerings": 26.37,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 75.16
+      }
+    },
+    {
+      "operational_name": "Againity",
+      "website": "againity.com",
+      "total_score": 75.107,
+      "breakdown": {
+        "semantic_core_offerings": 26.33,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 75.107
       }
     },
     {
       "operational_name": "CIRKEL Energi",
       "website": "cirkelenergi.dk",
-      "total_score": 57.25,
+      "total_score": 75.093,
       "breakdown": {
-        "semantic_core_offerings": 17.5,
-        "semantic_description": 3.75,
+        "semantic_core_offerings": 26.32,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Sola Markis & Persienn",
-      "website": "solamarkis.se",
-      "total_score": 57.25,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 75.093
       }
     },
     {
       "operational_name": "CIRKEL Energi",
       "website": "cirkelenergi.dk",
-      "total_score": 57.25,
+      "total_score": 75.093,
       "breakdown": {
-        "semantic_core_offerings": 17.5,
-        "semantic_description": 3.75,
+        "semantic_core_offerings": 26.32,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 75.093
       }
     },
     {
-      "operational_name": "Sembakken",
-      "website": "sembakken.dk",
-      "total_score": 56.0,
+      "operational_name": "Sowin Power",
+      "website": "sowinpower.no",
+      "total_score": 75.08,
       "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
+        "semantic_core_offerings": 26.31,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 75.08
       }
     },
     {
-      "operational_name": "BayWa r.e. Scandinavia",
+      "operational_name": "JN-Solar",
+      "website": "jn-solar.fi",
+      "total_score": 70.187,
+      "breakdown": {
+        "semantic_core_offerings": 22.64,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 70.187
+      }
+    },
+    {
+      "operational_name": "Norhybrid Renewables",
+      "website": "norhybrid.com",
+      "total_score": 70.12,
+      "breakdown": {
+        "semantic_core_offerings": 22.59,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 70.12
+      }
+    },
+    {
+      "operational_name": "Norhybrid Renewables",
+      "website": "norhybrid.com",
+      "total_score": 70.12,
+      "breakdown": {
+        "semantic_core_offerings": 22.59,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 70.12
+      }
+    },
+    {
+      "operational_name": "BlueTec Vest",
+      "website": "bluetecvest.no",
+      "total_score": 70.107,
+      "breakdown": {
+        "semantic_core_offerings": 22.58,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 70.107
+      }
+    },
+    {
+      "operational_name": "Ecopwr",
+      "website": "ecopwr.se",
+      "total_score": 70.08,
+      "breakdown": {
+        "semantic_core_offerings": 22.56,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 70.08
+      }
+    },
+    {
+      "operational_name": "Climatico",
+      "website": "climatico.dk",
+      "total_score": 70.0,
+      "breakdown": {
+        "semantic_core_offerings": 22.5,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 70.0
+      }
+    },
+    {
+      "operational_name": "Siemens Energy",
       "website": null,
-      "total_score": 56.0,
+      "total_score": 65.267,
       "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
+        "semantic_core_offerings": 18.95,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.267
       }
     },
     {
-      "operational_name": "Tesla Ocean Turbine",
-      "website": "teslaoceanturbine.com",
-      "total_score": 55.0,
+      "operational_name": "Ventum Dynamics",
+      "website": "ventumdynamics.com",
+      "total_score": 65.24,
       "breakdown": {
-        "semantic_core_offerings": 7.5,
-        "semantic_description": 7.5,
+        "semantic_core_offerings": 18.93,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Pellbin Turbine",
-      "website": "pellbin.se",
-      "total_score": 55.0,
-      "breakdown": {
-        "semantic_core_offerings": 7.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Tesla Ocean Turbine",
-      "website": "teslaoceanturbine.com",
-      "total_score": 55.0,
-      "breakdown": {
-        "semantic_core_offerings": 7.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Aeolos Wind Turbine Company",
-      "website": "betaflight.cn",
-      "total_score": 53.75,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 3.75,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Norwin Energy",
-      "website": "norwinenergy.com",
-      "total_score": 53.75,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 3.75,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "David Nyren",
-      "website": "davidnyren.se",
-      "total_score": 53.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Lundeseter Solcellepark",
-      "website": "lscp.no",
-      "total_score": 53.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Enercon",
-      "website": null,
-      "total_score": 52.5,
-      "breakdown": {
-        "semantic_core_offerings": 5.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 20.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Effecta Energy Solutions",
-      "website": "effecta.se",
-      "total_score": 48.75,
-      "breakdown": {
-        "semantic_core_offerings": 17.5,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Next Fabrication",
-      "website": "nextfabrication.com",
-      "total_score": 43.5,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Next Fabrication",
-      "website": "nextfabrication.com",
-      "total_score": 43.5,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 15.0,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Magnora",
-      "website": "magnoraasa.com",
-      "total_score": 42.25,
-      "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Carita och Torbjörn",
-      "website": "cktl.se",
-      "total_score": 41.25,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Carita och Torbjörn",
-      "website": "cktl.se",
-      "total_score": 41.25,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "ENERCON",
-      "website": null,
-      "total_score": 40.0,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "Puhuri",
-      "website": "puhuri.fi",
-      "total_score": 40.0,
-      "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.24
       }
     },
     {
       "operational_name": "Kraftkar Energi",
       "website": "kraftkarenergi.no",
-      "total_score": 40.0,
+      "total_score": 65.213,
       "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
+        "semantic_core_offerings": 18.91,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.213
+      }
+    },
+    {
+      "operational_name": "BayWa r.e. Scandinavia",
+      "website": null,
+      "total_score": 65.213,
+      "breakdown": {
+        "semantic_core_offerings": 18.91,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.213
+      }
+    },
+    {
+      "operational_name": "VASOL TECH",
+      "website": "vasol.se",
+      "total_score": 65.2,
+      "breakdown": {
+        "semantic_core_offerings": 18.9,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.2
+      }
+    },
+    {
+      "operational_name": "Fred. Olsen 1848",
+      "website": "fredolsen1848.com",
+      "total_score": 65.16,
+      "breakdown": {
+        "semantic_core_offerings": 18.87,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.16
+      }
+    },
+    {
+      "operational_name": "Fred. Olsen 1848",
+      "website": "fredolsen1848.com",
+      "total_score": 65.16,
+      "breakdown": {
+        "semantic_core_offerings": 18.87,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.16
+      }
+    },
+    {
+      "operational_name": "Puhuri",
+      "website": "puhuri.fi",
+      "total_score": 65.12,
+      "breakdown": {
+        "semantic_core_offerings": 18.84,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.12
       }
     },
     {
       "operational_name": "ENERCON",
       "website": null,
-      "total_score": 40.0,
+      "total_score": 65.107,
       "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
+        "semantic_core_offerings": 18.83,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.107
       }
     },
     {
-      "operational_name": "Varmalämmitys",
-      "website": "varmalammitys.fi",
-      "total_score": 38.75,
-      "breakdown": {
-        "semantic_core_offerings": 7.5,
-        "semantic_description": 11.25,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
-      }
-    },
-    {
-      "operational_name": "IKM InWind",
+      "operational_name": "ENERCON",
       "website": null,
-      "total_score": 38.75,
+      "total_score": 65.107,
       "breakdown": {
-        "semantic_core_offerings": 7.5,
-        "semantic_description": 11.25,
+        "semantic_core_offerings": 18.83,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.107
       }
     },
     {
-      "operational_name": "Parkasol",
-      "website": "parkasol.se",
-      "total_score": 38.5,
+      "operational_name": "Folksol",
+      "website": "folksol.se",
+      "total_score": 65.093,
       "breakdown": {
-        "semantic_core_offerings": 15.0,
-        "semantic_description": 7.5,
+        "semantic_core_offerings": 18.82,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.093
       }
     },
     {
-      "operational_name": "Krefter",
-      "website": "krefter.no",
-      "total_score": 36.0,
+      "operational_name": "Sembakken",
+      "website": "sembakken.dk",
+      "total_score": 65.08,
       "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
+        "semantic_core_offerings": 18.81,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.08
       }
     },
     {
-      "operational_name": "Navitas",
-      "website": "nace.dk",
-      "total_score": 36.0,
+      "operational_name": "Moventas",
+      "website": "moventas.com",
+      "total_score": 65.08,
       "breakdown": {
-        "semantic_core_offerings": 12.5,
-        "semantic_description": 7.5,
+        "semantic_core_offerings": 18.81,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.08
       }
     },
     {
-      "operational_name": "Teqniq",
-      "website": "teqniq.fi",
-      "total_score": 33.5,
+      "operational_name": "ICEWIND",
+      "website": "icewind.is",
+      "total_score": 65.08,
       "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
+        "semantic_core_offerings": 18.81,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Fastnet",
-      "website": "fastnet.se",
-      "total_score": 33.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "SVENO",
-      "website": "sveno.no",
-      "total_score": 33.5,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.08
       }
     },
     {
       "operational_name": "Galileo Empower Finland",
       "website": "galileoempower.fi",
-      "total_score": 32.5,
+      "total_score": 65.08,
       "breakdown": {
-        "semantic_core_offerings": 12.5,
+        "semantic_core_offerings": 18.81,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 10.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.08
       }
     },
     {
-      "operational_name": "Hydra Tidal Energy Technology",
+      "operational_name": "DEIF",
+      "website": "deif.com",
+      "total_score": 65.04,
+      "breakdown": {
+        "semantic_core_offerings": 18.78,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.04
+      }
+    },
+    {
+      "operational_name": "Rögle Vindkraftpark",
       "website": null,
-      "total_score": 31.0,
+      "total_score": 65.0,
       "breakdown": {
-        "semantic_core_offerings": 7.5,
-        "semantic_description": 7.5,
+        "semantic_core_offerings": 18.75,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.0
       }
     },
     {
-      "operational_name": "WindSpider",
-      "website": "windspider.com",
-      "total_score": 31.0,
-      "breakdown": {
-        "semantic_core_offerings": 7.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "WindSpider",
-      "website": "windspider.com",
-      "total_score": 31.0,
-      "breakdown": {
-        "semantic_core_offerings": 7.5,
-        "semantic_description": 7.5,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "Liftra",
-      "website": "liftra.com",
-      "total_score": 29.75,
-      "breakdown": {
-        "semantic_core_offerings": 10.0,
-        "semantic_description": 3.75,
-        "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
-      }
-    },
-    {
-      "operational_name": "EWP Windtower Production",
+      "operational_name": "Rögle Vindkraftpark",
       "website": null,
-      "total_score": 27.25,
+      "total_score": 65.0,
+      "breakdown": {
+        "semantic_core_offerings": 18.75,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 65.0
+      }
+    },
+    {
+      "operational_name": "Norwin Energy",
+      "website": "norwinenergy.com",
+      "total_score": 60.347,
+      "breakdown": {
+        "semantic_core_offerings": 15.26,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.347
+      }
+    },
+    {
+      "operational_name": "SideWind",
+      "website": "sidewind.is",
+      "total_score": 60.293,
+      "breakdown": {
+        "semantic_core_offerings": 15.22,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.293
+      }
+    },
+    {
+      "operational_name": "Aeolos Wind Turbine Company",
+      "website": "betaflight.cn",
+      "total_score": 60.267,
+      "breakdown": {
+        "semantic_core_offerings": 15.2,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.267
+      }
+    },
+    {
+      "operational_name": "Vestas",
+      "website": "vestas.com",
+      "total_score": 60.24,
+      "breakdown": {
+        "semantic_core_offerings": 15.18,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.24
+      }
+    },
+    {
+      "operational_name": "Fallorka",
+      "website": "fallorka.is",
+      "total_score": 60.24,
+      "breakdown": {
+        "semantic_core_offerings": 15.18,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.24
+      }
+    },
+    {
+      "operational_name": "windainergy",
+      "website": "windainergy.com",
+      "total_score": 60.227,
+      "breakdown": {
+        "semantic_core_offerings": 15.17,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.227
+      }
+    },
+    {
+      "operational_name": "windainergy",
+      "website": "windainergy.com",
+      "total_score": 60.227,
+      "breakdown": {
+        "semantic_core_offerings": 15.17,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.227
+      }
+    },
+    {
+      "operational_name": "Wave Dragon",
+      "website": "wavedragon.com",
+      "total_score": 60.187,
+      "breakdown": {
+        "semantic_core_offerings": 15.14,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.187
+      }
+    },
+    {
+      "operational_name": "Wave Dragon",
+      "website": "wavedragon.com",
+      "total_score": 60.187,
+      "breakdown": {
+        "semantic_core_offerings": 15.14,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.187
+      }
+    },
+    {
+      "operational_name": "Sol Industries",
+      "website": "sol-ind.com",
+      "total_score": 60.187,
+      "breakdown": {
+        "semantic_core_offerings": 15.14,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.187
+      }
+    },
+    {
+      "operational_name": "Sol Industries",
+      "website": "sol-ind.com",
+      "total_score": 60.187,
+      "breakdown": {
+        "semantic_core_offerings": 15.14,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.187
+      }
+    },
+    {
+      "operational_name": "Logic-Energy",
+      "website": "teunhulst.nl",
+      "total_score": 60.16,
+      "breakdown": {
+        "semantic_core_offerings": 15.12,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.16
+      }
+    },
+    {
+      "operational_name": "Logic-Energy",
+      "website": "teunhulst.nl",
+      "total_score": 60.16,
+      "breakdown": {
+        "semantic_core_offerings": 15.12,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.16
+      }
+    },
+    {
+      "operational_name": "Envision Energy Denmark",
+      "website": null,
+      "total_score": 60.16,
+      "breakdown": {
+        "semantic_core_offerings": 15.12,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.16
+      }
+    },
+    {
+      "operational_name": "Envision Energy Denmark",
+      "website": null,
+      "total_score": 60.16,
+      "breakdown": {
+        "semantic_core_offerings": 15.12,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.16
+      }
+    },
+    {
+      "operational_name": "World Wide Wind",
+      "website": "worldwidewind.no",
+      "total_score": 60.133,
+      "breakdown": {
+        "semantic_core_offerings": 15.1,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.133
+      }
+    },
+    {
+      "operational_name": "World Wide Wind",
+      "website": "worldwidewind.no",
+      "total_score": 60.133,
+      "breakdown": {
+        "semantic_core_offerings": 15.1,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.133
+      }
+    },
+    {
+      "operational_name": "KVA Wind",
+      "website": "kva-vind.dk",
+      "total_score": 60.133,
+      "breakdown": {
+        "semantic_core_offerings": 15.1,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.133
+      }
+    },
+    {
+      "operational_name": "David Nyren",
+      "website": "davidnyren.se",
+      "total_score": 60.12,
+      "breakdown": {
+        "semantic_core_offerings": 15.09,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.12
+      }
+    },
+    {
+      "operational_name": "MantaWind",
+      "website": null,
+      "total_score": 60.093,
+      "breakdown": {
+        "semantic_core_offerings": 15.07,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.093
+      }
+    },
+    {
+      "operational_name": "MantaWind",
+      "website": null,
+      "total_score": 60.093,
+      "breakdown": {
+        "semantic_core_offerings": 15.07,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.093
+      }
+    },
+    {
+      "operational_name": "DEIF Wind Power Technology",
+      "website": null,
+      "total_score": 60.093,
+      "breakdown": {
+        "semantic_core_offerings": 15.07,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.093
+      }
+    },
+    {
+      "operational_name": "DEIF Wind Power Technology",
+      "website": null,
+      "total_score": 60.093,
+      "breakdown": {
+        "semantic_core_offerings": 15.07,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.093
+      }
+    },
+    {
+      "operational_name": "Sola Markis & Persienn",
+      "website": "solamarkis.se",
+      "total_score": 60.08,
+      "breakdown": {
+        "semantic_core_offerings": 15.06,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.08
+      }
+    },
+    {
+      "operational_name": "Winergy Finland",
+      "website": null,
+      "total_score": 60.067,
+      "breakdown": {
+        "semantic_core_offerings": 15.05,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.067
+      }
+    },
+    {
+      "operational_name": "Carita och Torbjörn",
+      "website": "cktl.se",
+      "total_score": 60.067,
+      "breakdown": {
+        "semantic_core_offerings": 15.05,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.067
+      }
+    },
+    {
+      "operational_name": "Carita och Torbjörn",
+      "website": "cktl.se",
+      "total_score": 60.067,
+      "breakdown": {
+        "semantic_core_offerings": 15.05,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.067
+      }
+    },
+    {
+      "operational_name": "BRF Vivstavarvsvägen",
+      "website": "vivstavarvsvagen.se",
+      "total_score": 60.067,
+      "breakdown": {
+        "semantic_core_offerings": 15.05,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.067
+      }
+    },
+    {
+      "operational_name": "Verta",
+      "website": null,
+      "total_score": 60.053,
+      "breakdown": {
+        "semantic_core_offerings": 15.04,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.053
+      }
+    },
+    {
+      "operational_name": "Verta",
+      "website": null,
+      "total_score": 60.053,
+      "breakdown": {
+        "semantic_core_offerings": 15.04,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.053
+      }
+    },
+    {
+      "operational_name": "Thyborøn Sydhavn 2 | Vestas-mølle",
+      "website": "thybsydhavnmolle-2.dk",
+      "total_score": 60.053,
+      "breakdown": {
+        "semantic_core_offerings": 15.04,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.053
+      }
+    },
+    {
+      "operational_name": "Erikshester Vindpark",
+      "website": "vindparken.se",
+      "total_score": 60.053,
+      "breakdown": {
+        "semantic_core_offerings": 15.04,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.053
+      }
+    },
+    {
+      "operational_name": "Erikshester Vindpark",
+      "website": "vindparken.se",
+      "total_score": 60.053,
+      "breakdown": {
+        "semantic_core_offerings": 15.04,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.053
+      }
+    },
+    {
+      "operational_name": "Lundeseter Solcellepark",
+      "website": "lscp.no",
+      "total_score": 60.027,
+      "breakdown": {
+        "semantic_core_offerings": 15.02,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 60.027
+      }
+    },
+    {
+      "operational_name": "Finnwind",
+      "website": "finnwind.fi",
+      "total_score": 55.24,
+      "breakdown": {
+        "semantic_core_offerings": 11.43,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 55.24
+      }
+    },
+    {
+      "operational_name": "Alotta",
+      "website": "alotta.no",
+      "total_score": 55.24,
+      "breakdown": {
+        "semantic_core_offerings": 11.43,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 55.24
+      }
+    },
+    {
+      "operational_name": "Tesla Ocean Turbine",
+      "website": "teslaoceanturbine.com",
+      "total_score": 55.133,
+      "breakdown": {
+        "semantic_core_offerings": 11.35,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 55.133
+      }
+    },
+    {
+      "operational_name": "Tesla Ocean Turbine",
+      "website": "teslaoceanturbine.com",
+      "total_score": 55.133,
+      "breakdown": {
+        "semantic_core_offerings": 11.35,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 55.133
+      }
+    },
+    {
+      "operational_name": "Pellbin Turbine",
+      "website": "pellbin.se",
+      "total_score": 55.08,
+      "breakdown": {
+        "semantic_core_offerings": 11.31,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 55.08
+      }
+    },
+    {
+      "operational_name": "Rhino Power",
+      "website": "rhinopower.fi",
+      "total_score": 55.067,
+      "breakdown": {
+        "semantic_core_offerings": 11.3,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 55.067
+      }
+    },
+    {
+      "operational_name": "Enercon",
+      "website": null,
+      "total_score": 50.0,
       "breakdown": {
         "semantic_core_offerings": 7.5,
-        "semantic_description": 3.75,
+        "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "naics_matching": 0.0,
-        "objective_fields": 10.0,
-        "coherence_consistency": 6.0
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "normalized_base_score": 50.0
       }
     }
   ]
