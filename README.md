@@ -2,56 +2,56 @@
 
 <img src="gif/Demo.gif" alt="Learning Bird" width="600">
 
-RecoMMaxML este o aplicație inteligentă care transformă un query în limbaj natural într-un set de filtre structurate pentru a găsi, filtra și scora cele mai relevante companii B2B dintr-o bază de date. 
+RecoMMaxML is an intelligent application that transforms a natural language query into a set of structured filters to find, filter, and score the most relevant B2B companies from a database.
 
-Aplicația rezolvă neconcordanțele dintre modul în care utilizatorii formulează căutările și modul în care datele sunt stocate, aplicând un echilibru optim între viteză, cost și acuratețe. Pentru detalii tehnice aprofundate și decizii de arhitectură, consultați fișierul `WRITEUP.md`.
+The application solves the mismatches between how users formulate searches and how data is stored, applying an optimal balance between speed, cost, and accuracy. For in-depth technical details and architectural decisions, consult the `WRITEUP.md` file.
 
-## 🚀 Cum se utilizează
+## 🚀 How to use
 
-Proiectul este cross-platform și rulează direct folosind scripturile de automatizare incluse, care gestionează crearea mediului virtual și instalarea dependențelor.
+The project is cross-platform and runs directly using the included automation scripts, which handle the creation of the virtual environment and the installation of dependencies.
 
-**Cerință prealabilă:** Copiați fișierul `.env.example` în `.env` și adăugați cheia `GEMINI_API_KEY`. (Scripturile vă vor ghida automat dacă uitați acest pas).
+**Prerequisite:** Copy the `.env.example` file to `.env` and add the `GEMINI_API_KEY` key. (The scripts will automatically guide you if you forget this step).
 
 ### Windows
-Folosiți executabilul `run.bat` din rădăcina proiectului:
-*   **Mod Interactiv:** `run` (Introduceți query-urile manual de la tastatură).
-*   **Mod Batch:** `run --file lista_query.txt` (Procesează automat o listă de query-uri).
+Use the `run.bat` executable from the project root:
+-   **Interactive Mode:** `run` (Enter queries manually from the keyboard).
+-   **Batch Mode:** `run --file query_list.txt` (Automatically processes a list of queries).
 
 ### Mac / Linux
-Folosiți scriptul `run.sh` (necesită drepturi de execuție: `chmod +x run.sh`):
-*   **Mod Interactiv:** `./run.sh`
-*   **Mod Batch:** `./run.sh --file lista_query.txt`
+Use the `run.sh` script (requires execution rights: `chmod +x run.sh`):
+-   **Interactive Mode:** `./run.sh`
+-   **Batch Mode:** `./run.sh --file query_list.txt`
 
 ---
 
-## 📂 Structura rezultatelor (Output)
+## 📂 Results structure (Output)
 
-Pentru o experiență de utilizare curată, consola va afișa doar informațiile esențiale (Numele companiei și Website-ul). Toate datele tehnice, deciziile algoritmului și logurile sunt salvate automat după fiecare rulare într-un director nou structurat astfel: `results/$datetime/`
+For a clean user experience, the console will only display the essential information (Company name and Website). All technical data, algorithm decisions, and logs are automatically saved after each run in a newly structured directory like this: `results/$datetime/`
 
-*   `log.txt`: Jurnalul detaliat al execuției (condiții extrase, status API, erori).
-*   `top.txt`: Rezumatul curat al afișajului din consolă.
-*   `query_list.jsonl`: Istoricul rulării cu statusul și metricile de timp pentru fiecare query.
-*   `company_lists/`: Fisiere `.jsonl` per query ce conțin profilele complete ale companiilor calificate.
-*   `telemetry_list/`: Fișiere `.json` cu detalii transparente despre modul în care s-a calculat scorul fiecărei firme.
+-   `log.txt`: The detailed execution journal (extracted conditions, API status, errors).
+-   `top.txt`: The clean summary of the console display.
+-   `query_list.jsonl`: The run history with the status and time metrics for each query.
+-   `company_lists/`: `.jsonl` files per query containing the complete profiles of the qualified companies.
+-   `telemetry_list/`: `.json` files with transparent details about how each company's score was calculated.
 
 ---
 
-## ⚙️ Metoda de Lucru (Pipeline-ul de Procesare)
+## ⚙️ Working Method (Processing Pipeline)
 
-Sistemul funcționează într-un flux de 3 etape principale:
+The system works in a flow of 3 main stages:
 
-### 1. Query Division (Spargerea Query-ului)
-Query-ul este segmentat în condiții contextuale testate individual. Se bazează pe un model hibrid:
-*   **Local (Reguli / Regex):** Extrage la viteză maximă argumentele sigure (ex: număr angajați, locație, venit).
-*   **API Call (LLM):** Oferă context inteligent și expansiune semantică pentru criteriile interpretabile (industrii, oferte, piețe țintă).
+### 1. Query Division
+The query is segmented into contextual conditions that are tested individually. It relies on a hybrid model:
+-   **Local (Rules / Regex):** Extracts the safe arguments at maximum speed (e.g.: number of employees, location, revenue).
+-   **API Call (LLM):** Provides intelligent context and semantic expansion for interpretable criteria (industries, offerings, target markets).
 
-### 2. Trierea (Hard Knockout)
-Filtrează masiv baza de date folosind informațiile obiective extrase (prin metoda Batching).
-*   Folosește principiul **"Benefit of the Doubt"**: Dacă o firmă are un câmp obiectiv lipsă (ex: venit null), este păstrată ca potențial candidat.
-*   Codurile **NAICS** și potrivirile lexicale de bază funcționează ca filtre *hard* pentru a elimina zgomotul evident.
+### 2. Sorting (Hard Knockout)
+Massively filters the database using the extracted objective information (via the Batching method).
+-   Uses the **"Benefit of the Doubt"** principle: If a company has a missing objective field (e.g.: revenue null), it is kept as a potential candidate.
+-   **NAICS** codes and basic lexical matches work as *hard* filters to remove obvious noise.
 
-### 3. Scoring-ul (Notarea Semantică)
-Clasează companiile trecute de filtrul Hard pe baza relevanței.
-*   **Normalizare Matematică Dinamică:** Plafonul de scor se ajustează în funcție de numărul de criterii cerute de query.
-*   **Departajare Fină:** Egalitățile sunt sparte prin *Term Frequency* și un *Bonus de Densitate* a profilului companiei.
-*   **Dynamic Thresholding:** Se evaluează scorul liderului și se aplică un prag (cutoff) pentru a tăia "coada" listei, returnând doar firmele cu adevărat relevante, fără a umple artificial clasamentul.
+### 3. Scoring (Semantic Grading)
+Ranks the companies that passed the Hard filter based on relevance.
+-   **Dynamic Mathematical Normalization:** The score ceiling adjusts depending on the number of criteria requested by the query.
+-   **Fine Tie-breaking:** Ties are broken through *Term Frequency* and a company profile *Density Bonus*.
+-   **Dynamic Thresholding:** The leader's score is evaluated and a threshold (cutoff) is applied to cut the "tail" of the list, returning only truly relevant companies, without artificially filling the ranking.
