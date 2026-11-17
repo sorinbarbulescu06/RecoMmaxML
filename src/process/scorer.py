@@ -200,7 +200,7 @@ def rank_candidates(
     query: Query, 
     candidates_file_path: str | Path, 
     query_index: int = 1, 
-    top_k: int = 20, 
+    top_k: int | str = "magic", 
     output_dir: str | Path = "top_results",
     telemetry_dir: str | Path = "assets/captured_data"
 ) -> list[dict[str, Any]]:
@@ -229,15 +229,41 @@ def rank_candidates(
     scored_list = [item for item in all_scored if item[0]["total_score"] >= dynamic_cutoff]
     scored_list.sort(key=lambda x: (x[0]["total_score"], x[0]["operational_name"]), reverse=True)
 
+    # === ALGORITMUL MAGIC NUMBER (K) ===
+    if top_k == "magic":
+        n = len(scored_list)
+        if n <= 3:
+            actual_k = n
+        else:
+            search_limit = min(n, 15)  # Maxim 15 firme afisate in terminal
+            max_gap = 0.0
+            best_k = 3
+            
+            # Cautam "Prapastia" (Elbow Method)
+            for i in range(1, search_limit):
+                gap = scored_list[i-1][0]["total_score"] - scored_list[i][0]["total_score"]
+                if gap > max_gap:
+                    max_gap = gap
+                    best_k = i
+            
+            # Daca diferentele sunt prea mici (sub 2.0 pct), folosim Media Elitelor
+            if max_gap < 2.0:
+                avg_score = sum(x[0]["total_score"] for x in scored_list[:search_limit]) / search_limit
+                best_k = sum(1 for x in scored_list[:search_limit] if x[0]["total_score"] >= avg_score)
+            
+            actual_k = max(3, best_k) # Afisam mereu macar top 3 (daca exista)
+    else:
+        actual_k = min(int(top_k), len(scored_list))
+    # ===================================
+
     out_path = Path(output_dir)
     out_path.mkdir(parents=True, exist_ok=True)
     
-    actual_k = min(top_k, len(scored_list))
     top_k_filename = out_path / f"top_{actual_k}_query_{query_index}.jsonl"
     
     top_results = []
     with open(top_k_filename, "w", encoding="utf-8") as out_f:
-        for score_dict, raw_comp in scored_list[:top_k]:
+        for score_dict, raw_comp in scored_list[:actual_k]:
             top_results.append(score_dict)
             export_record = dict(raw_comp)
             export_record["scoring_result"] = score_dict

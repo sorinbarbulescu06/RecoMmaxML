@@ -2,265 +2,25 @@
   "query_text": "Companies that manufacture or supply critical components for electric vehicle battery production",
   "query_status": "understood",
   "api_called": true,
-  "total_candidates_above_threshold": 56,
-  "dynamic_cutoff_applied": 35.792,
+  "total_candidates_above_threshold": 54,
+  "dynamic_cutoff_applied": 50.0,
   "score_statistics": {
-    "max_score": 71.585,
-    "min_score": 39.833,
-    "average_score": 59.196
+    "max_score": 100.0,
+    "min_score": 57.283,
+    "average_score": 91.574
   },
   "top_k_saved": 20,
   "output_file": "top_results\\top_20_query_12.jsonl",
   "full_candidates_breakdown": [
     {
-      "operational_name": "Dongdao New Energy",
-      "website": "dongdaochina.cn",
-      "total_score": 71.5848,
+      "operational_name": "Taibang New Energy",
+      "website": "ctlne.com",
+      "total_score": 100.0,
       "breakdown": {
-        "semantic_core_offerings": 30.135,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0056,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Sepion Technologies",
-      "website": "sepiontechnologies.com",
-      "total_score": 71.5119,
-      "breakdown": {
-        "semantic_core_offerings": 30.07,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.005,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "SolidEdge Solution",
-      "website": "solidedgesolution.com",
-      "total_score": 71.479,
-      "breakdown": {
-        "semantic_core_offerings": 30.04,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0054,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Nascent Materials",
-      "website": "nascentmaterials.com",
-      "total_score": 69.7657,
-      "breakdown": {
-        "semantic_core_offerings": 26.355,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 6.429,
-        "density_bonus": 0.0056,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Li Hongte",
-      "website": "lihongte.com",
-      "total_score": 67.3951,
-      "breakdown": {
-        "semantic_core_offerings": 26.365,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0049,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Mitra Chem",
-      "website": "mitrachem.com",
-      "total_score": 67.3901,
-      "breakdown": {
-        "semantic_core_offerings": 26.355,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.291,
-        "density_bonus": 0.0054,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Anda Technology",
-      "website": "ad-lib.cn",
-      "total_score": 67.3723,
-      "breakdown": {
-        "semantic_core_offerings": 26.345,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0044,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "CIDEcell",
-      "website": "cidecell.com",
-      "total_score": 67.3521,
-      "breakdown": {
-        "semantic_core_offerings": 26.325,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0062,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Charge CCCV",
-      "website": "chargecccv.com",
-      "total_score": 67.3292,
-      "breakdown": {
-        "semantic_core_offerings": 26.305,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0056,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "FeovaEnergy",
-      "website": "feovaenergy.com",
-      "total_score": 67.3273,
-      "breakdown": {
-        "semantic_core_offerings": 26.305,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0039,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "POLYENTECH",
-      "website": "polyentech.com",
-      "total_score": 67.3176,
-      "breakdown": {
-        "semantic_core_offerings": 26.295,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0051,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "NexTech Batteries",
-      "website": "nextechbatteries.com",
-      "total_score": 67.3175,
-      "breakdown": {
-        "semantic_core_offerings": 26.295,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.005,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Greenbatt Technology",
-      "website": "greenbatt.ch",
-      "total_score": 67.3169,
-      "breakdown": {
-        "semantic_core_offerings": 26.295,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0045,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "QuantumScape",
-      "website": "quantumscape.com",
-      "total_score": 67.3016,
-      "breakdown": {
-        "semantic_core_offerings": 26.28,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0057,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "RJETech",
-      "website": null,
-      "total_score": 67.2823,
-      "breakdown": {
-        "semantic_core_offerings": 26.265,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0034,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Hunan Yueneng New Energy Battery Material Co., Ltd.",
-      "website": "hunanyuneng.com",
-      "total_score": 65.5807,
-      "breakdown": {
-        "semantic_core_offerings": 22.59,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 6.429,
-        "density_bonus": 0.0041,
+        "semantic_target_markets": 15.0,
+        "density_bonus": 1.8,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -271,12 +31,12 @@
     {
       "operational_name": "Rusaccum",
       "website": "rusaccum.ru",
-      "total_score": 65.5547,
+      "total_score": 100.0,
       "breakdown": {
-        "semantic_core_offerings": 22.56,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 6.434,
-        "density_bonus": 0.0057,
+        "semantic_target_markets": 15.0,
+        "density_bonus": 2.85,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -285,14 +45,14 @@
       }
     },
     {
-      "operational_name": "E-Lyte",
-      "website": "e-lyte.de",
-      "total_score": 65.005,
+      "operational_name": "Nascent Materials",
+      "website": "nascentmaterials.com",
+      "total_score": 100.0,
       "breakdown": {
-        "semantic_core_offerings": 26.35,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 2.148,
-        "density_bonus": 0.0066,
+        "semantic_target_markets": 15.0,
+        "density_bonus": 2.8,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -301,30 +61,14 @@
       }
     },
     {
-      "operational_name": "Kunlun New Materials",
-      "website": "kunlunchem.com.cn",
-      "total_score": 64.9923,
+      "operational_name": "Hunan Yueneng New Energy Battery Material Co., Ltd.",
+      "website": "hunanyuneng.com",
+      "total_score": 100.0,
       "breakdown": {
-        "semantic_core_offerings": 26.345,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0052,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Wanbang New Energy",
-      "website": "scusne.com",
-      "total_score": 64.93,
-      "breakdown": {
-        "semantic_core_offerings": 26.29,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0041,
+        "semantic_target_markets": 15.0,
+        "density_bonus": 2.05,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -335,12 +79,28 @@
     {
       "operational_name": "Fengyang Pengen",
       "website": "pennenergy.cn",
-      "total_score": 63.2249,
+      "total_score": 98.1667,
       "breakdown": {
-        "semantic_core_offerings": 22.61,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0067,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 3.35,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "CIDEcell",
+      "website": "cidecell.com",
+      "total_score": 97.8889,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 3.1,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -351,12 +111,12 @@
     {
       "operational_name": "You Shan Technology",
       "website": "youshan.com",
-      "total_score": 63.2239,
+      "total_score": 97.6667,
       "breakdown": {
-        "semantic_core_offerings": 22.61,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0058,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.9,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -365,270 +125,14 @@
       }
     },
     {
-      "operational_name": "Altmin",
-      "website": "altmin.in",
-      "total_score": 63.1731,
+      "operational_name": "QuantumScape",
+      "website": "quantumscape.com",
+      "total_score": 97.6111,
       "breakdown": {
-        "semantic_core_offerings": 22.565,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0051,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Sili Energy",
-      "website": "silienergy.kr",
-      "total_score": 63.1618,
-      "breakdown": {
-        "semantic_core_offerings": 22.555,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0049,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "RJETech",
-      "website": "rjetech.com",
-      "total_score": 63.1505,
-      "breakdown": {
-        "semantic_core_offerings": 22.54,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.291,
-        "density_bonus": 0.0047,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Hisun",
-      "website": "thehisun.com",
-      "total_score": 60.8323,
-      "breakdown": {
-        "semantic_core_offerings": 22.6,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0062,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Blue New Energy Technology",
-      "website": "lionteam.com.cn",
-      "total_score": 60.8138,
-      "breakdown": {
-        "semantic_core_offerings": 22.585,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0046,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "GuTai Battery Technology",
-      "website": "goodtimebattery.com",
-      "total_score": 60.8033,
-      "breakdown": {
-        "semantic_core_offerings": 22.575,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0051,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Poly Energy",
-      "website": "polyenergy.tech",
-      "total_score": 60.7698,
-      "breakdown": {
-        "semantic_core_offerings": 22.545,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.005,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Indonesia BTR New Energy Material",
-      "website": null,
-      "total_score": 60.734,
-      "breakdown": {
-        "semantic_core_offerings": 22.515,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0027,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Taibang New Energy",
-      "website": "ctlne.com",
-      "total_score": 59.6223,
-      "breakdown": {
-        "semantic_core_offerings": 15.085,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 8.571,
-        "density_bonus": 0.0036,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Shenzhen Atsm Energy",
-      "website": "atsmlab.en.alibaba.com",
-      "total_score": 59.0493,
-      "breakdown": {
-        "semantic_core_offerings": 18.855,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0037,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "RUSTOR",
-      "website": "russianstorage.ru",
-      "total_score": 59.0157,
-      "breakdown": {
-        "semantic_core_offerings": 18.825,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0034,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Yide New Energy",
-      "website": "hunanyide.com",
-      "total_score": 58.9873,
-      "breakdown": {
-        "semantic_core_offerings": 18.8,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0029,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Hunan TianTai TianRun New Energy Technology",
-      "website": "tttrnet.com",
-      "total_score": 58.9839,
-      "breakdown": {
-        "semantic_core_offerings": 18.795,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0048,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "ReFire_ev",
-      "website": null,
-      "total_score": 58.9703,
-      "breakdown": {
-        "semantic_core_offerings": 18.785,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0026,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Shan Shan Technology",
-      "website": "shanshantech.com",
-      "total_score": 56.714,
-      "breakdown": {
-        "semantic_core_offerings": 18.895,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0047,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Hengchuang",
-      "website": "hengtron.com",
-      "total_score": 56.6926,
-      "breakdown": {
-        "semantic_core_offerings": 18.875,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0055,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Zhejiang Shengmei Lithium Battery Materials",
-      "website": "zjsmld.com",
-      "total_score": 56.6458,
-      "breakdown": {
-        "semantic_core_offerings": 18.835,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0034,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.85,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -639,12 +143,12 @@
     {
       "operational_name": "Rongbai Lithium Battery",
       "website": "ronbaymat.com",
-      "total_score": 55.0126,
+      "total_score": 97.5556,
       "breakdown": {
-        "semantic_core_offerings": 15.22,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0056,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.8,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -653,14 +157,14 @@
       }
     },
     {
-      "operational_name": "Solid Power",
-      "website": "solidpowerbattery.com",
-      "total_score": 54.8175,
+      "operational_name": "Dongdao New Energy",
+      "website": "dongdaochina.cn",
+      "total_score": 97.5556,
       "breakdown": {
-        "semantic_core_offerings": 15.045,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.005,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.8,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -669,14 +173,14 @@
       }
     },
     {
-      "operational_name": "Zakuro",
-      "website": "zakurobattery.com",
-      "total_score": 54.8107,
+      "operational_name": "Charge CCCV",
+      "website": "chargecccv.com",
+      "total_score": 97.5556,
       "breakdown": {
-        "semantic_core_offerings": 15.04,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0039,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.8,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -685,14 +189,14 @@
       }
     },
     {
-      "operational_name": "Nanjing Blue Solid New Energy",
-      "website": "liongo.com.cn",
-      "total_score": 52.4976,
+      "operational_name": "Mitra Chem",
+      "website": "mitrachem.com",
+      "total_score": 97.45,
       "breakdown": {
-        "semantic_core_offerings": 15.1,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.005,
+        "semantic_target_markets": 10.005,
+        "density_bonus": 2.7,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -701,14 +205,14 @@
       }
     },
     {
-      "operational_name": "BASF Shanshan Battery Materials",
-      "website": null,
-      "total_score": 52.4517,
+      "operational_name": "SolidEdge Solution",
+      "website": "solidedgesolution.com",
+      "total_score": 97.4444,
       "breakdown": {
-        "semantic_core_offerings": 15.06,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0037,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.7,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -717,14 +221,30 @@
       }
     },
     {
-      "operational_name": "Shanshan Technology",
-      "website": "shanshan.fi",
-      "total_score": 52.4512,
+      "operational_name": "POLYENTECH",
+      "website": "polyentech.com",
+      "total_score": 97.2778,
       "breakdown": {
-        "semantic_core_offerings": 15.06,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0032,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.55,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Altmin",
+      "website": "altmin.in",
+      "total_score": 97.2778,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.55,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -735,44 +255,140 @@
     {
       "operational_name": "Stratus Materials",
       "website": "stratusmaterials.com",
-      "total_score": 52.3952,
+      "total_score": 97.2222,
       "breakdown": {
-        "semantic_core_offerings": 26.365,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.005,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.5,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
         "null_core_penalty": 0.0,
-        "role_penalty": 15.0
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Solid Power",
+      "website": "solidpowerbattery.com",
+      "total_score": 97.2222,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.5,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Sepion Technologies",
+      "website": "sepiontechnologies.com",
+      "total_score": 97.2222,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.5,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "NexTech Batteries",
+      "website": "nextechbatteries.com",
+      "total_score": 97.2222,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.5,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Sili Energy",
+      "website": "silienergy.kr",
+      "total_score": 97.1667,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.45,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Li Hongte",
+      "website": "lihongte.com",
+      "total_score": 97.1667,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.45,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Hunan TianTai TianRun New Energy Technology",
+      "website": "tttrnet.com",
+      "total_score": 97.1111,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.4,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "RJETech",
+      "website": "rjetech.com",
+      "total_score": 97.0611,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.005,
+        "density_bonus": 2.35,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
       }
     },
     {
       "operational_name": "East Saint先行",
       "website": "ayxxgbyy.com.cn",
-      "total_score": 52.3837,
+      "total_score": 97.0,
       "breakdown": {
-        "semantic_core_offerings": 26.355,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0046,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 15.0
-      }
-    },
-    {
-      "operational_name": "Xinliyuan",
-      "website": "jsxlytech.com",
-      "total_score": 50.7731,
-      "breakdown": {
-        "semantic_core_offerings": 11.405,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0051,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.3,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -781,30 +397,14 @@
       }
     },
     {
-      "operational_name": "BTR New Material Group",
-      "website": null,
-      "total_score": 45.824,
+      "operational_name": "Greenbatt Technology",
+      "website": "greenbatt.ch",
+      "total_score": 96.9444,
       "breakdown": {
-        "semantic_core_offerings": 22.595,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0037,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 15.0
-      }
-    },
-    {
-      "operational_name": "Ford Credit",
-      "website": "ford.co.uk",
-      "total_score": 44.0984,
-      "breakdown": {
-        "semantic_core_offerings": 7.54,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0057,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.25,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -813,78 +413,14 @@
       }
     },
     {
-      "operational_name": "Naust Marine",
-      "website": "naust.is",
-      "total_score": 44.0575,
+      "operational_name": "Anda Technology",
+      "website": "ad-lib.cn",
+      "total_score": 96.8889,
       "breakdown": {
-        "semantic_core_offerings": 7.505,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0039,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Ecopwr",
-      "website": "ecopwr.se",
-      "total_score": 44.0526,
-      "breakdown": {
-        "semantic_core_offerings": 7.5,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0045,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Texon",
-      "website": "texonsystems.com",
-      "total_score": 44.052,
-      "breakdown": {
-        "semantic_core_offerings": 7.5,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0039,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Folksol",
-      "website": "folksol.se",
-      "total_score": 39.89,
-      "breakdown": {
-        "semantic_core_offerings": 3.755,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0031,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Sunnytek",
-      "website": "sunnytek.se",
-      "total_score": 39.8868,
-      "breakdown": {
-        "semantic_core_offerings": 3.75,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 2.143,
-        "density_bonus": 0.0053,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.2,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -895,17 +431,449 @@
     {
       "operational_name": "Nuvvon",
       "website": "nuvvon.com",
-      "total_score": 39.8331,
+      "total_score": 96.7222,
       "breakdown": {
-        "semantic_core_offerings": 15.06,
+        "semantic_core_offerings": 45.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 4.286,
-        "density_bonus": 0.0041,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 2.05,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
         "null_core_penalty": 0.0,
-        "role_penalty": 15.0
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Zakuro",
+      "website": "zakurobattery.com",
+      "total_score": 96.6111,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 1.95,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Shenzhen Atsm Energy",
+      "website": "atsmlab.en.alibaba.com",
+      "total_score": 96.5,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 1.85,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "RJETech",
+      "website": null,
+      "total_score": 96.3333,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 1.7,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Yide New Energy",
+      "website": "hunanyide.com",
+      "total_score": 96.0556,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 1.45,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "ReFire_ev",
+      "website": null,
+      "total_score": 95.8889,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 10.0,
+        "density_bonus": 1.3,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Hisun",
+      "website": "thehisun.com",
+      "total_score": 92.3333,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 3.1,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Hengchuang",
+      "website": "hengtron.com",
+      "total_score": 91.9444,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 2.75,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Kunlun New Materials",
+      "website": "kunlunchem.com.cn",
+      "total_score": 91.7778,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 2.6,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Xinliyuan",
+      "website": "jsxlytech.com",
+      "total_score": 91.7222,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 2.55,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Poly Energy",
+      "website": "polyenergy.tech",
+      "total_score": 91.6667,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 2.5,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Nanjing Blue Solid New Energy",
+      "website": "liongo.com.cn",
+      "total_score": 91.6667,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 2.5,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Wanbang New Energy",
+      "website": "scusne.com",
+      "total_score": 91.1667,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 2.05,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "FeovaEnergy",
+      "website": "feovaenergy.com",
+      "total_score": 91.0556,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 1.95,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "BTR New Material Group",
+      "website": null,
+      "total_score": 90.9444,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 1.85,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "BASF Shanshan Battery Materials",
+      "website": null,
+      "total_score": 90.9444,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 1.85,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "RUSTOR",
+      "website": "russianstorage.ru",
+      "total_score": 90.7778,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 1.7,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Shanshan Technology",
+      "website": "shanshan.fi",
+      "total_score": 90.6667,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 1.6,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Indonesia BTR New Energy Material",
+      "website": null,
+      "total_score": 90.3889,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 1.35,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "GuTai Battery Technology",
+      "website": "goodtimebattery.com",
+      "total_score": 86.1667,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 2.55,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Blue New Energy Technology",
+      "website": "lionteam.com.cn",
+      "total_score": 85.8889,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 2.3,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Zhejiang Shengmei Lithium Battery Materials",
+      "website": "zjsmld.com",
+      "total_score": 85.2222,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 1.7,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Naust Marine",
+      "website": "naust.is",
+      "total_score": 74.3944,
+      "breakdown": {
+        "semantic_core_offerings": 30.005,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 1.95,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Texon",
+      "website": "texonsystems.com",
+      "total_score": 74.3889,
+      "breakdown": {
+        "semantic_core_offerings": 30.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 1.95,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Sunnytek",
+      "website": "sunnytek.se",
+      "total_score": 58.5,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 2.65,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Sowin Power",
+      "website": "sowinpower.no",
+      "total_score": 58.2278,
+      "breakdown": {
+        "semantic_core_offerings": 15.005,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 2.4,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Ecopwr",
+      "website": "ecopwr.se",
+      "total_score": 58.0556,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 2.25,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Folksol",
+      "website": "folksol.se",
+      "total_score": 57.2833,
+      "breakdown": {
+        "semantic_core_offerings": 15.005,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 5.0,
+        "density_bonus": 1.55,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
       }
     }
   ]

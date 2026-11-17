@@ -172,6 +172,7 @@ Se deschide baza de date a firmelor si se trece prin fiecare in parte. Cand ajun
 ### Implementarea Batching:
 
 Se deschide baza de date a firmelor si se trece prin fiecare in parte. Cand ajungem la firma i vom compara criteriile obiective, daca se potricveste atunci o vom scrie intr un fisier temporar care memoreaza firmele care completeaza regex-urile. apoi parcurgem lista aceea nou formata si le dam note firmelor. Le sortam si apoi alegem top 20
+- "+" prin aceasta metoda putem sa omitem dublurile din baza de date ca sa nu trebuiasca sa scoram de 2 sau mai multe ori aceleasi companii
 - "+" putem vedea in timp real cum decide AI ul sa aleaga firmele si ce criterii a gasit el corecte sau gresite
 - "+" avem un log al firmelor care totusi au trecut de trierea HARD care totusi e considerata obiectiva, deci putem relua cautarile in cazul in care rezultatele sunt incorecte
 - "-" rescrierea in batch ocupa spatiu pe disk, asta nu e o problema cand e vorba de 10.000 de firme dar daca ajungem la ordinul milioanelor atunci poate deveni o problema pentru viteza si pentru spatiul de stocare(scenariu putin ireal pentru ca in viata reala nu s ar intampla ceva de genul, si chiar daca s ar intampla niciun sistem de cautare al firmelor nu ar fi prea rapid)
@@ -224,5 +225,109 @@ Prin acest update, am transformat un filtru care lăsa să treacă totul pe baz�
 
 ## SCORING-UL :
 
+Etapa de scoring se bazeaza pe oferirea recompenselor firmelor care contin campuri relevante cu query ul si penalizarea celor care au campuri lipsa sau irelevante.
 
 
+Dupa o analiza a situatiei actuale si a bazei de date a firmelor ramase candidate pentru query uri am observat cateva lucruri:
+
+### Observatii:
+ - acum fiecare firma are trecute filtrele HARD, dar ele trebuie sa fie apreciate, asa ca trebuie sa penalizam companiile care au trecut `null` in campurile de filtrare hard
+
+ - Firmele care mi au atras cel mai mult atentia (adica trebuie notate cel mai bine) au fost cele care aveau in `core_offerings`, `description` si `target_markets`.
+
+ - Companiile care aveau match perfect de NAICS au avut avantaje fata de celelalte companii care n au dat match pe NAICS
+
+ - Avataj au mai avut si firmele care prezentau anumite key_words in toate campurile existente, (`primary_naics:label`, `core_offerings`, `description`)
+
+ ### Decizii importate care trebuie luate:
+- Metoda de scorare trebuie aleasa in asa fel incat sa functioneze pe oricate companii selectate, oricate date contine query si sa returneze un scor normalizat, pentru a putea compara **CORECT** firmele intre ele.
+- Modul in care impartim nota finala (principiul ponderilor) va trebui sa fie **fine-tuned** din simplul motiv ca unele criterii mai putin importante sa combata scorarea unor firme care au reusit sa indeplineasca criterii mai importante. 
+- Propun construirea unui soi de sandbox in care sa incercam diferite valori pentru a ne fi mai usor procesul de fine-tuning al acestor valori, in cadrul careia sa implementam si metode telemetrice pentru vizualizarea erorilor.
+
+### Idee de implementare initiala:
+
+- Sistemul de scorare va fi impartit in 5 etape fiecare cu punctajul ei(insumate = 100p)
+   - `Notarea semantica`: 60p (relevanta core_offerings, description, target_markets)
+   - `NAICS mathcing`: 20p
+   - `Matching-ul pe date obiective`: 10p
+   - `Coerenta si consecventa` : 10 p
+---
+### Notarea Semantica
+- Se va baza in principiu pe compararea a ce detine query ul si a ce detine o companie oarecare din baza de date calificata.
+- Modul de comparare va fi bazat pe procentul de potrivire dintre query si campurile companiei: **MENTIUNE** :
+  - trebuie sa fim constienti de faptul ca pot aparea typing mismatches(query : "Pharmaceuticals", Company: "Pharmaceutical"), sau comparatii contextuale, care trebuie toate luate in considerare, pentru a evita edge-case urile.
+  - trebuie sa avem grija la cum comparam descrierile pentru ca de multe ori trebuie comparat **CONTEXTUAL**, astfel trebuie sa folosim niste metode subiective de acordare a notei finale.
+  - trebuie sa avem in vedere ce campuri au fost generate de query si mai mult decat atat trebuie sa avem in vedere ce campuri poate sa genereze si LLM ul si agentul local(e incorect sa incercam sa comparam companiile intre ele bazat pe `target_markets` sa zicem daca agentul nostru local nici macar nu poate scrie acolo ceva)
+  - trebuie sa avem in vedere cazurile in care le lipsesc firmelor campurile acestea 3 despre care am vorbit si cum taxam firmele respective.
+- Campurile vor fi cotate deiferit, iar propunerea incipienta a AI-ului a fost ca:
+   - `core_offerings` : 30p (daca are 100% din ce contine si query ul, primeste 30p)
+   - `description` : 15p
+   - `target_markets` : 15p
+
+- Alegerea acestor numere a fost facuta pentru cazurile in care firmelor le lipseste NAICS-ul(sau e gresit), dar ele pot avea un head-start in fata celorlalte pentru ca au demonstrat prin descriere si date subiective ca sunt suficient de apte pentru a candida.
+
+### NAICS matching :
+- Compararea directa cu lista de NAICS-uri ale query ului:
+   - `MATCH` = 20p
+   - `NOT MATCH` = 0p
+
+- Daca o companie nu reuseste sa faca destule puncte din datele subiective(exista un mismatch pe datele query ului), ea nu va fi cotata prost daca are acest NAICS pentru ca va avea destul de multe puncte peste firmele care nu au restul de date relevante(ex: O companie care a nimerit un NAICS vag din întâmplare (20 pct) va fi distrusă în clasament de o companie care nu are NAICS deloc, dar are o descriere 1-la-1 cu query-ul (60 pct))
+
+### Matching-ul pe date obiective
+- Verificam daca (si cate) campuri obiective bifeaza compania noastra in raport cu ce detine query-ul si facem un procentaj. **MENTIUNE**:
+   - trebuie sa avem in vedere cate campuri fantoma si cate campuri REALE a reusit sa detecteze agentul in query, pentru a putea face o idee de cate campuri ar trebui sa detina "compania perfecta"
+   - penalizarea trebuie sa fie in raport cu cate date obiective are query ul si cate campuri lipsa are firma de notat
+
+- Notarea:
+   - `toate campurile obiective prezente` : 10p
+   - `Niciun camp obiectiv prezent` : 0p
+
+### Coerenta si consecventa:
+- Tokenii firmei trebuie cautati (**MENTIUNE** : SEMANTIC, deci subiectiv si contextual) in 3 campuri diferite ale companiei si anume : `NAICS_LABEL`, `core_offerings`, `description`
+- Daca gasim aceasta coerenta in datele firmelor, in raport cu ce se afla in query, trebuie sa oferim un total de 10p.
+---
+La final toate aceste valori vor fi adunate si clasate si notate(folosind indecsii fiecarei companii si nota lor), iar folosind o sortare aferenta de complexitate O(logn) vom reusi sa deducem primele k firme care au cea mai mare nota si le vom afisa in radacina proiectului intr-un fisier: `Topk.jsonl`
+
+### Telemetria:
+
+Am construit o metoda care sa ne ofere informatiile in legatura cu ce recompense a primit fiecare companie pe fiecare camp al scoring-ului, astfel incat sa putem sa identificam erori in logica sau de calcul.
+
+---
+### Rezultate dupa telementrie:
+- **Ce merge**:
+   - NAICS-ul functioneaza ca un criteriu foarte bun de departajare.
+     - **EXEMPLU**: pentru query-ul: "Food and beverage manufacturers in France" toate firmele de mâncare și băuturi sunt ≥41, iar cele 6 firme fără legătură (Virtualia, Sun RH, European Pay, quarksUp...) sunt ≤21. NAICS-ul face diferența.
+
+  - Filarea industriilor se face corect
+    - **EXEMPLU**: pt query-ul: "Public software companies with more than 1,000 employees." cele 15 firme tăiate de filtrul de industrie sunt toate corect tăiate (construcții, farma, retail). Nu se văd pierderi.
+
+  - Telemetria pe componente e exact ce trebuia, fiindcă din ea văd de ce primește fiecare firmă scorul.
+
+- **Ce NU merge**: 
+   - Scoruri nenormalizate și "plafonul de sticlă"
+     - **PROBLEMA**: Scorul maxim se bloca adesea pe la 75 de puncte. De ce? Pentru că dacă un query nu cerea explicit o "piață țintă" (target markets), bugetul alocat acelui câmp (15p) se pierdea complet. Mai mult, datele obiective (ex. numărul de angajați) acordau 10 puncte din oficiu tuturor firmelor care treceau de filtrul hard, devenind un bonus inutil, generalizat, în loc să departajeze candidații. Practic, scorurile nu mai erau comparabile între diferite query-uri.
+     - **Cum am rezolvat**: Am implementat o normalizare matematică dinamică. Acum, scorul brut se raportează strict la bugetul de criterii efectiv activate de query (dacă nu cere piață țintă, se împarte la bugetul rămas). Cât despre datele obiective, le-am transformat dintr-un bonus într-o penalizare: nu mai premiem firma pentru că există, ci o depunctăm proporțional doar dacă îi lipsesc datele esențiale cerute.
+
+  - Egalități arbitrare la coada clasamentului
+     - **PROBLEMA**: Sistemul genera blocuri întregi de companii cu scoruri perfect identice (grupuri de 5-7 firme cu scor fix 40.0 sau 71.0). Asta se întâmpla pentru că punctajul creștea în trepte fixe. Când aveai punctaj egal, departajarea finală se făcea total arbitrar, în funcție de ordinea în care firmele erau citite din baza de date.
+     - **Cum am rezolvat**: Am "spart" aceste egalități transformând scorul într-o valoare continuă, cu zecimale. Am introdus un mecanism de Term Frequency (TF) și un Bonus de Densitate. Acum, dacă o firmă are profilul mai bogat și folosește termenii cheie de mai multe ori, primește fracțiuni de puncte în plus (ex. +0.05 per token). Ca plasă de siguranță finală, am adăugat și sortarea alfabetică.
+     - **Idee de implementare pe viitor**: daca o companie abuzeaza in descriere de acelasi cuvant de exemplu : "Pharma ,Pharma ,Pharma ,Pharma ,Pharma" atunci va fi cotat ca bun deci practic trebuie introdus un sistem de anticheat
+  - Umplerea artificială a listelor Top-K
+     - **PROBLEMA**: Lista nu știa să se oprească la timp. Dacă pentru un query aveam doar 3 candidați cu adevărat relevanți, sistemul trăgea de la coada clasamentului firme slabe doar ca să livreze fișierul complet de 20 de firme.
+     - **Cum am rezolvat**: Am introdus Dynamic Thresholding (Tăiere Dinamică). Pe lângă un prag minim de bun-simț, sistemul evaluează acum scorul liderului și elimină fără milă orice companie care cade sub un anumit procent (50%-65%) din performanța acestuia. Așa, dacă un query are doar 3 rezultate excelente, lista se oprește natural la 3.
+
+  - Redundanța criteriului de Coerență
+     - **PROBLEMA**: Vechiul sistem acorda un bonus de "coerență" dacă termenii cheie apăreau în mai multe câmpuri simultan (NAICS, oferte, descriere). În practică, asta doar dubla punctajul obținut la secțiunea semantică, fără să aducă vreo informație sau valoare nouă.
+     - **Cum am rezolvat**: Am șters complet acest bonus și l-am înlocuit cu o penalizare mult mai utilă: NAICS Mismatch Penalty. Dacă o companie are un cod NAICS oficial clar definit, dar acesta contrazice flagrant industria cerută de query, aplicăm o penalizare chirurgicală (-15.0 puncte). Asta elimină rapid "intrușii" din clasament.
+
+# FINAL
+
+Proiectul functioneaza, returneaza firme pe care le am verificat manual sa vad daca sunt bune, dar proiectul este departe de a fi gata pentru ca momentan modul de ordonare a datelor este haotic iar afisarea lor este la fel un user displeasure.
+
+## Etapele de "curatare" are repository-ului
+1. Cand rulam aplicatia se vrea ca in consola se se afiseze exact top-ul companiilor si doar asta, iar datele vor fi salvate in `results/$datetime/`:
+ - `log.txt`: va afisa tot ce a fost inteles de catre agentul local si de catre LLM, dar si ce eroare a primit acest LLM.
+ - `top.txt`: va afisa query ul si topul(exact ce se va afisa si in consola)
+ - `company_lists/`: un director in care se vor salva toate topurile tuturor query-urilor trimise in proces, sub forma de jsonl-uri
+ - `query_list.jsonl`: un fisier in care se vor scrie toate query-urile cu toate datele care au fost captate(vechiul `assets/runs/`)
+ - `telemetry_list/`: un director in care se vor salva toate datele despre notarea firmelor

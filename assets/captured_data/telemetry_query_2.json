@@ -3,11 +3,11 @@
   "query_status": "understood",
   "api_called": true,
   "total_candidates_above_threshold": 20,
-  "dynamic_cutoff_applied": 50.013,
+  "dynamic_cutoff_applied": 50.0,
   "score_statistics": {
-    "max_score": 100.025,
-    "min_score": 100.014,
-    "average_score": 100.019
+    "max_score": 100.0,
+    "min_score": 71.444,
+    "average_score": 79.733
   },
   "top_k_saved": 20,
   "output_file": "top_results\\top_20_query_2.jsonl",
@@ -15,28 +15,12 @@
     {
       "operational_name": "Wipro",
       "website": "wipro.com",
-      "total_score": 100.025,
+      "total_score": 100.0,
       "breakdown": {
         "semantic_core_offerings": 0.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0075,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Fujitsu",
-      "website": "fujitsu.com",
-      "total_score": 100.023,
-      "breakdown": {
-        "semantic_core_offerings": 0.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0069,
+        "semantic_target_markets": 15.0,
+        "density_bonus": 3.75,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -47,188 +31,12 @@
     {
       "operational_name": "Tata Consultancy Services",
       "website": "tcs.com",
-      "total_score": 100.0227,
+      "total_score": 100.0,
       "breakdown": {
         "semantic_core_offerings": 0.0,
         "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0068,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Mphasis",
-      "website": "mphasis.com",
-      "total_score": 100.0227,
-      "breakdown": {
-        "semantic_core_offerings": 0.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0068,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Telefónica Venture Builder",
-      "website": "telefonica.com",
-      "total_score": 100.022,
-      "breakdown": {
-        "semantic_core_offerings": 0.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0066,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Tietoevry",
-      "website": "tietoevry.com",
-      "total_score": 100.0217,
-      "breakdown": {
-        "semantic_core_offerings": 0.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0065,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "ASGN",
-      "website": "asgn.com",
-      "total_score": 100.0207,
-      "breakdown": {
-        "semantic_core_offerings": 0.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0062,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Leidos",
-      "website": "leidos.com",
-      "total_score": 100.0193,
-      "breakdown": {
-        "semantic_core_offerings": 0.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0058,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Capgemini",
-      "website": "capgemini.com",
-      "total_score": 100.0193,
-      "breakdown": {
-        "semantic_core_offerings": 0.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0058,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "CGI",
-      "website": "cgi.com",
-      "total_score": 100.0193,
-      "breakdown": {
-        "semantic_core_offerings": 0.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0058,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Concentrix",
-      "website": "concentrix.com",
-      "total_score": 100.019,
-      "breakdown": {
-        "semantic_core_offerings": 0.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0057,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "CACI",
-      "website": "caci.com",
-      "total_score": 100.0187,
-      "breakdown": {
-        "semantic_core_offerings": 0.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0056,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "Booz Allen",
-      "website": "boozallen.com",
-      "total_score": 100.0183,
-      "breakdown": {
-        "semantic_core_offerings": 0.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0055,
-        "naics_matching": 30.0,
-        "naics_penalty": 0.0,
-        "objective_penalty": 0.0,
-        "null_core_penalty": 0.0,
-        "role_penalty": 0.0
-      }
-    },
-    {
-      "operational_name": "NTT DATA",
-      "website": "nttdata.com",
-      "total_score": 100.018,
-      "breakdown": {
-        "semantic_core_offerings": 0.0,
-        "semantic_description": 0.0,
-        "semantic_target_markets": 0.0,
-        "density_bonus": 0.0054,
+        "semantic_target_markets": 15.0,
+        "density_bonus": 3.4,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -239,12 +47,204 @@
     {
       "operational_name": "EPAM",
       "website": "epam.com",
-      "total_score": 100.018,
+      "total_score": 100.0,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 15.0,
+        "density_bonus": 2.7,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Capgemini",
+      "website": "capgemini.com",
+      "total_score": 100.0,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 15.0,
+        "density_bonus": 2.9,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "ASGN",
+      "website": "asgn.com",
+      "total_score": 100.0,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 15.0,
+        "density_bonus": 3.1,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Fujitsu",
+      "website": "fujitsu.com",
+      "total_score": 74.3333,
       "breakdown": {
         "semantic_core_offerings": 0.0,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "density_bonus": 0.0054,
+        "density_bonus": 3.45,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Mphasis",
+      "website": "mphasis.com",
+      "total_score": 74.2222,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 3.4,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Telefónica Venture Builder",
+      "website": "telefonica.com",
+      "total_score": 74.0,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 3.3,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Tietoevry",
+      "website": "tietoevry.com",
+      "total_score": 73.8889,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 3.25,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Leidos",
+      "website": "leidos.com",
+      "total_score": 73.1111,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 2.9,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "CGI",
+      "website": "cgi.com",
+      "total_score": 73.1111,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 2.9,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Concentrix",
+      "website": "concentrix.com",
+      "total_score": 73.0,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 2.85,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "CACI",
+      "website": "caci.com",
+      "total_score": 72.8889,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 2.8,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Booz Allen",
+      "website": "boozallen.com",
+      "total_score": 72.7778,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 2.75,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "NTT DATA",
+      "website": "nttdata.com",
+      "total_score": 72.6667,
+      "breakdown": {
+        "semantic_core_offerings": 0.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 2.7,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -255,12 +255,12 @@
     {
       "operational_name": "Genpact",
       "website": "genpact.com",
-      "total_score": 100.0177,
+      "total_score": 72.5556,
       "breakdown": {
         "semantic_core_offerings": 0.0,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "density_bonus": 0.0053,
+        "density_bonus": 2.65,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -271,12 +271,12 @@
     {
       "operational_name": "Globant",
       "website": "globant.com",
-      "total_score": 100.0173,
+      "total_score": 72.4444,
       "breakdown": {
         "semantic_core_offerings": 0.0,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "density_bonus": 0.0052,
+        "density_bonus": 2.6,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -287,12 +287,12 @@
     {
       "operational_name": "Atos",
       "website": "atos.net",
-      "total_score": 100.0173,
+      "total_score": 72.4444,
       "breakdown": {
         "semantic_core_offerings": 0.0,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "density_bonus": 0.0052,
+        "density_bonus": 2.6,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -303,12 +303,12 @@
     {
       "operational_name": "SAIC",
       "website": "saic.com",
-      "total_score": 100.0153,
+      "total_score": 71.7778,
       "breakdown": {
         "semantic_core_offerings": 0.0,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "density_bonus": 0.0046,
+        "density_bonus": 2.3,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,
@@ -319,12 +319,12 @@
     {
       "operational_name": "DWS Group",
       "website": "hcltech.com",
-      "total_score": 100.0143,
+      "total_score": 71.4444,
       "breakdown": {
         "semantic_core_offerings": 0.0,
         "semantic_description": 0.0,
         "semantic_target_markets": 0.0,
-        "density_bonus": 0.0043,
+        "density_bonus": 2.15,
         "naics_matching": 30.0,
         "naics_penalty": 0.0,
         "objective_penalty": 0.0,

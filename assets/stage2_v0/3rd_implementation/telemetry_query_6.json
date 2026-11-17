@@ -1,0 +1,432 @@
+{
+  "query_text": "Pharmaceutical companies in Switzerland",
+  "query_status": "understood",
+  "api_called": true,
+  "total_candidates_above_threshold": 26,
+  "dynamic_cutoff_applied": 43.336,
+  "score_statistics": {
+    "max_score": 86.673,
+    "min_score": 45.005,
+    "average_score": 53.999
+  },
+  "top_k_saved": 20,
+  "output_file": "top_results\\top_20_query_6.jsonl",
+  "full_candidates_breakdown": [
+    {
+      "operational_name": "Novartis",
+      "website": "novartis.com",
+      "total_score": 86.6727,
+      "breakdown": {
+        "semantic_core_offerings": 45.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0054,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Acino",
+      "website": "acino.swiss",
+      "total_score": 61.7229,
+      "breakdown": {
+        "semantic_core_offerings": 22.545,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0056,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Sumitomo Pharma Switzerland",
+      "website": "sumitomo-pharma.com",
+      "total_score": 61.7226,
+      "breakdown": {
+        "semantic_core_offerings": 22.545,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0053,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "MSD",
+      "website": "msd.ch",
+      "total_score": 61.7224,
+      "breakdown": {
+        "semantic_core_offerings": 22.545,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0052,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "IBSA",
+      "website": "ibsagroup.com",
+      "total_score": 61.6897,
+      "breakdown": {
+        "semantic_core_offerings": 22.515,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0057,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Tillotts Pharma",
+      "website": "tillotts.com",
+      "total_score": 61.6883,
+      "breakdown": {
+        "semantic_core_offerings": 22.515,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0045,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "CRISPR Therapeutics",
+      "website": "crisprtx.com",
+      "total_score": 61.6788,
+      "breakdown": {
+        "semantic_core_offerings": 22.505,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0059,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "PSI CRO",
+      "website": "psi-cro.com",
+      "total_score": 61.672,
+      "breakdown": {
+        "semantic_core_offerings": 22.5,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0048,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Idorsia",
+      "website": "idorsia.com",
+      "total_score": 58.3542,
+      "breakdown": {
+        "semantic_core_offerings": 22.515,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 0.0038,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Helsinn",
+      "website": "helsinn.com",
+      "total_score": 53.3726,
+      "breakdown": {
+        "semantic_core_offerings": 15.03,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0053,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Debiopharm",
+      "website": "debiopharm.com",
+      "total_score": 53.3676,
+      "breakdown": {
+        "semantic_core_offerings": 15.025,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0058,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Ferring",
+      "website": "ferring.com",
+      "total_score": 53.3616,
+      "breakdown": {
+        "semantic_core_offerings": 15.02,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0054,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Octapharma",
+      "website": "octapharma.com",
+      "total_score": 53.3446,
+      "breakdown": {
+        "semantic_core_offerings": 15.005,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0051,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Galderma",
+      "website": "galderma.com",
+      "total_score": 53.3374,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0037,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "CARBOGEN AMCIS",
+      "website": "carbogen-amcis.com",
+      "total_score": 50.0388,
+      "breakdown": {
+        "semantic_core_offerings": 15.03,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 0.0049,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "CordenPharma",
+      "website": "cordenpharma.com",
+      "total_score": 50.0239,
+      "breakdown": {
+        "semantic_core_offerings": 15.015,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 0.0065,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Lonza",
+      "website": "lonza.com",
+      "total_score": 50.0168,
+      "breakdown": {
+        "semantic_core_offerings": 15.01,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 0.0051,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Bachem",
+      "website": "bachem.com",
+      "total_score": 50.0052,
+      "breakdown": {
+        "semantic_core_offerings": 15.0,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 0.0,
+        "density_bonus": 0.0047,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "A. Menarini",
+      "website": "menarini.ch",
+      "total_score": 45.077,
+      "breakdown": {
+        "semantic_core_offerings": 7.565,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0043,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "TRB Chemedica",
+      "website": "trbchemedica.com",
+      "total_score": 45.0329,
+      "breakdown": {
+        "semantic_core_offerings": 7.525,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0046,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "ADC Therapeutics",
+      "website": "adctherapeutics.com",
+      "total_score": 45.0264,
+      "breakdown": {
+        "semantic_core_offerings": 7.52,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0038,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "AbelaPharm",
+      "website": "abelapharm.ch",
+      "total_score": 45.0162,
+      "breakdown": {
+        "semantic_core_offerings": 7.51,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0046,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Alcon",
+      "website": "aeriepharma.com",
+      "total_score": 45.0152,
+      "breakdown": {
+        "semantic_core_offerings": 7.51,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0037,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Drugs for Neglected Diseases initiative",
+      "website": "dndi.org",
+      "total_score": 45.0121,
+      "breakdown": {
+        "semantic_core_offerings": 7.505,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0059,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Nestlé Health Science",
+      "website": "nestlehealthscience.com",
+      "total_score": 45.0062,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0056,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    },
+    {
+      "operational_name": "Teoxane",
+      "website": "teoxane.com",
+      "total_score": 45.0054,
+      "breakdown": {
+        "semantic_core_offerings": 7.5,
+        "semantic_description": 0.0,
+        "semantic_target_markets": 3.0,
+        "density_bonus": 0.0049,
+        "naics_matching": 30.0,
+        "naics_penalty": 0.0,
+        "objective_penalty": 0.0,
+        "null_core_penalty": 0.0,
+        "role_penalty": 0.0
+      }
+    }
+  ]
+}

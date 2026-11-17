@@ -1,5 +1,7 @@
 import json
 import os
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 import time
 from datetime import datetime
 from pathlib import Path
@@ -56,6 +58,8 @@ class QueryQualificationPipeline:
         """
         Deschide dataset/companies.jsonl, ia fiecare firma linie cu linie si o trimite
         catre HardFilterProcessor (package-ul `process`).
+        Deduplica firmele identice (dupa website sau nume) inainte de a le scrie ca si candidati,
+        pentru a nu ingreuna inutil motorul de scorare.
         Returneaza (calea_fisierului_temp, total_vazute, total_trecute, total_excluse).
         """
         temp_file = self.temp_dir / f"candidates_q{query_index}.jsonl"
@@ -64,6 +68,9 @@ class QueryQualificationPipeline:
             raise FileNotFoundError(
                 f"Nu am gasit baza de date la calea: {self.db_path.resolve()}"
             )
+
+        seen_company_ids = set()
+        total_seen_raw = 0
 
         with HardFilterProcessor(qualified_query, temp_file) as processor:
             with open(self.db_path, mode="r", encoding="utf-8") as db_file:
@@ -76,12 +83,23 @@ class QueryQualificationPipeline:
                     except json.JSONDecodeError:
                         continue
 
+                    total_seen_raw += 1
+                    
+                    # Generare ID unic pentru deduplicare (folosim website-ul, daca lipseste folosim numele)
+                    unique_id = str(company_dict.get("website") or company_dict.get("operational_name") or "").strip().lower()
+                    
+                    if not unique_id or unique_id in seen_company_ids:
+                        continue # Am vazut deja firma asta, o ignoram la nivel de pipeline
+
+                    seen_company_ids.add(unique_id)
                     processor.process_company(company_dict, raw_json_line=stripped)
 
-        return temp_file, processor.total_seen, processor.total_passed, processor.total_dropped
+        return temp_file, total_seen_raw, processor.total_passed, processor.total_dropped
 
 
 if __name__ == "__main__":
+    from datetime import datetime  # Asigura-te ca ai acest import sus in fisier
+    
     pipeline = QueryQualificationPipeline(
         db_path="dataset/companies.jsonl",
         temp_dir="dataset/temp",
@@ -132,7 +150,7 @@ if __name__ == "__main__":
         print(f"   Fisier candidati:  {temp_path}")
 
         # === ETAPA 2B: Semantic Scoring & Telemetrie ===
-        K = 20 # Poti seta valoarea dorita pentru K (ex: 5, 10, 20)
+        K = 20 # Limita maxima, dar algoritmul va taia lista mai scurt daca firmele sunt slabe
         top_companies = rank_candidates(
             result_query, 
             temp_path, 
@@ -143,6 +161,16 @@ if __name__ == "__main__":
         )
         print(f"   [SCORING] Salvat top_{K}_query_{idx}.jsonl in 'top_results/'")
         print(f"   [TELEMETRIE] Salvat statistici detaliate in 'assets/captured_data/'")
+
+        # NOU: Afisarea in terminal doar a firmelor care au trecut pragul dinamic
+        if top_companies:
+            print(f"\n   -> TOP FIRME RELEVANTE (peste pragul dinamic):")
+            for i, comp in enumerate(top_companies, 1):
+                name = comp['operational_name']
+                score = comp['total_score']
+                print(f"      {i}. {name:<40} | Scor: {score:.3f}")
+        else:
+            print(f"\n   -> [INFO] Nicio firma nu a atins pragul minim de relevanta.")
 
         # === LOGICA DE SALVARE IN ASSETS/RUNS (Run Log) ===
         log_entry = {
